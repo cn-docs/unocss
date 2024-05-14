@@ -9,9 +9,6 @@ on:
     branches:
       - main
 
-env:
-  NODE_VERSION: lts/*
-
 jobs:
   autofix:
     runs-on: ubuntu-latest
@@ -23,7 +20,7 @@ jobs:
       - name: Use Node.js lts/*
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: 20.x
 
       - name: Setup
         run: npm i -g @antfu/ni
