@@ -6,7 +6,7 @@ hero:
   image:
     src: /logo.svg
     alt: UnoCSS
-  name: "UnoCSS 中文文档"
+  name: "UnoCSS"
   text: 即时按需的原子CSS引擎
   tagline: 可定制 · 强大 · 快速 · 愉悦
   actions:

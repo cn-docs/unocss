@@ -5,7 +5,7 @@ import { version } from '../../package.json'
 
 const ogUrl = 'https://unocss.dev/'
 const ogImage = `${ogUrl}og.png#1`
-const title = 'UnoCSS'
+const title = 'UnoCSS 中文文档'
 const description = 'unocss 中文文档'
 
 const Guides: DefaultTheme.NavItemWithLink[] = [
