@@ -5,6 +5,7 @@
 // Read more: https://github.com/vuejs/core/pull/3399
 export {}
 
+/* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
     Analyzer: typeof import('./../../packages/inspector/client/components/Analyzer.vue')['default']
