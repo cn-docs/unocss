@@ -1,18 +1,18 @@
 ---
-title: Web fonts preset
-description: Web fonts support for UnoCSS (@unocss/preset-web-fonts).
+title: Web字体预设
+description: UnoCSS 的 Web 字体支持 (@unocss/preset-web-fonts)。
 outline: deep
 ---
 
-# Web Fonts preset
+# Web字体预设
 
-Use web fonts from [Google Fonts](https://fonts.google.com/), [FontShare](https://www.fontshare.com/) by simply providing the font names.
+通过提供字体名称，从 [Google Fonts](https://fonts.google.com/)、[FontShare](https://www.fontshare.com/) 等提供商使用 Web 字体。
 
-See [all supported providers](#providers).
+查看[所有支持的提供商](#providers)。
 
-[Source Code](https://github.com/unocss/unocss/tree/main/packages/preset-web-fonts)
+[源代码](https://github.com/unocss/unocss/tree/main/packages/preset-web-fonts)
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -41,29 +41,29 @@ export default defineConfig({
 ```
 
 ::: tip
-This preset is included in the `unocss` package, you can also import it from there:
+该预设已包含在 `unocss` 包中，您也可以从那里导入：
 
 ```ts
 import { presetWebFonts } from 'unocss'
 ```
 :::
 
-## Providers
+## 提供商
 
-Currently supported Providers:
+目前支持的提供商：
 
-- `none` - do nothing, treat the font as system font
+- `none` - 什么也不做，将字体视为系统字体
 - `google` - [Google Fonts](https://fonts.google.com/)
-- `bunny` - [Privacy-Friendly Google Fonts](https://fonts.bunny.net/)
-- `fontshare` - [Quality Font Service by ITF](https://www.fontshare.com/)
+- `bunny` - [隐私友好的 Google Fonts](https://fonts.bunny.net/)
+- `fontshare` - [ITF 的优质字体服务](https://www.fontshare.com/)
 
 ::: info
-PR welcome to add more providers. 🙌
+欢迎通过 PR 添加更多提供商。🙌
 :::
 
-### Custom fetch function
+### 自定义获取函数
 
-Use your own function to fetch font source.
+使用您自己的函数来获取字体源。
 
 ```ts
 // uno.config.ts
@@ -77,7 +77,7 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetWebFonts({
-      // use axios with an https proxy
+      // 使用 axios 并设置 https 代理
       customFetch: (url: string) => axios.get(url, { httpsAgent: new ProxyAgent('https://localhost:7890') }).then(it => it.data),
       provider: 'google',
       fonts: {
@@ -89,22 +89,22 @@ export default defineConfig({
 })
 ```
 
-## Options
+## 选项
 
 ### provider
-- **Type:** `WebFontsProviders`
-- **Default:** `google`
+- **类型：** `WebFontsProviders`
+- **默认值：** `google`
 
-Provider service of the web fonts.
+Web 字体的提供商服务。
 
 ```ts
 type WebFontsProviders = 'google' | 'bunny' | 'fontshare' | 'none'
 ```
 
 ### fonts
-- **Type:** `Record<string, WebFontMeta | string | (WebFontMeta | string)[]>`
+- **类型：** `Record<string, WebFontMeta | string | (WebFontMeta | string)[]>`
 
-The fonts. See [example](#example) for more details.
+字体。更多详情请参见[示例](#example)。
 
 ```ts
 interface WebFontMeta {
@@ -112,47 +112,47 @@ interface WebFontMeta {
   weights?: (string | number)[]
   italic?: boolean
   /**
-   * Override the provider
-   * @default <matches root config>
+   * 覆盖提供商
+   * @default <与根配置匹配>
    */
   provider?: WebFontsProviders
 }
 ```
 
 ### extendTheme
-- **Type:** `boolean`
-- **Default:** `true`
+- **类型：** `boolean`
+- **默认值：** `true`
 
-Extend the theme object.
+扩展主题对象。
 
 ### themeKey
-- **Type:** `string`
-- **Default:** `fontFamily`
+- **类型：** `string`
+- **默认值：** `fontFamily`
 
-Key for the theme object.
+主题对象的键。
 
 ### inlineImports
-- **Type:** `boolean`
-- **Default:** `true`
+- **类型：** `boolean`
+- **默认值：** `true`
 
-Inline CSS `@import()`.
+内联 CSS `@import()`。
 
 ### customFetch
-- **Type:** `(url: string) => Promise<string>`
-- **Default:** `undefined`
+- **类型：** `(url: string) => Promise<string>`
+- **默认值：** `undefined`
 
-Use your own function to fetch font source. See [Custom fetch function](#custom-fetch-function).
+使用您自己的函数来获取字体源。查看[自定义获取函数](#custom-fetch-function)。
 
-## Example
+## 示例
 
 ```ts
 presetWebFonts({
-  provider: 'google', // default provider
+  provider: 'google', // 默认提供商
   fonts: {
-    // these will extend the default theme
+    // 这些将扩展默认主题
     sans: 'Roboto',
     mono: ['Fira Code', 'Fira Mono:400,700'],
-    // custom ones
+    // 自定义的
     lobster: 'Lobster',
     lato: [
       {
@@ -162,31 +162,33 @@ presetWebFonts({
       },
       {
         name: 'sans-serif',
-        provider: 'none',
+       
+
+ provider: 'none',
       },
     ],
   },
 })
 ```
 
-The following CSS will be generated automatically:
+将自动生成以下 CSS：
 
 ```css
 @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Fira+Code&family=Fira+Mono:wght@400;700&family=Lobster&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* layer: default */
+/* 层级: 默认 */
 .font-lato {
-  font-family: "Lato", sans-serif;
+    font-family: "Lato", sans-serif;
 }
 .font-lobster {
-  font-family: "Lobster";
+    font-family: "Lobster";
 }
 .font-mono {
-  font-family: "Fira Code", "Fira Mono", ui-monospace, SFMono-Regular, Menlo,
+    font-family: "Fira Code", "Fira Mono", ui-monospace, SFMono-Regular, Menlo,
     Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 .font-sans {
-  font-family: "Roboto", ui-sans-serif, system-ui, -apple-system,
+    font-family: "Roboto", ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     "Noto Color Emoji";

@@ -1,13 +1,13 @@
-# Integrations
+# 集成
 
-### Frameworks / Tools
+### 框架 / 工具
 
-UnoCSS comes with integrations for various frameworks / tools:
+UnoCSS 提供了针对各种框架/工具的集成：
 
 <ContentIntegrations />
 
-### Examples
+### 示例
 
-Source code for all the examples can be found in the [/examples](https://github.com/unocss/unocss/tree/main/examples) directory.
+所有示例的源代码都可以在 [/examples](https://github.com/unocss/unocss/tree/main/examples) 目录中找到。
 
 <ContentExamples/>

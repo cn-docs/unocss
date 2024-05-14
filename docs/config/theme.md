@@ -1,14 +1,14 @@
 ---
-title: Theme
-description: UnoCSS also supports the theming system that you might be familiar with in Tailwind CSS / Windi CSS.
+title: 主题
+description: UnoCSS 也支持您在 Tailwind CSS / Windi CSS 中可能熟悉的主题系统。
 outline: deep
 ---
 
-# Theme
+# 主题
 
-UnoCSS also supports the theming system that you might be familiar with in Tailwind CSS / Windi CSS. At the user level, you can specify the `theme` property in your config, and it will be deep-merged to the default theme.
+UnoCSS 也支持您可能在 Tailwind CSS / Windi CSS 中熟悉的主题系统。在用户级别，您可以在配置中指定 `theme` 属性，并且它将被深度合并到默认主题中。
 
-## Usage
+## 使用方法
 
 <!--eslint-skip-->
 
@@ -24,12 +24,12 @@ theme: {
 }
 ```
 ::: tip
-During the parsing process, `theme` will always exist in `context`.
+在解析过程中，`theme` 将始终存在于 `context` 中。
 :::
 
-### Usage in `rules`
+### 在规则中使用
 
-To consume the theme in rules:
+在规则中使用主题：
 
 ```ts
 rules: [
@@ -40,9 +40,9 @@ rules: [
 ]
 ```
 
-### Usage in `variants`
+### 在变体中使用
 
-To consume the theme in variants:
+在变体中使用主题：
 
 ```ts
 variants: [
@@ -55,9 +55,9 @@ variants: [
 ]
 ```
 
-### Usage in `shortcuts`
+### 在快捷方式中使用
 
-To consume the theme in dynamic shortcuts:
+在动态快捷方式中使用主题：
 
 ```ts
 shortcuts: [
@@ -68,13 +68,13 @@ shortcuts: [
 ]
 ```
 
-## Breakpoints
+## 断点
 
 ::: warning
-When a custom `breakpoints` object is provided the default will be overridden instead of merging.
+当提供自定义 `breakpoints` 对象时，默认对象将被覆盖而不是合并。
 :::
 
-With the following example, you will be able to only use the `sm:` and `md:` breakpoint variants:
+通过以下示例，您将只能使用 `sm:` 和 `md:` 断点变体：
 
 <!--eslint-skip-->
 
@@ -89,10 +89,10 @@ theme: {
 ```
 
 ::: info
-`verticalBreakpoints` is same as `breakpoints` but for vertical layout.
+`verticalBreakpoints` 与 `breakpoints` 相同，但用于垂直布局。
 :::
 
-In addition we will sort screen points by size (same unit). For screen points in different units, in order to avoid errors, please use unified units in the configuration.
+另外，我们将按照大小（相同单位）对屏幕点进行排序。对于不同单位的屏幕点，为了避免错误，请在配置中使用统一的单位。
 
 <!--eslint-skip-->
 
@@ -101,7 +101,7 @@ theme: {
   // ...
   breakpoints: {
     sm: '320px',
-    // Because uno does not support comparison sorting of different unit sizes, please convert to the same unit.
+    // 由于 uno 不支持不同单位大小的比较排序，请转换为相同单位。
     // md: '40rem',
     md: `${40 * 16}px`,
     lg: '960px',

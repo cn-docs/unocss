@@ -1,6 +1,6 @@
-# Transformers
+# 转换器
 
-Provides a unified interface to transform source code in order to support conventions.
+提供了一个统一的接口来转换源代码，以支持惯例。
 
 ```ts
 // my-transformer.ts
@@ -10,17 +10,17 @@ import { SourceCodeTransformer } from 'unocss'
 export default function myTransformers(options: MyOptions = {}): SourceCodeTransformer {
   return {
     name: 'my-transformer',
-    enforce: 'pre', // enforce before other transformers
+    enforce: 'pre', // 在其他转换器之前执行
     idFilter(id) {
-      // only transform .tsx and .jsx files
+      // 只转换 .tsx 和 .jsx 文件
       return id.match(/\.[tj]sx$/)
     },
     async transform(code, id, { uno }) {
-      // code is a MagicString instance
-      code.appendRight(0, '/* my transformer */')
+      // code 是 MagicString 实例
+      code.appendRight(0, '/* 我的转换器 */')
     },
   }
 }
 ```
 
-You can check [official transformers](/presets/#transformers) for more examples.
+您可以查看[官方转换器](/presets/#转换器)获取更多示例。

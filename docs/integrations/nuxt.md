@@ -1,13 +1,13 @@
 ---
-title: UnoCSS Nuxt Module
-description: Nuxt module for UnoCSS.
+title: UnoCSS Nuxt 模块
+description: Nuxt 模块用于 UnoCSS。
 ---
 
-# Nuxt Module
+# Nuxt 模块
 
-The Nuxt module for UnoCSS.
+这是一个用于 UnoCSS 的 Nuxt 模块。
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -21,7 +21,7 @@ The Nuxt module for UnoCSS.
   ```
 :::
 
-Add `@unocss/nuxt` to your Nuxt config file:
+在你的 Nuxt 配置文件中添加 `@unocss/nuxt`：
 
 ```ts
 // nuxt.config.ts
@@ -32,32 +32,32 @@ export default defineNuxtConfig({
 })
 ```
 
-Create a `uno.config.ts` file:
+创建一个 `uno.config.ts` 文件：
 
 ```ts
 // uno.config.ts
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
-  // ...UnoCSS options
+  // ...UnoCSS 选项
 })
 ```
 
-The `uno.css` entry will be automatically injected by the module.
+`uno.css` 入口将由模块自动注入。
 
-## Support status
+## 支持状态
 
 | | Nuxt 2 | Nuxt Bridge | Nuxt 3 |
 | --- | :-- | :-- | :-- |
-| Webpack Dev | ✅ | ✅ | 🚧 |
-| Webpack Build | ✅ | ✅ | ✅ |
-| Vite Dev | - | ✅ | ✅ |
-| Vite Build | - | ✅ | ✅ |
+| Webpack 开发 | ✅ | ✅ | 🚧 |
+| Webpack 构建 | ✅ | ✅ | ✅ |
+| Vite 开发 | - | ✅ | ✅ |
+| Vite 构建 | - | ✅ | ✅ |
 
-## Configuration
+## 配置
 
-We recommend to use the dedicated `uno.config.ts` file for configuration. See [Config File](/guide/config-file) for more details.
+我们推荐使用专门的 `uno.config.ts` 文件进行配置。详情见 [配置文件](/guide/config-file)。
 
-## License
+## 许可证
 
-- MIT License &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)
+- MIT 许可证 &copy; 2021-至今 [Anthony Fu](https://github.com/antfu)

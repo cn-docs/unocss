@@ -1,14 +1,14 @@
 ---
-title: Directives transformer
-description: UnoCSS transformer for @apply, @screen and theme() directives (@unocss/transformer-directives)
+title: 指令转换器
+description: UnoCSS 的指令转换器，用于 @apply、@screen 和 theme() 指令 (@unocss/transformer-directives)。
 outline: deep
 ---
 
-# Directives transformer
+# 指令转换器
 
-UnoCSS transformer for `@apply`, `@screen` and `theme()` directives: `@unocss/transformer-directives`.
+UnoCSS 的指令转换器，用于 `@apply`、`@screen` 和 `theme()` 指令：`@unocss/transformer-directives`。
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -35,7 +35,7 @@ export default defineConfig({
 })
 ```
 
-## Usage
+## 用法
 
 ### `@apply`
 
@@ -45,7 +45,7 @@ export default defineConfig({
 }
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .custom-div {
@@ -58,7 +58,7 @@ Will be transformed to:
 
 #### `--at-apply`
 
-To be compatible with vanilla CSS, you can use CSS custom properties to replace the `@apply` directive:
+为了与纯 CSS 兼容，您可以使用 CSS 自定义属性来替换 `@apply` 指令：
 
 ```css
 .custom-div {
@@ -66,34 +66,34 @@ To be compatible with vanilla CSS, you can use CSS custom properties to replace 
 }
 ```
 
-This feature is enabled by default with a few aliases, that you can configure or disable via:
+此功能默认启用，并带有一些别名，您可以通过以下方式配置或禁用：
 
 ```js
 transformerDirectives({
-  // the defaults
+  // 默认值
   applyVariable: ['--at-apply', '--uno-apply', '--uno'],
-  // or disable with:
+  // 或者禁用：
   // applyVariable: false
 })
 ```
 
-#### Adding quotes
+#### 添加引号
 
-To use rules with `:`, you will have to quote the whole value:
+要使用带有 `:` 的规则，您将需要引用整个值：
 
 ```css
 .custom-div {
   --at-apply: "hover:text-red hover:font-bold";
-  /* or */
+  /* 或 */
   @apply 'hover:text-red hover:font-bold';
 }
 ```
 
-Using quotes after `@apply` is optional, to meet the behavior of some formatters.
+在 `@apply` 后使用引号是可选的，以满足某些格式化程序的行为。
 
 ### `@screen`
 
-The `@screen` directive that allows you to create media queries that reference your breakpoints by name comes from [`theme.breakpoints`](/config/theme).
+`@screen` 指令允许您创建媒体查询，其中引用您的断点名称来自 [`theme.breakpoints`](/config/theme)。
 
 ```css
 .grid {
@@ -110,10 +110,9 @@ The `@screen` directive that allows you to create media queries that reference y
   }
 }
 /* ... */
-...
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .grid {
@@ -133,9 +132,9 @@ Will be transformed to:
 /* ... */
 ```
 
-#### Breakpoint variant support
+#### 断点变体支持
 
-`@screen` also supports `lt`、`at` variants:
+`@screen` 还支持 `lt`、`at` 变体：
 
 #### `@screen lt-`
 
@@ -156,7 +155,7 @@ Will be transformed to:
 /* ... */
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .grid {
@@ -200,7 +199,7 @@ Will be transformed to:
 /* ... */
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .grid {
@@ -227,7 +226,7 @@ Will be transformed to:
 
 ### `theme()`
 
-Use the `theme()` function to access your theme config values using dot notation.
+使用 `theme()` 函数通过点表示法访问您的主题配置值。
 
 ```css
 .btn-blue {
@@ -235,7 +234,7 @@ Use the `theme()` function to access your theme config values using dot notation
 }
 ```
 
-Will be compiled to:
+将被编译为：
 
 ```css
 .btn-blue {
@@ -243,6 +242,6 @@ Will be compiled to:
 }
 ```
 
-## License
+## 许可证
 
-- MIT License &copy; 2022-PRESENT [hannoeru](https://github.com/hannoeru)
+- MIT 许可证 &copy; 2022-PRESENT [hannoeru](https://github.com/hannoeru)

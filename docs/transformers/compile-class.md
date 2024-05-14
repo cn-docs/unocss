@@ -1,16 +1,16 @@
 ---
-title: Compile class transformer
-description: Compile group of classes into one class (@unocss/transformer-compile-class)
+title: 编译类转换器
+description: 将一组类编译成一个类 (@unocss/transformer-compile-class)
 outline: deep
 ---
 
-# Compile class transformer
+# 编译类转换器
 
 <!-- @unocss-ignore -->
 
-Compile group of classes into one class. Inspired by the [compilation mode](https://windicss.org/posts/modes.html#compilation-mode) of Windi CSS and [issue #948](https://github.com/unocss/unocss/issues/948) by [@UltraCakeBakery](https://github.com/UltraCakeBakery).
+将一组类编译成一个类。受到了 [Windi CSS 的编译模式](https://windicss.org/posts/modes.html#compilation-mode) 和 [@UltraCakeBakery](https://github.com/UltraCakeBakery) 的 [issue #948](https://github.com/unocss/unocss/issues/948) 的启发。
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -37,11 +37,11 @@ export default defineConfig({
 })
 ```
 
-## Usage
+## 用法
 
-Add `:uno:` at the beginning of the class strings to mark them for compilation.
+在类字符串的开头添加 `:uno:` 来标记它们进行编译。
 
-For example:
+例如：
 
 ```html
 <div class=":uno: text-center sm:text-left">
@@ -49,7 +49,7 @@ For example:
 </div>
 ```
 
-Will be compiled to:
+将被编译为：
 
 ```html
 <div class="uno-qlmcrp">
@@ -77,17 +77,17 @@ Will be compiled to:
 }
 ```
 
-## Options
+## 选项
 
-You can config the trigger string and prefix for compile class with the options. Refer to [the types](https://github.com/unocss/unocss/blob/main/packages/transformer-compile-class/src/index.ts#L4) for details.
+您可以使用选项配置编译类的触发字符串和前缀。有关详细信息，请参阅[类型定义](https://github.com/unocss/unocss/blob/main/packages/transformer-compile-class/src/index.ts#L4)。
 
-## Tooling
+## 工具
 
 ### ESLint
 
-There is an eslint rule for enforcing the class compile transformer across the whole project: [@unocss/enforce-class-compile](https://unocss.dev/integrations/eslint#unocss-enforce-class-compile)
+有一个 eslint 规则，用于在整个项目中强制执行类编译转换器：[@unocss/enforce-class-compile](https://unocss.dev/integrations/eslint#unocss-enforce-class-compile)
 
-**Usage:**
+**用法：**
 
 ```json
 {
@@ -98,6 +98,6 @@ There is an eslint rule for enforcing the class compile transformer across the w
 }
 ```
 
-## License
+## 许可证
 
-- MIT License &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)
+- MIT 许可证 &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)

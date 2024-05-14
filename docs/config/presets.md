@@ -1,8 +1,8 @@
-# Presets
+# 预设
 
-Presets are partial configurations that will be merged into the main configuration.
+预设是将合并到主配置中的部分配置。
 
-When authoring a preset, we usually export a constructor function that you could ask for some preset-specific options. For example:
+当编写预设时，我们通常导出一个构造函数，您可以在其中请求一些特定于预设的选项。例如：
 
 ```ts
 // my-preset.ts
@@ -17,12 +17,12 @@ export default definePreset((options?: MyPresetOptions) => {
     variants: [
       // ...
     ],
-    // it supports most of the configuration you could have in the root config
+    // 它支持大多数你可以在根配置中拥有的配置
   }
 })
 ```
 
-Then the user can use it like this:
+然后用户可以这样使用它：
 
 ```ts
 // uno.config.ts
@@ -31,9 +31,9 @@ import myPreset from './my-preset'
 
 export default defineConfig({
   presets: [
-    myPreset({ /* preset options */ }),
+    myPreset({ /* 预设选项 */ }),
   ],
 })
 ```
 
-You can check [official presets](/presets/) and [community presets](/presets/community) for more examples.
+您可以查看[官方预设](/presets/)和[社区预设](/presets/community)获取更多示例。

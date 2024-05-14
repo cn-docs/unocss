@@ -1,26 +1,26 @@
 ---
-title: Community JetBrains Plugin for UnoCSS
+title: 社区 JetBrains 插件为 UnoCSS
 ---
 
-# JetBrains IDEs Plugin
+# JetBrains IDEs 插件
 
-A community [plugin](https://github.com/re-ovo/unocss-intellij) that provides support for UnoCSS in JetBrains IDEs.
+一个社区 [插件](https://github.com/re-ovo/unocss-intellij)，为 JetBrains IDEs 提供 UnoCSS 支持。
 
 :::info
-Note: This is a **community-maintained plugin, not reviewed or maintained by the UnoCSS team**. Please do your own research before using. If you have any issues with this plugin, please report it to [re-ovo/unocss-intellij](https://github.com/re-ovo/unocss-intellij).
+注意：这是一个**由社区维护的插件，未经 UnoCSS 团队审查或维护**。使用前请自行调查。如果您在使用此插件时遇到任何问题，请报告给 [re-ovo/unocss-intellij](https://github.com/re-ovo/unocss-intellij)。
 :::
 
-## Installation
+## 安装
 
-[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/22204-unocss)
+[JetBrains 市场](https://plugins.jetbrains.com/plugin/22204-unocss)
 
-## Features
+## 特性
 
-- Auto-completion for UnoCSS classes
-- Hover documentation for UnoCSS classes
-- Code folding
-- Color/Icon preview
+- UnoCSS 类的自动完成
+- 鼠标悬停文档查看 UnoCSS 类
+- 代码折叠
+- 颜色/图标预览
 
-## Bug Reports / Feature Requests
+## 错误报告 / 功能请求
 
-Report it at [Issue Tracker](https://github.com/re-ovo/unocss-intellij/issues)
+在 [问题跟踪器](https://github.com/re-ovo/unocss-intellij/issues) 报告

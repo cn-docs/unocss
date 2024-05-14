@@ -1,8 +1,8 @@
-# Config File
+# 配置文件
 
-We **highly recommend to use a dedicated `uno.config.ts` file** to configure your UnoCSS, in order to get the best experience with IDEs and other integrations.
+我们**强烈建议使用一个专门的 `uno.config.ts` 文件**来配置您的 UnoCSS，以便在 IDE 和其他集成中获得最佳体验。
 
-A full featured config file looks like this:
+一个完整的配置文件看起来像这样：
 
 ```ts twoslash
 // uno.config.ts
@@ -44,9 +44,9 @@ export default defineConfig({
 })
 ```
 
-Compared to the inline configuration inside your `vite.config.ts` or other tools configurations, the dedicated config file will work better with [IDEs](/integrations/vscode) and integrations, with other tools like the [ESLint plugin](/integrations/eslint), in addition making HMR work better.
+与内联配置在 `vite.config.ts` 或其他工具配置内相比，专用配置文件将与 [IDE](/integrations/vscode) 和集成以及其他工具（如 [ESLint 插件](/integrations/eslint)）更好地配合使用，同时提供更好的 HMR 支持。
 
-By default, UnoCSS will automatically look for `uno.config.{js,ts,mjs,mts}` or `unocss.config.{js,ts,mjs,mts}` in the root directory of your project. You can also specify the config file manually, for example in Vite:
+默认情况下，UnoCSS 将自动查找项目根目录中的 `uno.config.{js,ts,mjs,mts}` 或 `unocss.config.{js,ts,mjs,mts}`。您也可以手动指定配置文件，例如在 Vite 中：
 
 ```ts
 // vite.config.ts
@@ -62,4 +62,4 @@ export default defineConfig({
 })
 ```
 
-For the full list of supported configuration options, please refer to the [Configurations reference](/config/).
+有关支持的配置选项的完整列表，请参阅[配置参考](/config/)。

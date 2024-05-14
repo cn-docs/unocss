@@ -104,7 +104,6 @@
     "msw": "1.0.1",
     "nuxt": "^3.11.2",
     "nuxt-tsconfig-stub": "^0.0.2",
-    "pnpm": "8.9.2",
     "prettier": "^2.8.8",
     "prettier-plugin-svelte": "^2.10.1",
     "react": "^18.3.1",

@@ -1,13 +1,13 @@
 ---
-title: Pug Extractor
-description: Pug extractor for UnoCSS (@unocss/extractor-pug)
+title: Pug 提取器
+description: UnoCSS 的 Pug 提取器 (@unocss/extractor-pug)
 ---
 
-# Pug Extractor
+# Pug 提取器
 
-Support extracting classes from Pug template.
+支持从 Pug 模板中提取类。
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]

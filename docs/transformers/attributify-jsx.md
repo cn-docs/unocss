@@ -1,13 +1,13 @@
 ---
-title: Attributify JSX transformer
-description: Support valueless attributify in JSX/TSX (@unocss/transformer-attributify-jsx)
+title: 属性化 JSX 转换器
+description: 支持 JSX/TSX 中的无值属性化 (@unocss/transformer-attributify-jsx)。
 ---
 
-#  Attributify JSX transformer
+# 属性化 JSX 转换器
 
-Support [valueless attributify](/presets/attributify#valueless-attributify) in JSX/TSX: `@unocss/transformer-attributify-jsx`.
+在 JSX/TSX 中支持 [无值属性化](/presets/attributify#valueless-attributify)：`@unocss/transformer-attributify-jsx`。
 
-## Presentation
+## 演示
 
 <!-- @unocss-ignore -->
 
@@ -21,7 +21,7 @@ export function Component() {
 }
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```jsx
 export function Component() {
@@ -33,7 +33,7 @@ export function Component() {
 }
 ```
 
-::: details Without this transformer, JSX treats valueless attributes as boolean attributes.
+::: details 没有此转换器，JSX 将无值属性视为布尔属性。
 ```jsx
 export function Component() {
   return (
@@ -45,7 +45,7 @@ export function Component() {
 ```
 :::
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -76,19 +76,19 @@ export default defineConfig({
 })
 ```
 
-## Caveats
+## 注意事项
 
 ::: warning
-The rules are almost the same as those of [Attributify preset](/presets/attributify), but there are several precautions.
+规则几乎与 [属性化预设](/presets/attributify) 相同，但有一些注意事项。
 :::
 
 ```html
-<div translate-x-100% /> <!-- cannot end with `%` -->
+<div translate-x-100% /> <!-- 不能以 `%` 结尾 -->
 
-<div translate-x-[100px] /> <!-- cannot contain `[` or `]` -->
+<div translate-x-[100px] /> <!-- 不能包含 `[` 或 `]` -->
 ```
 
-Instead, you may want to use valued attributes instead:
+相反，您可能想要使用带有值的属性：
 
 ```html
 <div translate="x-100%" />
@@ -96,10 +96,10 @@ Instead, you may want to use valued attributes instead:
 <div translate="x-[100px]" />
 ```
 
-## Blocklist
+## 屏蔽列表
 
-This transformer will only transform attributes that are valid UnoCSS utilities.
-You can also `blocklist` bypass some attributes from been transformed.
+此转换器仅会转换有效的 UnoCSS 实用程序属性。
+您还可以通过 `blocklist` 屏蔽一些属性不被转换。
 
 ```js
 transformerAttributifyJsx({
@@ -113,7 +113,7 @@ transformerAttributifyJsx({
 </div>
 ```
 
-Will be compiled to:
+将被编译为：
 
 ```html
 <div text-red text-center text-5xl animate-bounce="">

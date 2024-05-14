@@ -1,17 +1,17 @@
 ---
 title: Next.js
-description: Getting started with UnoCSS and Next.js.
+description: 如何开始使用 UnoCSS 和 Next.js。
 ---
 
 # Next.js
 
-// TODO: link to examples
+// TODO: 链接到示例
 
-Getting Started with UnoCSS and Next.js.
+开始使用 UnoCSS 和 Next.js。
 
-## Setup
+## 设置
 
-### Installation
+### 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -25,9 +25,9 @@ Getting Started with UnoCSS and Next.js.
   ```
 :::
 
-### Configuration
+### 配置
 
-Create `uno.config.ts` at the root of your project.
+在项目的根目录创建 `uno.config.ts`。
 
 ```ts
 // uno.config.ts
@@ -47,9 +47,9 @@ export default defineConfig({
 })
  ```
 
-### Add plugin
+### 添加插件
 
-Then add UnoCSS as a plugin to webpack through your `next.config.js`.
+然后通过你的 `next.config.js` 将 UnoCSS 作为插件添加到 webpack 中。
 
 ```js{9}
 // next.config.js
@@ -69,9 +69,9 @@ const nextConfig = {
 module.exports = nextConfig
 ```
 
-### Import stylesheets
+### 导入样式表
 
-Then import `uno.css` in `_app.tsx`.
+然后在 `_app.tsx` 中导入 `uno.css`。
 
 ```tsx
 // _app.tsx
@@ -87,9 +87,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 export default MyApp
 ```
 
-## Usage
+## 使用
 
-Style your components with unocss!
+使用 unocss 为你的组件设置样式！
 
 ```tsx
 /* index.tsx */
@@ -106,9 +106,9 @@ const Home: NextPage = () => {
 }
 ```
 
-## Hot Module Reload
+## 热模块重载
 
-To support HMR you have to opt-out of webpack's caching.
+为了支持 HMR，你需要选择退出 webpack 的缓存。
 
 ```js{5}
 // next.config.js
@@ -122,18 +122,18 @@ const nextConfig = {
 }
 ```
 
-## Troubleshooting
+## 故障排除
 
-### Error concerning virtual module
+### 关于虚拟模块的错误
 
 ```bash
 Error: ENOENT: no such file or directory, open '.../_virtual_/__uno.css'
 ```
 
-Try deleting the `.next` directory and restart the dev server.
+尝试删除 `.next` 目录并重启开发服务器。
 
-### Other
+### 其他
 
-You might need to bump your target up to at least `es2015` in your `tsconfig.json` to build your project.
+你可能需要将 `tsconfig.json` 中的目标至少提升到 `es2015` 才能构建你的项目。
 
-Files with `.js` extension are not supported by default. Change your file extensions to `.jsx` or try to include js files in your config with `include: /\.js$/`. [Learn more](/guide/extracting#extracting-from-build-tools-pipeline).
+默认不支持 `.js` 扩展名的文件。将文件扩展名改为 `.jsx` 或尝试在配置中包含 js 文件 `include: /\.js$/`。[了解更多](/guide/extracting#从构建工具管道中提取)。

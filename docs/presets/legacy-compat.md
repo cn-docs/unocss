@@ -1,20 +1,20 @@
 ---
-title: Legacy Compat preset
-description: Collections of legacy compatibility utilities.
+title: Legacy Compat 预设
+description: 旧版兼容实用工具的集合。
 outline: deep
 ---
 
-# Legacy Compat Preset
+# Legacy Compat 预设
 
-Collections of legacy compatibility utilities.
+旧版兼容实用工具的集合。
 
-This preset does not include any rules, it's applying postprocess to the generated CSS from other presets.
+该预设不包含任何规则，而是对其他预设生成的 CSS 应用后处理。
 
-By default none of the options are enabled, you need to opt-in each of them explicitly.
+默认情况下，没有任何选项被启用，您需要显式地选择每个选项。
 
-[Source Code](https://github.com/unocss/unocss/tree/main/packages/preset-legacy-compat)
+[源代码](https://github.com/unocss/unocss/tree/main/packages/preset-legacy-compat)
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -44,16 +44,16 @@ export default defineConfig({
 })
 ```
 
-## Options
+## 选项
 
 ### `commaStyleColorFunction`
 
-- **Type:** `boolean`
-- **Default:** `false`
+- **类型：** `boolean`
+- **默认值：** `false`
 
-Convert color functions (`rgb()` and `hsl()`) from space-separated to comma-separated, for better compatibility with legacy browsers. Bring back the old behavior before UnoCSS v0.57.0 that was changed to space-separated in [#3221](https://github.com/unocss/unocss/pull/3221) to align with Tailwind CSS.
+将颜色函数（`rgb()` 和 `hsl()`）从空格分隔改为逗号分隔，以更好地与旧版浏览器兼容。在 UnoCSS v0.57.0 之前的行为被改为空格分隔，以与 Tailwind CSS 对齐。
 
-For examples:
+例如：
 
 - `rgb(255 0 0)` -> `rgb(255, 0, 0)`
 - `rgb(255 0 0 / 50%)` -> `rgba(255, 0, 0, 50%)`

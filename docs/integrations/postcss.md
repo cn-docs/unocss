@@ -1,19 +1,19 @@
 ---
-title: UnoCSS PostCSS Plugin
+title: UnoCSS PostCSS 插件
 outline: deep
 ---
 
-# PostCSS Plugin
+# PostCSS 插件
 
-PostCSS plugin for UnoCSS. Supports `@apply`, `@screen` and `theme()` directives.
+UnoCSS 的 PostCSS 插件。支持 `@apply`、`@screen` 和 `theme()` 指令。
 
-[Source Code](https://github.com/unocss/unocss/tree/main/packages/postcss)
+[源代码](https://github.com/unocss/unocss/tree/main/packages/postcss)
 
-::: warning
-This package is in an experimental state right now. It doesn't follow semver, and may introduce breaking changes in patch versions.
+::: 警告
+这个包目前处于实验状态。它不遵循 semver，并且可能在补丁版本中引入重大更改。
 :::
 
-## Install
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -59,13 +59,13 @@ export default defineConfig({
 @unocss;
 ```
 
-## Usage
+## 使用方法
 
 ### `@unocss`
 
-`@unocss` at-rule is a placeholder. It will be replaced by the generated CSS.
+`@unocss` 规则是一个占位符。它将被生成的 CSS 替换。
 
-You can also inject each layer individually:
+你也可以单独注入每一层：
 
 ```css
 /* style.css */
@@ -73,13 +73,13 @@ You can also inject each layer individually:
 @unocss default;
 
 /*
-  Fallback layer. It's always recommended to include.
-  Only unused layers will be injected here.
+  备用层。建议总是包括。
+  只有未使用的层将被注入这里。
 */
 @unocss;
 ```
 
-If you want to include all layers no matter whether they are previously included or not, you can use `@unocss all`. This is useful if you want to include generated CSS in multiple files.
+如果你希望包含所有层，无论它们之前是否已包含，你可以使用 `@unocss all`。这在你想在多个文件中包含生成的 CSS 时很有用。
 
 ```css
 @unocss all;
@@ -93,7 +93,7 @@ If you want to include all layers no matter whether they are previously included
 }
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .custom-div {
@@ -106,7 +106,7 @@ Will be transformed to:
 
 ### `@screen`
 
-The `@screen` directive allows you to create media queries that reference your breakpoints by name comes from [`theme.breakpoints`](https://github.com/unocss/unocss/blob/main/README.md#extend-theme).
+`@screen` 指令允许你使用名称引用你的断点，来自 [`theme.breakpoints`](https://github.com/unocss/unocss/blob/main/README.md#extend-theme)。
 
 ```css
 .grid {
@@ -126,7 +126,7 @@ The `@screen` directive allows you to create media queries that reference your b
 ...
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .grid {
@@ -146,8 +146,8 @@ Will be transformed to:
 /* ... */
 ```
 
-#### Breakpoint Variant Support
-`@screen` also supports `lt`、`at` variants
+#### 断点变体支持
+`@screen` 还支持 `lt`、`at` 变体
 
 ##### `@screen lt`
 
@@ -168,7 +168,7 @@ Will be transformed to:
 /* ... */
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .grid {
@@ -192,7 +192,9 @@ Will be transformed to:
 
 ```css
 .grid {
-  @apply grid grid-cols-2;
+  @
+
+apply grid grid-cols-2;
 }
 @screen at-xs {
   .grid {
@@ -212,7 +214,7 @@ Will be transformed to:
 /* ... */
 ```
 
-Will be transformed to:
+将被转换为：
 
 ```css
 .grid {
@@ -239,7 +241,7 @@ Will be transformed to:
 
 ### `theme()`
 
-Use the `theme()` function to access your theme config values using dot notation.
+使用 `theme()` 函数通过点标记访问你的主题配置值。
 
 ```css
 .btn-blue {
@@ -247,7 +249,7 @@ Use the `theme()` function to access your theme config values using dot notation
 }
 ```
 
-Will be compiled to:
+将被编译为：
 
 ```css
 .btn-blue {

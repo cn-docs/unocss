@@ -1,16 +1,16 @@
 ---
-title: Svelte Extractor
+title: Svelte 提取器
 ---
 
-# Svelte Extractor
+# Svelte 提取器
 
-Supports extracting classes from `class:` directive.
+支持从 `class:` 指令中提取类。
 
 ```html
 <div class:text-orange-400={foo} />
 ```
 
-Will be extracted as `text-orange-400` and generates:
+将被提取为 `text-orange-400` 并生成：
 
 ```css
 .text-orange-400 {
@@ -18,7 +18,7 @@ Will be extracted as `text-orange-400` and generates:
 }
 ```
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]

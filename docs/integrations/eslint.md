@@ -1,13 +1,13 @@
 ---
-title: UnoCSS ESLint Config
-description: ESLint config for UnoCSS (@unocss/eslint-config).
+title: UnoCSS ESLint 配置
+description: UnoCSS 的 ESLint 配置 (@unocss/eslint-config)。
 ---
 
-# ESLint Config
+# ESLint 配置
 
-ESLint config for UnoCSS: `@unocss/eslint-config`.
+UnoCSS 的 ESLint 配置：`@unocss/eslint-config`。
 
-## Installation
+## 安装
 
 ::: code-group
   ```bash [pnpm]
@@ -21,7 +21,7 @@ ESLint config for UnoCSS: `@unocss/eslint-config`.
   ```
 :::
 
-In [Flat Config Style](https://eslint.org/docs/latest/use/configure/configuration-files-new):
+使用 [扁平配置样式](https://eslint.org/docs/latest/use/configure/configuration-files-new)：
 
 ```js
 // eslint.config.js
@@ -29,11 +29,11 @@ import unocss from '@unocss/eslint-config/flat'
 
 export default [
   unocss,
-  // other configs
+  // 其他配置
 ]
 ```
 
-In legacy `.eslintrc` style:
+在传统的 `.eslintrc` 样式中：
 
 ```json
 {
@@ -43,16 +43,16 @@ In legacy `.eslintrc` style:
 }
 ```
 
-## Rules
+## 规则
 
-- `@unocss/order` - Enforce a specific order for class selectors.
-- `@unocss/order-attributify` - Enforce a specific order for attributify selectors.
-- `@unocss/blocklist` - Disallow specific class selectors [Optional].
-- `@unocss/enforce-class-compile` - Enforce class compile [Optional].
+- `@unocss/order` - 强制类选择器的特定顺序。
+- `@unocss/order-attributify` - 强制属性化选择器的特定顺序。
+- `@unocss/blocklist` - 禁止特定的类选择器 [可选]。
+- `@unocss/enforce-class-compile` - 强制编译类 [可选]。
 
-### Optional rules
+### 可选规则
 
-These rules are not enabled by default. To enable it, add the following to your `.eslintrc`:
+这些规则默认不启用。要启用它们，请在你的 `.eslintrc` 中添加以下内容：
 
 ```json
 {
@@ -60,31 +60,31 @@ These rules are not enabled by default. To enable it, add the following to your 
     "@unocss"
   ],
   "rules": {
-    "@unocss/<rule-name>": "warn", // or "error",
-    "@unocss/<another-rule-name>": ["warn" /* or "error" */, { /* options */ }]
+    "@unocss/<rule-name>": "warn", // 或 "error",
+    "@unocss/<another-rule-name>": ["warn" /* 或 "error" */, { /* 选项 */ }]
   }
 }
 ```
 
 #### `@unocss/blocklist`
 
-Throw warning or error when using utilities listed in `blocklist` get matched.
+在使用列在 `blocklist` 中的工具类时抛出警告或错误。
 
 #### `@unocss/enforce-class-compile` :wrench:
 
-_This rule is designed to work in combination with [compile class transformer](https://unocss.dev/transformers/compile-class)._
+_该规则旨在与 [编译类转换器](https://unocss.dev/transformers/compile-class) 结合使用。_
 
-Throw warning or error when class attribute or directive doesn't start with `:uno:`.
+当 class 属性或指令不以 `:uno:` 开头时抛出警告或错误。
 
-:wrench: automatically adds prefix `:uno:` to all class attributes and directives.
+:wrench: 自动为所有类属性和指令添加前缀 `:uno:`。
 
-Options:
+选项：
 
-- `prefix` (string) - can be used in combination with [custom prefix](https://github.com/unocss/unocss/blob/main/packages/transformer-compile-class/src/index.ts#L34). Default: `:uno:`
-- `enableFix` (boolean) - can be used for gradual migration when `false`. Default: `true`
+- `prefix` (字符串) - 可与 [自定义前缀](https://github.com/unocss/unocss/blob/main/packages/transformer-compile-class/src/index.ts#L34) 结合使用。默认值：`:uno:`
+- `enableFix` (布尔值) - 当设为 `false` 时，可用于逐步迁移。默认值：`true`
 
-**Note**: currently only Vue supported. _Contribute a PR_ if you want this in JSX. If you're looking for this in Svelte, you might be looking for [`svelte-scoped`](https://unocss.dev/integrations/svelte-scoped) mode.
+**注意**：目前仅支持 Vue。如果你需要在 JSX 中使用，_欢迎贡献 PR_。如果你在寻找 Svelte 中的此功能，你可能需要 [`svelte-scoped`](https://unocss.dev/integrations/svelte-scoped) 模式。
 
-## Prior Arts
+## 先例艺术
 
-Thanks to [eslint-plugin-unocss](https://github.com/devunt/eslint-plugin-unocss) by [@devunt](https://github.com/devunt).
+感谢由 [@devunt](https://github.com/devunt) 创建的 [eslint-plugin-unocss](https://github.com/devunt/eslint-plugin-unocss)。
