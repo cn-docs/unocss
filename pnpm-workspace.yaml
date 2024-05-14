@@ -1,0 +1,9 @@
+packages:
+  - bench
+  - docs
+  - playground
+  - interactive
+  - 'packages/**'
+  - 'test/fixtures/*'
+  - examples/vue-cli4
+  - examples/vue-cli5
