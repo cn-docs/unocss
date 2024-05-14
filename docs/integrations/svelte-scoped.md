@@ -185,7 +185,6 @@ Svelte 作用域甚至能够正确处理如 `dark:text-white` 这样的上下文
   yarn add -D unocss @unocss/svelte-scoped
   ```
 
-
  ```bash [npm]
   npm install -D unocss @unocss/svelte-scoped
   ```
@@ -282,9 +281,8 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import UnoCSS from '@unocss/svelte-scoped/preprocess'
 
 const config = {
- 
 
- preprocess: [
+  preprocess: [
     vitePreprocess(),
     UnoCSS({
       // ...预处理器选项

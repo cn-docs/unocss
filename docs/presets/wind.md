@@ -126,7 +126,7 @@ import { presetWind } from 'unocss'
 // uno.config.ts
 import { defineConfig } from
 
- 'unocss'
+  'unocss'
 import presetWind from '@unocss/preset-wind'
 
 export default defineConfig({
