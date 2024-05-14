@@ -3,11 +3,14 @@ name: autofix.ci
 on:
   push:
     branches:
-      - docs
+      - main
 
   pull_request:
     branches:
-      - docs
+      - main
+
+env:
+  NODE_VERSION: lts/*
 
 jobs:
   autofix:
@@ -20,7 +23,7 @@ jobs:
       - name: Use Node.js lts/*
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Setup
         run: npm i -g @antfu/ni
