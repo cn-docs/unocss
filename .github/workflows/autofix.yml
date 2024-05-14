@@ -3,11 +3,11 @@ name: autofix.ci
 on:
   push:
     branches:
-      - main
+      - docs
 
   pull_request:
     branches:
-      - main
+      - docs
 
 jobs:
   autofix:
