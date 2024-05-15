@@ -267,7 +267,9 @@ export default defineConfig({
     /^\/interactive/,
     /:\/\/localhost/,
   ],
-
+  sitemap: {
+    hostname: 'https://unocss-cn.pages.dev',
+  },
   markdown: {
     theme: {
       light: 'vitesse-light',
