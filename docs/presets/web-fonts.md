@@ -162,9 +162,8 @@ presetWebFonts({
       },
       {
         name: 'sans-serif',
-       
 
- provider: 'none',
+        provider: 'none',
       },
     ],
   },

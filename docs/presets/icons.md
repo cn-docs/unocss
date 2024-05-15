@@ -326,14 +326,14 @@ presetIcons({
 
 ```ts
 presetIcons({
-    customizations: {
-        transform(svg, collection, icon) {
-            // 不对此集合上的此图标应用填充
-            if (collection === 'custom' && icon === 'my-icon')
-                return svg
-            return svg.replace(/#fff/, 'currentColor')
-        }
+  customizations: {
+    transform(svg, collection, icon) {
+      // 不对此集合上的此图标应用填充
+      if (collection === 'custom' && icon === 'my-icon')
+        return svg
+      return svg.replace(/#fff/, 'currentColor')
     }
+  }
 })
 ```
 
