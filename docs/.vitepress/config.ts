@@ -260,6 +260,14 @@ export default defineConfig({
     ['meta', { name: 'twitter:site', content: '@antfu7' }],
     ['meta', { name: 'twitter:url', content: ogUrl }],
     ['link', { rel: 'search', type: 'application/opensearchdescription+xml', href: '/search.xml', title: 'UnoCSS' }],
+    [
+      'script',
+      {
+        'defer': 'true',
+        'src': 'https://static.cloudflareinsights.com/beacon.min.js',
+        'data-cf-beacon': '{"token": "e70c564af9044d799f261b973af01a56"}',
+      },
+    ],
   ],
   lastUpdated: true,
   cleanUrls: true,
