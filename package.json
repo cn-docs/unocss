@@ -5,6 +5,7 @@
   "private": true,
   "packageManager": "pnpm@8.6.8",
   "scripts": {
+    "postinstall": "esno scripts/prepare.ts",
     "taze": "taze minor -wIr && pnpm -r --parallel run update-post",
     "bench": "npm -C bench run bench",
     "build": "rimraf packages/*/dist --glob && esno scripts/copy-files.ts && pnpm -r --filter=./packages/* run build && pnpm -r run build-post && esno scripts/postbuild.ts",
@@ -103,6 +104,7 @@
     "msw": "1.0.1",
     "nuxt": "^3.11.2",
     "nuxt-tsconfig-stub": "^0.0.2",
+    "pnpm": "8.9.2",
     "prettier": "^2.8.8",
     "prettier-plugin-svelte": "^2.10.1",
     "react": "^18.3.1",
