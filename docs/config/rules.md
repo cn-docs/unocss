@@ -65,6 +65,95 @@ rules: [
 
 恭喜！现在你拥有了自己强大的原子 CSS 实用程序。享受吧！
 
+## 排序
+
+UnoCSS 遵循你在生成的 CSS 中定义的规则顺序。后定义的规则具有更高的优先级。
+
+在使用动态规则时，它可能会匹配多个标记。默认情况下，在单个动态规则下匹配的输出将在组内按字母顺序排序。
+
+## 规则合并
+
+默认情况下，UnoCSS 会合并具有相同内容的 CSS 规则以最小化 CSS 大小。
+
+例如，`<div class="m-2 hover:m2">` 会生成：
+
+```css
+.hover\:m2:hover, .m-2 { margin: 0.5rem; }
+```
+
+而不是两个独立的规则：
+
+```css
+.hover\:m2:hover { margin: 0.5rem; }
+.m-2 { margin: 0.5rem; }
+```
+
+## 特殊符号
+
+从 v0.61 版本开始，UnoCSS 支持使用特殊符号为生成的 CSS 定义额外的元信息。你可以从动态规则匹配函数的第二个参数访问符号。
+
+例如：
+
+```ts
+rules: [
+  [/^grid$/, ([, d], { symbols }) => {
+    return {
+      [symbols.parent]: '@supports (display: grid)',
+      display: 'grid',
+    }
+  }],
+]
+```
+
+会生成：
+
+```css
+@supports (display: grid) {
+  .grid {
+    display: grid;
+  }
+}
+```
+
+### 可用符号
+
+- `symbols.parent`：生成的 CSS 规则的父包装器（例如 `@supports`，`@media` 等）
+- `symbols.selector`：用于修改生成的 CSS 规则选择器的函数（见下例）
+- `symbols.variants`：应用于当前 CSS 对象的变体处理器数组
+- `symbols.shortcutsNoMerge`：禁用当前规则在快捷方式中合并的布尔值
+
+## 多选择器规则
+
+从 v0.61 版本开始，UnoCSS 支持通过 [JavaScript 生成器函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) 实现多选择器。
+
+例如：
+
+```ts
+rules: [
+  [/^button-(.*)$/, function* ([, color], { symbols }) {
+    yield {
+      background: color
+    }
+    yield {
+      [symbols.selector]: selector => `${selector}:hover`,
+      // https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix
+      background: `color-mix(in srgb, ${color} 90%, black)`
+    }
+  }],
+]
+```
+
+会生成多个 CSS 规则：
+
+```css
+.button-red {
+  background: red;
+}
+.button-red:hover {
+  background: color-mix(in srgb, red 90%, black);
+}
+```
+
 ## 完全控制的规则
 
 ::: tip

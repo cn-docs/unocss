@@ -70,6 +70,18 @@ export default [
 
 在使用列在 `blocklist` 中的工具类时抛出警告或错误。
 
+You can customize messages for blocked rules to make them more informative and context-specific by using the `message` property of the meta object:
+
+```ts
+// uno.config.ts
+export default defineConfig({
+  blocklist: [
+    ['bg-red-500', { message: 'Use bg-red-600 instead' }],
+    [/-auto$/, { message: s => `Use ${s.replace(/-auto$/, '-a')} instead` }], // -> "my-auto" is in blocklist: Use "my-a" instead
+  ],
+})
+```
+
 #### `@unocss/enforce-class-compile` :wrench:
 
 _该规则旨在与 [编译类转换器](https://unocss.dev/transformers/compile-class) 结合使用。_

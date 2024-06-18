@@ -38,9 +38,10 @@
 
 # 社区转换器
 
-- [unocss-transformer-attribute-values-group](https://github.com/lvjiaxuan/unocss-transformer-attribute-values-group) - 由[@lvjiaxuan](https://github.com/lvjiaxuan)提供的 UnoCSS 属性值组转换器。
-- [unocss-transformer-alias](https://github.com/zyyv/unocss-transformer-alias) - 由[@zyyv](https://github.com/zyyv)提供的 UnoCSS 快捷方式别名转换器。
-- [CSS to UnoCss](https://github.com/Simon-He95/transformToUnoCSS) - 由[@Simon-He95](https://github.com/Simon-He95)提供的将 CSS 转换为 UnoCSS 工具。
+- [unocss-transformer-attribute-values-group](https://github.com/lvjiaxuan/unocss-transformer-attribute-values-group) - UnoCSS 属性值分组转换器，作者 [@lvjiaxuan](https://github.com/lvjiaxuan)。
+- [unocss-transformer-alias](https://github.com/zyyv/unocss-transformer-alias) - UnoCSS 快捷方式的别名转换器，作者 [@zyyv](https://github.com/zyyv)。
+- [CSS to UnoCss](https://github.com/Simon-He95/transformToUnoCSS) - 将 CSS 转换为 UnoCSS 的工具，作者 [@Simon-He95](https://github.com/Simon-He95)。
+- [unocss-transformer-classnames-minifier](https://github.com/alisobirjanov/unocss-transformer-classnames-minifier) - UnoCSS 类名缩小转换器，作者 [@alisobirjanov](https://github.com/alisobirjanov)。
 
 # 社区工具
 
