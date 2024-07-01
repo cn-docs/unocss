@@ -57,7 +57,7 @@ import { presetWind } from 'unocss'
 
 ### 引号
 
-由于提取器的工作方式，模板中的引号不受支持。
+在模板（用于处理的文件）中使用引号是不被支持的，因为这会影响提取器的工作。例如，你不能写 `before:content-['']`。对于这些情况，你可能更倾向于引入一个新的实用工具类，比如 `class="before:content-empty"`，以便明确设置。
 
 ## 与 Windi CSS 的差异
 
