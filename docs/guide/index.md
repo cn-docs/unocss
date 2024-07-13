@@ -5,9 +5,9 @@ description: UnoCSS 入门
 
 ## 什么是 UnoCSS？
 
-UnoCSS 是即时原子 CSS 引擎，旨在灵活和可扩展。核心是不带偏见的，所有的 CSS 实用工具都是通过预设提供的。
+UnoCSS 是即时原子 CSS 引擎，旨在灵活和可扩展。核心是不带偏见的，所有的 CSS 工具类都是通过预设提供的。
 
-例如，您可以通过在本地 [配置文件](/guide/config-file) 中提供规则来定义自定义 CSS 实用工具。
+例如，您可以通过在本地 [配置文件](/guide/config-file) 中提供规则来定义自定义 CSS 工具类。
 
 ```ts
 // uno.config.ts
@@ -20,7 +20,7 @@ export default defineConfig({
 })
 ```
 
-这将在您的项目中添加一个新的 CSS 实用工具 `m-1`。由于 UnoCSS 是按需的，在您的代码库中使用它之前它不会起作用。所以假设我们有这样一个组件：
+这将在您的项目中添加一个新的 CSS 工具类 `m-1`。由于 UnoCSS 是按需的，在您的代码库中使用它之前它不会起作用。所以假设我们有这样一个组件：
 
 ```html
 <div class="m-1">Hello</div>
@@ -44,7 +44,7 @@ export default defineConfig({
 })
 ```
 
-通过这样做，现在您可以拥有任意的边距实用工具，例如 `m-1`、`m-100` 或 `m-52.43`。再次强调，UnoCSS 只有在您使用它们时才会生成它们。
+通过这样做，现在您可以拥有任意的边距工具类，例如 `m-1`、`m-100` 或 `m-52.43`。再次强调，UnoCSS 只有在您使用它们时才会生成它们。
 
 ```html
 <div class="m-1">Hello</div>
@@ -92,7 +92,7 @@ export default defineConfig({
 
 ## 尝试
 
-您可以在浏览器中尝试 UnoCSS，打开 <a href="/play/" target="_blank">Playground</a>。或在 <a href="/interactive/" target="_blank">交互文档</a> 中查找默认预设的实用工具。
+您可以在浏览器中尝试 UnoCSS，打开 <a href="/play/" target="_blank">Playground</a>。或在 <a href="/interactive/" target="_blank">交互文档</a> 中查找默认预设的工具类。
 
 ## 集成
 

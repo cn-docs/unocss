@@ -1,12 +1,12 @@
 ---
 title: Legacy Compat 预设
-description: 旧版兼容实用工具的集合。
+description: 旧版兼容工具类的集合。
 outline: deep
 ---
 
 # Legacy Compat 预设
 
-旧版兼容实用工具的集合。
+旧版兼容工具类的集合。
 
 该预设不包含任何规则，而是对其他预设生成的 CSS 应用后处理。
 

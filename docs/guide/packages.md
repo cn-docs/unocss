@@ -20,15 +20,15 @@ UnoCSS 是一个包含多个包的单体存储库。本页列出了所有的包�
 | [@unocss/preset-icons](/presets/icons)                               | 由 Iconify 提供支持的纯 CSS 图标解决方案      | ✅                | 否  |
 | [@unocss/preset-web-fonts](/presets/web-fonts)                       | Web 字体（Google 字体等）支持                 | ✅                | 否  |
 | [@unocss/preset-typography](/presets/typography)                     | 排版预设                                     | ✅                | 否  |
-| [@unocss/preset-rem-to-px](/presets/rem-to-px)                       | 将 rem 转换为 px 的实用工具                    | 否                | 否  |
-| [@unocss/preset-legacy-compat](/presets/legacy-compat)               | 旧版本兼容性实用工具的集合                    | 否                | 否  |
+| [@unocss/preset-rem-to-px](/presets/rem-to-px)                       | 将 rem 转换为 px 的工具类                    | 否                | 否  |
+| [@unocss/preset-legacy-compat](/presets/legacy-compat)               | 旧版本兼容性工具类的集合                    | 否                | 否  |
 | [@unocss/transformer-variant-group](/transformers/variant-group)     | 用于 Windi CSS 的变体组功能的转换器          | ✅                | 否  |
 | [@unocss/transformer-directives](/transformers/directives)           | 用于 CSS 指令（如 `@apply`）的转换器          | ✅                | 否  |
 | [@unocss/transformer-compile-class](/transformers/compile-class)     | 将一组类编译成一个类的转换器                 | ✅                | 否  |
 | [@unocss/transformer-attributify-jsx](/transformers/attributify-jsx) | 支持 JSX/TSX 中无值 attributify               | ✅                | 否  |
 | [@unocss/extractor-pug](/extractors/pug)                             | Pug 的提取器                                 | 否                | -   |
 | [@unocss/extractor-svelte](/extractors/svelte)                       | Svelte 的提取器                               | 否                | -   |
-| [@unocss/autocomplete](/tools/autocomplete)                          | 自动完成的实用工具                             | 否                | -   |
+| [@unocss/autocomplete](/tools/autocomplete)                          | 自动完成的工具类                             | 否                | -   |
 | [@unocss/config](/guide/config-file)                                 | 配置文件加载器                               | ✅                | -   |
 | [@unocss/reset](/guide/style-reset)                                  | 常见 CSS 重置的集合                           | ✅                | 否  |
 | [@unocss/vite](/integrations/vite)                                   | Vite 插件                                    | ✅                | -   |

@@ -1,12 +1,12 @@
 ---
 title: Rem to px 预设
-description: 为所有实用工具将 rem 转换为 px (@unocss/preset-rem-to-px)。
+description: 为所有工具类将 rem 转换为 px (@unocss/preset-rem-to-px)。
 outline: deep
 ---
 
 # Rem to px 预设
 
-将所有实用工具中的 rem 转换为 px。
+将所有工具类中的 rem 转换为 px。
 
 [源代码](https://github.com/unocss/unocss/tree/main/packages/preset-rem-to-px)
 

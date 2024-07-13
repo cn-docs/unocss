@@ -6,7 +6,7 @@ outline: deep
 
 # Mini 预设
 
-UnoCSS 的基本预设，仅包含最基本的实用工具。
+UnoCSS 的基本预设，仅包含最基本的工具类。
 
 [源代码](https://github.com/unocss/unocss/tree/main/packages/preset-mini)
 
@@ -47,7 +47,7 @@ import { presetMini } from 'unocss'
 
 ## 规则
 
-该预设是 [`@unocss/preset-wind`](/presets/wind) 的子集，仅包含与 CSS 属性对齐的最基本的实用工具，但不包括 Tailwind CSS 中引入的主观或复杂的实用工具（`container`、`animation`、`gradient` 等）。这可以作为您自己的定制预设的起点，基于 Tailwind CSS 或 Windi CSS 中熟悉的实用工具。
+该预设是 [`@unocss/preset-wind`](/presets/wind) 的子集，仅包含与 CSS 属性对齐的最基本的工具类，但不包括 Tailwind CSS 中引入的主观或复杂的工具类（`container`、`animation`、`gradient` 等）。这可以作为您自己的定制预设的起点，基于 Tailwind CSS 或 Windi CSS 中熟悉的工具类。
 
 ## 特性
 
@@ -177,7 +177,7 @@ CSS 自定义属性的前缀。
 - **类型：** `string | string[]`
 - **默认值：** `undefined`
 
-实用工具前缀。
+工具类前缀。
 
 ### preflight
 - **类型：** `boolean`
