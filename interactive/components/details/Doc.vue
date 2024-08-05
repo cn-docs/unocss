@@ -6,6 +6,8 @@ const { item } = defineProps<{
 }>()
 
 const caniuseItem = computed<DocItem>(() => ({
+  id: item.id,
+  size: item.size,
   type: 'caniuse',
   title: item.title,
   url: `https://caniuse.com/?search=${encodeURIComponent(item.title)}`,
@@ -21,7 +23,7 @@ const relatives = computed(() => searcher.getUtilsOfFeature(item.title))
         <div op30 mb1>
           Link
         </div>
-        <div border="~ base" flex="~ col">
+        <div border="~ main" flex="~ col">
           <a :href="item.url" target="_blank">
             <ResultItem :item="item" />
           </a>
@@ -35,8 +37,8 @@ const relatives = computed(() => searcher.getUtilsOfFeature(item.title))
         <div op30 mb1>
           Relatives
         </div>
-        <div border="~ base" flex="~ col">
-          <template v-for="a, idx of relatives" :key="a.class">
+        <div border="~ main" flex="~ col">
+          <template v-for="(a, idx) of relatives" :key="a.class">
             <div v-if="idx" divider />
             <RouterLink :to="{ query: { s: a.class } }">
               <ResultItem :item="a" />

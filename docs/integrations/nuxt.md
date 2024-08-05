@@ -11,13 +11,13 @@ description: Nuxt 模块用于 UnoCSS。
 
 ::: code-group
   ```bash [pnpm]
-  pnpm add -D @unocss/nuxt
+  pnpm add -D unocss @unocss/nuxt
   ```
   ```bash [yarn]
-  yarn add -D @unocss/nuxt
+  yarn add -D unocss @unocss/nuxt
   ```
   ```bash [npm]
-  npm install -D @unocss/nuxt
+  npm install -D unocss @unocss/nuxt
   ```
 :::
 
@@ -85,9 +85,9 @@ export default config
 import { mergeConfigs } from '@unocss/core'
 import config from './.nuxt/uno.config.mjs'
 
-export default mergeConfigs(config, {
-    // 你的覆盖配置
-})
+export default mergeConfigs([config, {
+  // 你的覆盖配置
+}])
 ```
 
 ## 许可证

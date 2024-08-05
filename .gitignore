@@ -25,3 +25,6 @@ interactive/public/shiki
 .svelte-kit
 .eslintcache
 vite.config.ts.timestamp-*
+test/assets/fonts
+examples/**/public/assets/fonts
+playground/public/assets/fonts

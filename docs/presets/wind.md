@@ -59,6 +59,20 @@ import { presetWind } from 'unocss'
 
 在模板（用于处理的文件）中使用引号是不被支持的，因为这会影响提取器的工作。例如，你不能写 `before:content-['']`。对于这些情况，你可能更倾向于引入一个新的工具类类，比如 `class="before:content-empty"`，以便明确设置。
 
+### 使用任意值设置背景位置
+
+Tailwind [允许](https://tailwindcss.com/docs/background-position#using-custom-values)使用自定义值来设置 `background-position`，使用裸语法：
+
+```html
+<div class="bg-[center_top_1rem]">
+```
+
+但是，Wind 预设会将 `center_top_1rem` 解释为一种颜色。要实现相同的效果，请使用 `position:` 前缀：
+
+```html
+<div class="bg-[position:center_top_1rem]">
+```
+
 ## 与 Windi CSS 的差异
 
 ### 断点

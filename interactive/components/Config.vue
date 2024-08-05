@@ -58,7 +58,7 @@ function save() {
 </script>
 
 <template>
-  <div text-left row border="t l r base" items-center>
+  <div text-left row border="t l r main" items-center>
     <div px4 py2 flex-auto>
       <div>
         Custom Config
@@ -70,9 +70,9 @@ function save() {
   </div>
   <div text-left of-hidden grid="~ rows-[1fr_max-content]" pb5>
     <Suspense>
-      <CodeMirror v-model="raw" mode="ts" h-auto font-mono border="~ base" pl2 w-full of-auto />
+      <CodeMirror v-model="raw" mode="ts" h-auto font-mono border="~ main" pl2 w-full of-auto />
       <template #fallback>
-        <div border="~ base" pl2 w-full flex text-center justify-center italtic op50>
+        <div border="~ main" pl2 w-full flex text-center justify-center italtic op50>
           loading...
         </div>
       </template>
@@ -103,7 +103,7 @@ function save() {
         <div i-carbon-checkmark-outline w-5 h-5 />
         <div>{{ config?.presets?.length }} presets loaded</div>
       </div>
-      <div row gap-2 justify-center p3 border="b l r base" flex-none items-center>
+      <div row gap-2 justify-center p3 border="b l r main" flex-none items-center>
         <button v-if="!isDefault" text-sm btn saturate-0 @click="resetToDefault()">
           Reset to default
         </button>
@@ -126,3 +126,28 @@ function save() {
     </div>
   </div>
 </template>
+
+<style>
+.cm-scroller::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.cm-scroller {
+  overflow: auto !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cm-ttc-c-thumb) var(--cm-ttc-c-track);
+}
+.cm-scroller::-webkit-scrollbar-track {
+  background: var(--cm-ttc-c-track);
+}
+.cm-scroller::-webkit-scrollbar-thumb {
+  background-color: var(--cm-ttc-c-thumb);
+  border: 2px solid var(--cm-ttc-c-thumb);
+}
+.cm-scroller::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+}
+.cm-scroller::-webkit-scrollbar-corner {
+  background-color: var(--cm-ttc-c-track);
+}
+</style>

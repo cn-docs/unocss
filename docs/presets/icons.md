@@ -398,7 +398,7 @@ presetIcons({
 
 ### mode
 
-- 类型：`'mask' | 'background-img' | 'auto'`
+- 类型：`'mask' | 'bg' | 'auto'`
 - 默认值：`'auto'`
 - 查看：https://antfu.me/posts/icons-in-pure-css
 
@@ -406,8 +406,8 @@ presetIcons({
 
 :::tip
 - `mask` - 使用背景颜色和 `mask` 属性进行单色图标的渲染
-- `background-img` - 使用背景图像渲染图标，颜色是静态的
-- `auto` - 根据图标的样式智能地在 `mask` 和 `background-img` 之间决定模式
+- `bg` - 使用背景图像渲染图标，颜色是静态的
+- `auto` - 根据图标的样式智能地在 `mask` 和 `bg` 之间决定模式
   :::
 
 ### prefix
