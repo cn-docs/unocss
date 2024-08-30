@@ -117,16 +117,18 @@ presetMini({
 
 您可以在配置中完全自定义您的主题属性，UnoCSS 最终将其深度合并到默认主题中。
 
-<!--eslint-skip-->
+:::warning
+`breakpoints` property isn't deeply merged, but overridden, see [Breakpoints](/config/theme#breakpoints).
+:::
 
 ```ts
 presetMini({
   theme: {
     // ...
     colors: {
-      'veryCool': '#0000ff', // class="text-very-cool"
-      'brand': {
-        'primary': 'hsl(var(--hue, 217) 78% 51%)', //class="bg-brand-primary"
+      veryCool: '#0000ff', // class="text-very-cool"
+      brand: {
+        primary: 'hsl(var(--hue, 217) 78% 51%)', // class="bg-brand-primary"
       }
     },
   }

@@ -16,9 +16,10 @@ UnoCSS 也支持您可能在 Tailwind CSS / Windi CSS 中熟悉的主题系统�
 theme: {
   // ...
   colors: {
-    'veryCool': '#0000ff', // class="text-very-cool"
-    'brand': {
-      'primary': 'hsl(var(--hue, 217) 78% 51%)', //class="bg-brand-primary"
+    veryCool: '#0000ff', // class="text-very-cool"
+    brand: {
+      primary: 'hsl(var(--hue, 217) 78% 51%)', //class="bg-brand-primary"
+      DEFAULT: '#942192' //class="bg-brand"
     },
   },
 }
@@ -88,6 +89,21 @@ theme: {
 }
 ```
 
+If you want to inherit the `original` theme breakpoints, you can use the `extendTheme`:
+
+```ts
+extendTheme: (theme) => {
+  return {
+    ...theme,
+    breakpoints: {
+      ...theme.breakpoints,
+      sm: '320px',
+      md: '640px',
+    },
+  }
+}
+```
+
 ::: info
 `verticalBreakpoints` 与 `breakpoints` 相同，但用于垂直布局。
 :::
@@ -106,5 +122,37 @@ theme: {
     md: `${40 * 16}px`,
     lg: '960px',
   },
+}
+```
+
+## ExtendTheme
+
+`ExtendTheme` allows you to edit the **deeply merged theme** to get the complete theme object.
+
+Custom functions mutate the theme object.
+
+```ts
+extendTheme: (theme) => {
+  theme.colors.veryCool = '#0000ff' // class="text-very-cool"
+  theme.colors.brand = {
+    primary: 'hsl(var(--hue, 217) 78% 51%)', // class="bg-brand-primary"
+  }
+}
+```
+
+It's also possible to return a new theme object to completely replace the original one.
+
+```ts
+extendTheme: (theme) => {
+  return {
+    ...theme,
+    colors: {
+      ...theme.colors,
+      veryCool: '#0000ff', // class="text-very-cool"
+      brand: {
+        primary: 'hsl(var(--hue, 217) 78% 51%)', // class="bg-brand-primary"
+      },
+    },
+  }
 }
 ```

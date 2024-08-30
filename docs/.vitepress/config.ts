@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import type { DefaultTheme } from 'vitepress/types'
 import { transformerTwoslash } from '@shikijs/vitepress-twoslash'
+import { groupIconMdPlugin } from 'vitepress-plugin-group-icons'
 import { version } from '../../package.json'
 
 const ogUrl = 'https://unocss.dev/'
@@ -295,6 +296,9 @@ export default defineConfig({
         processHoverInfo: info => info.replace(/_unocss_core\./g, ''),
       }),
     ],
+    config(md) {
+      md.use(groupIconMdPlugin)
+    },
   },
   locales: {
     root: {

@@ -1012,17 +1012,17 @@ unocss .scope-\[unocss\]\:block{display:block;}
 .ring-offset-op-\$opacity-variable{--un-ring-offset-opacity:var(--opacity-variable);}
 .ring-offset-op-5{--un-ring-offset-opacity:0.05;}
 .ring-inset{--un-ring-inset:inset;}
-.transition{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
-.transition-\[width\,height\,colors\]{transition-property:width,height,color,background-color,border-color,outline-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
-.transition-\[width\,height\,colors\]-200{transition-property:width,height,color,background-color,border-color,outline-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
+.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
+.transition-\[width\,height\,colors\]{transition-property:width,height,color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
+.transition-\[width\,height\,colors\]-200{transition-property:width,height,color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
 .transition-\[width\,height\]{transition-property:width,height;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
 .transition-\$variant{transition-property:var(--variant);transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
-.transition-200{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
+.transition-200{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
 .transition-background-color\,color-200{transition-property:background-color,color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
 .transition-color\,background-color-200{transition-property:color,background-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
-.transition-colors{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
-.transition-colors\,opacity{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
-.transition-colors\,opacity-200{transition-property:color,background-color,border-color,outline-color,text-decoration-color,fill,stroke,opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
+.transition-colors{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
+.transition-colors\,opacity{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
+.transition-colors\,opacity-200{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
 .transition-opacity-200{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:200ms;}
 .duration-111{transition-duration:111ms;}
 .transition-duration-\$variable{transition-duration:var(--variable);}
@@ -1051,6 +1051,8 @@ unocss .scope-\[unocss\]\:block{display:block;}
 .transition-property-width{transition-property:width;}
 .transition-none{transition:none;}
 .transition-revert-layer{transition:revert-layer;}
+.transition-discrete{transition-behavior:allow-discrete;}
+.transition-normal{transition-behavior:normal;}
 .will-change-auto{will-change:auto;}
 .will-change-contents{will-change:contents;}
 .will-change-margin\,padding{will-change:margin,padding;}
@@ -1106,6 +1108,10 @@ unocss .scope-\[unocss\]\:block{display:block;}
 @media print{
 .print\:block{display:block;}
 .print\:link\:\!underline:link{text-decoration-line:underline !important;}
+}
+@starting-style{
+.starting\:opacity-0{opacity:0;}
+.starting\:popover-open\:opacity-0:popover-open{opacity:0;}
 }
 @supports (display: grid){
 .supports-\[\(display\:_grid\)\]\:block{display:block;}
