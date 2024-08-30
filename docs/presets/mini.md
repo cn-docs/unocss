@@ -118,7 +118,7 @@ presetMini({
 您可以在配置中完全自定义您的主题属性，UnoCSS 最终将其深度合并到默认主题中。
 
 :::warning
-`breakpoints` property isn't deeply merged, but overridden, see [Breakpoints](/config/theme#breakpoints).
+`breakpoints`属性不会被深度合并，而是会被覆盖，详见[断点](/config/theme#breakpoints)。
 :::
 
 ```ts

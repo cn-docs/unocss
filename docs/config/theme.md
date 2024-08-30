@@ -89,7 +89,7 @@ theme: {
 }
 ```
 
-If you want to inherit the `original` theme breakpoints, you can use the `extendTheme`:
+如果你想继承`original`主题的断点，你可以使用`extendTheme`：
 
 ```ts
 extendTheme: (theme) => {
