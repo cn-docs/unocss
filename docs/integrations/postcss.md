@@ -9,7 +9,7 @@ UnoCSS 的 PostCSS 插件。支持 `@apply`、`@screen` 和 `theme()` 指令。
 
 [源代码](https://github.com/unocss/unocss/tree/main/packages/postcss)
 
-::: 警告
+::: warning
 这个包目前处于实验状态。它不遵循 semver，并且可能在补丁版本中引入重大更改。
 :::
 
