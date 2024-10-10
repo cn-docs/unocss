@@ -103,6 +103,7 @@
     "msw": "catalog:",
     "nuxt": "catalog:",
     "nuxt-tsconfig-stub": "catalog:",
+    "pnpm": "catalog:",
     "prettier": "catalog:",
     "prettier-plugin-svelte": "catalog:",
     "react": "catalog:",
