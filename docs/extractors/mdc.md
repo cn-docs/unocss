@@ -21,9 +21,9 @@ description: UnoCSS 的 MDC 提取器 (@unocss/extractor-mdc)
   ```
 :::
 
-```ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import extractorMdc from '@unocss/extractor-mdc'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   extractors: [

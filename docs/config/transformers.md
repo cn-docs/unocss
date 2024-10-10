@@ -2,8 +2,7 @@
 
 提供了一个统一的接口来转换源代码，以支持惯例。
 
-```ts
-// my-transformer.ts
+```ts [my-transformer.ts]
 import { createFilter } from '@rollup/pluginutils'
 import { SourceCodeTransformer } from 'unocss'
 

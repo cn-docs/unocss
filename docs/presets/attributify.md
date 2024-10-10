@@ -24,8 +24,7 @@ outline: deep
   ```
 :::
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import presetAttributify from '@unocss/preset-attributify'
 
 export default defineConfig({
@@ -152,8 +151,7 @@ presetAttributify({
 
 自 Volar 0.36 起，[它现在严格限制未知属性](https://github.com/johnsoncodehk/volar/issues/1077#issuecomment-1145361472)。要退出，您可以将以下文件添加到您的项目中：
 
-```ts
-// html.d.ts
+```ts [html.d.ts]
 declare module '@vue/runtime-dom' {
   interface HTMLAttributes {
     [key: string]: any

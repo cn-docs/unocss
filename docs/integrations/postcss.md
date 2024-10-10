@@ -27,8 +27,7 @@ UnoCSS 的 PostCSS 插件。支持 `@apply`、`@screen` 和 `theme()` 指令。
   ```
 :::
 
-```ts
-// postcss.config.mjs
+```ts [postcss.config.mjs]
 import UnoCSS from '@unocss/postcss'
 
 export default {
@@ -38,8 +37,7 @@ export default {
 }
 ```
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig, presetUno } from 'unocss'
 
 export default defineConfig({
@@ -54,8 +52,7 @@ export default defineConfig({
 })
 ```
 
-```css
-/* style.css */
+```css [style.css]
 @unocss;
 ```
 
@@ -67,8 +64,7 @@ export default defineConfig({
 
 你也可以单独注入每一层：
 
-```css
-/* style.css */
+```css [style.css]
 @unocss preflights;
 @unocss default;
 

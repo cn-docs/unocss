@@ -85,16 +85,40 @@ outputToCssLayers: true
 
 ```ts
 outputToCssLayers: {
-    cssLayerName: (layer) => {
-        // 默认的 layer 会输出到 "utilities" CSS layer。
-        if (layer === 'default')
-            return 'utilities'
+  cssLayerName: (layer) => {
+    // 默认的 layer 会输出到 "utilities" CSS layer。
+    if (layer === 'default')
+      return 'utilities'
 
-        // "shortcuts" layer 会输出到 "utilities" CSS layer 的 "shortcuts" 子层。
-        if (layer === 'shortcuts')
-            return 'utilities.shortcuts'
+    // "shortcuts" layer 会输出到 "utilities" CSS layer 的 "shortcuts" 子层。
+    if (layer === 'shortcuts')
+      return 'utilities.shortcuts'
 
-        // 所有其他的 layer 都会使用它们的名字作为 CSS layer 的名称。
-    }
+    // 所有其他的 layer 都会使用它们的名字作为 CSS layer 的名称。
+  }
+}
+```
+
+## Layers using variants
+
+Layers can be created using variants.
+
+`uno-layer-<name>:` can be used to create a UnoCSS layer.
+
+```html
+<p class="uno-layer-my-layer:text-xl">text</p>
+
+/* layer: my-layer */
+.uno-layer-my-layer\:text-xl{font-size:1.25rem;line-height:1.75rem;}
+```
+
+`layer-<name>:` can be used to create a CSS @layer.
+
+```html
+<p class="layer-my-layer:text-xl">text</p>
+
+/* layer: default */
+@layer my-layer{
+.layer-my-layer\:text-xl{font-size:1.25rem;line-height:1.75rem;}
 }
 ```

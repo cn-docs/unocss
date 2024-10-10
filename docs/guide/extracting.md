@@ -26,8 +26,7 @@ UnoCSS 将读取通过您的构建工具管道的内容，并从中提取实用�
 
 要配置它们，您可以更新您的 `uno.config.ts`：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 export default defineConfig({
   content: {
     pipeline: {
@@ -79,8 +78,7 @@ export const classes = {
 
 在您使用无法访问构建工具管道的集成（例如 [PostCSS](/integrations/postcss) 插件）的情况下，或者您正在与后端框架集成以使代码不通过管道，您可以手动指定要提取的文件。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 export default defineConfig({
   content: {
     filesystem: [
@@ -99,8 +97,7 @@ export default defineConfig({
 
 您还可以传递一个异步函数来返回内容。但是请注意，此函数仅在构建时调用一次。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 export default defineConfig({
   content: {
     inline: [
@@ -130,8 +127,7 @@ export default defineConfig({
 
 由于 UnoCSS 在构建时使用静态提取工作，因此在编译时它无法知道所有实用程序的组合。为此，您可以配置 `safelist` 选项。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 safelist: 'p-1 p-2 p-3 p-4'.split(' ')
 ```
 
@@ -148,8 +144,7 @@ safelist: 'p-1 p-2 p-3 p-4'.split(' ')
 
 或者更灵活：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 safelist: [
   ...Array.from({ length: 4 }, (_, i) => `p-${i + 1}`),
 ]
@@ -186,8 +181,7 @@ const classes = {
 
 与 `safelist` 类似，您还可以配置 `blocklist` 来排除一些实用程序不生成。这对于排除一些提取误报非常有用。与 `safelist` 不同，`blocklist` 同时接受字符串进行精确匹配和正则表达式进行模式匹配。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 blocklist: [
   'p-1',
   /^p-[2-4]$/,

@@ -117,11 +117,11 @@ rules: [
 
 ### 可用符号
 
-- `symbols.parent`：生成的 CSS 规则的父包装器（例如 `@supports`，`@media` 等）
-- `symbols.selector`：用于修改生成的 CSS 规则选择器的函数（见下例）
-- `symbols.variants`：应用于当前 CSS 对象的变体处理器数组
-- `symbols.shortcutsNoMerge`：禁用当前规则在快捷方式中合并的布尔值
-
+- `symbols.parent`：生成的 CSS 规则的父级包装器（例如 `@supports`、`@media` 等）。
+- `symbols.selector`：用于修改生成的 CSS 规则选择器的函数（参见下面的示例）。
+- `symbols.layer`：一个字符串/函数/正则表达式匹配项，用于设置生成的 CSS 规则的 UnoCSS 层。
+- `symbols.variants`：应用于当前 CSS 对象的变体处理器数组。
+- `symbols.shortcutsNoMerge`：一个布尔值，用于禁用当前规则在快捷方式中的合并。
 ## 多选择器规则
 
 从 v0.61 版本开始，UnoCSS 支持通过 [JavaScript 生成器函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) 实现多选择器。
@@ -164,8 +164,7 @@ rules: [
 
 它允许您从动态规则的主体函数中返回一个字符串，该字符串将 **直接** 传递给生成的 CSS（这也意味着您需要处理诸如 CSS 转义、变体应用、CSS 构建等问题）。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig, toEscapedSelector as e } from 'unocss'
 
 export default defineConfig({

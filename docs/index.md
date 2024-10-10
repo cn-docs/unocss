@@ -21,6 +21,10 @@ hero:
       text: 娱乐场
       link: https://unocss.dev/play/
       target: _blank
+    - theme: alt
+      text: Tutorial
+      link: https://tutorial.unocss.dev/
+      target: _blank
 
 features:
   - icon: <span class="i-carbon:ibm-toolchain"></span>

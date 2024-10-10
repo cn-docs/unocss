@@ -29,8 +29,7 @@ description: 如何开始使用 UnoCSS 和 Next.js。
 
 在项目的根目录创建 `uno.config.ts`。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import {
   defineConfig,
   presetAttributify,
@@ -74,11 +73,11 @@ module.exports = nextConfig
 然后在 `_app.tsx` 中导入 `uno.css`。
 
 ```tsx
+import type { AppProps } from 'next/app'
 // _app.tsx
 import '@unocss/reset/tailwind.css'
-import 'uno.css'
 
-import type { AppProps } from 'next/app'
+import 'uno.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />

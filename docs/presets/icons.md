@@ -67,10 +67,9 @@ const toggleDark = () => {
 
 我们使用 [Iconify](https://iconify.design) 作为图标数据源。您需要按照 `@iconify-json/*` 模式在 `devDependencies` 中安装相应的图标集。例如，Material Design Icons 的图标集为 `@iconify-json/mdi`，Tabler 的图标集为 `@iconify-json/tabler`。您可以参考 [Icônes](https://icones.js.org/) 或 [Iconify](https://icon-sets.iconify.design/) 查看所有可用集合。
 
-```ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import presetIcons from '@unocss/preset-icons'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -208,8 +207,7 @@ presetIcons({
 
 此外，您还可以使用 [FileSystemIconLoader](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/node-loaders.ts#L9) 从文件系统加载自定义图标。您需要将 `@iconify/utils` 包安装为 `dev 依赖`。
 
-```ts
-// uno.config.ts
+```ts [unocss.config.ts]
 import fs from 'node:fs/promises'
 import { defineConfig, presetIcons } from 'unocss'
 
@@ -254,10 +252,9 @@ export default defineConfig({
 :::
 
 例如，您可以使用 `an-awesome-collection` 或 `@my-awesome-collections/some-collection` 来加载您的自定义或第三方图标：
-```ts
-// uno.config.ts
-import { defineConfig, presetIcons } from 'unocss'
+```ts [unocss.config.ts]
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
+import { defineConfig, presetIcons } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -269,11 +266,10 @@ export default defineConfig({
 ```
 
 您还可以将其与其他自定义图标加载程序结合使用，例如：
-```ts
-// uno.config.ts
+```ts [unocss.config.ts]
+import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 import { defineConfig, presetIcons } from 'unocss'
 import { FileSystemIconLoader } from 'unplugin-icons/loaders'
-import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
 
 export default defineConfig({
   presets: [
@@ -387,6 +383,21 @@ presetIcons({
 })
 ```
 
+## 指令
+
+你可以在 CSS 中使用 `icon()` 指令来获取图标的元数据。
+
+```css
+.icon {
+  background-image: icon('i-carbon-sun');
+}
+```
+
+::: warning
+`icon()` 依赖于 `@unocss/preset-icons`，并将使用其配置，请确保已添加此预设。
+:::
+
+有关 `icon()` 指令的更多信息，请查看 [指令](/transformers/directives#icon)。
 ## 选项
 
 ### scale

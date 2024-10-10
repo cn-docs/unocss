@@ -12,7 +12,7 @@ UnoCSS 运行时提供了一个可以在浏览器中直接运行 UnoCSS 的 CDN 
 
 在你的 `index.html` 中添加以下行：
 
-```html
+```html [index.html]
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
 ```
 
@@ -102,6 +102,26 @@ npm i @unocss/runtime
 import initUnocssRuntime from '@unocss/runtime'
 
 initUnocssRuntime({ /* 选项 */ })
+```
+可以使用 `defaults` 属性提供 UnoCSS 配置：
+
+```ts
+import initUnocssRuntime from '@unocss/runtime'
+import config from './uno.config'
+
+initUnocssRuntime({ defaults: config })
+```
+
+预设可以从 `esm.sh` 导入：
+
+```ts
+import { defineConfig } from '@unocss/runtime'
+import presetIcons from 'https://esm.sh/@unocss/preset-icons/browser'
+import presetUno from 'https://esm.sh/@unocss/preset-uno'
+
+export default defineConfig({
+  presets: [presetUno(), presetIcons({ cdn: 'https://esm.sh/' })],
+})
 ```
 
 ## 防止 FOUC

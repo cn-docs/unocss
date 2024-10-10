@@ -21,9 +21,9 @@ description: UnoCSS 的 Pug 提取器 (@unocss/extractor-pug)
   ```
 :::
 
-```ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import extractorPug from '@unocss/extractor-pug'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   extractors: [

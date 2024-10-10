@@ -96,8 +96,7 @@ module.exports = {
 
 创建一个 `uno.config.ts` 文件：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
@@ -113,8 +112,7 @@ export default defineConfig({
 
 在主入口中添加 `uno.css`：
 
-```ts
-// main.ts
+```ts [main.ts]
 import 'uno.css'
 ```
 

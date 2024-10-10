@@ -59,7 +59,7 @@ unocss "site/snippets/**/*.php" "site/templates/**/*.php"
 确保在 npm 脚本的 glob 模式中添加转义引号。
 :::
 
-```json
+```json [package.json]
 {
   "scripts": {
     "dev": "unocss \"site/{snippets,templates}/**/*.php\" --watch",
@@ -93,7 +93,7 @@ unocss "site/{snippets,templates}/**/*.php"
 
 在项目的根级别创建 `uno.config.js` 或 `uno.config.ts` 配置文件，以自定义 UnoCSS。
 
-```ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({

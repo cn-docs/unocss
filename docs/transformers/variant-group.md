@@ -21,10 +21,9 @@ description: 启用 UnoCSS 的 Windi CSS 变体组功能 (@unocss/transformer-va
   ```
 :::
 
-```ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import transformerVariantGroup from '@unocss/transformer-variant-group'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   // ...

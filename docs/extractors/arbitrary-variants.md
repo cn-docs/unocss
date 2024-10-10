@@ -28,9 +28,9 @@ title: 任意变体提取器
   ```
 :::
 
-```ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import extractorArbitrary from '@unocss/extractor-arbitrary-variants'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   extractors: [

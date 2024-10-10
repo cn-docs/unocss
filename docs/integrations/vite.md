@@ -33,8 +33,7 @@ Vite 插件随 `unocss` 包一起发布。
 
 安装插件：
 
-```ts
-// vite.config.ts
+```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 
@@ -47,8 +46,7 @@ export default defineConfig({
 
 创建 `uno.config.ts` 文件：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
@@ -58,8 +56,7 @@ export default defineConfig({
 
 将 `virtual:uno.css` 添加到您的主入口文件：
 
-```ts
-// main.ts
+```ts [main.ts]
 import 'virtual:uno.css'
 ```
 
@@ -122,10 +119,9 @@ import 'virtual:unocss-devtools'
 
 如果您使用 `@vitejs/plugin-react`：
 
-```ts
-// vite.config.js
-import UnoCSS from 'unocss/vite'
+```ts [vite.config.ts]
 import React from '@vitejs/plugin-react'
+import UnoCSS from 'unocss/vite'
 
 export default {
   plugins: [
@@ -139,10 +135,9 @@ export default {
 
 如果您使用 `@vitejs/plugin-react` 与 `@unocss/preset-attributify`，您必须在 `@vitejs/plugin-react` 之前添加插件。
 
-```ts
-// vite.config.js
-import UnoCSS from 'unocss/vite'
+```ts [vite.config.ts]
 import React from '@vitejs/plugin-react'
+import UnoCSS from 'unocss/vite'
 
 export default {
   plugins: [
@@ -160,8 +155,7 @@ export default {
 
 如果您使用 `@preact/preset-vite`：
 
-```ts
-// vite.config.js
+```ts [vite.config.ts]
 import Preact from '@preact/preset-vite'
 import UnoCSS from 'unocss/vite'
 
@@ -175,8 +169,7 @@ export default {
 
 或者如果您使用 `@prefresh/vite`：
 
-```ts
-// vite.config.js
+```ts [vite.config.ts]
 import Prefresh from '@prefresh/vite'
 import UnoCSS from 'unocss/vite'
 
@@ -202,11 +195,10 @@ export default {
 
 您可以使用简单的规则与 `class:`，例如 `class:bg-red-500={foo}`，或者使用 `shortcuts` 来包含多个规则，查看下面链接示例项目中的 `src/App.svelte`。
 
-```ts
-// vite.config.js
+```ts [vite.config.ts]
 import { svelte } from '@sveltejs/vite-plugin-svelte'
-import UnoCSS from 'unocss/vite'
 import extractorSvelte from '@unocss/extractor-svelte'
+import UnoCSS from 'unocss/vite'
 
 export default {
   plugins: [
@@ -229,11 +221,10 @@ export default {
 
 您可以使用简单的规则与 `class:`，例如 `class:bg-red-500={foo}`，或者使用 `shortcuts` 来包含多个规则，查看下面链接示例项目中的 `src/routes/+layout.svelte`。
 
-```ts
-// vite.config.js
+```ts [vite.config.ts]
 import { sveltekit } from '@sveltejs/kit/vite'
-import UnoCSS from 'unocss/vite'
 import extractorSvelte from '@unocss/extractor-svelte'
+import UnoCSS from 'unocss/vite'
 
 /** @type {import('vite').UserConfig} */
 const config = {
@@ -261,8 +252,7 @@ const config = {
 
 不要忘记删除 `uno.css` 的导入，因为 `shadow-dom` 模式不会暴露它，应用程序将无法工作。
 
-```ts
-// vite.config.js
+```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
 
 export default {
@@ -313,8 +303,7 @@ export class MyElement extends LitElement {
 
 该插件使用 `nth-of-type` 来避免与同一 Web 组件中的多个部分发生冲突，并且对于不同 Web 组件上的相同部分，您无需担心，插件将为您处理。
 
-```ts
-// vite.config.js
+```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
 
 export default {
@@ -363,10 +352,9 @@ template.innerHTML = `
 
 您需要在 UnoCSS 的插件之后添加 `vite-plugin-solid` 插件。
 
-```ts
-// vite.config.js
-import solidPlugin from 'vite-plugin-solid'
+```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
+import solidPlugin from 'vite-plugin-solid'
 
 export default {
   plugins: [
@@ -384,11 +372,10 @@ export default {
 
 您需要在 UnoCSS 的插件之前添加 `vite-plugin-elm` 插件。
 
-```ts
-// vite.config.js
+```ts [vite.config.ts]
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 import Elm from 'vite-plugin-elm'
-import UnoCSS from 'unocss/vite'
 
 export default defineConfig({
   plugins: [
@@ -405,11 +392,11 @@ export default defineConfig({
 If `@vitejs/plugin-legacy` with `renderModernChunks: false`, your need add it to `unocss` option
 
 ```ts
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import Unocss from 'unocss/vite'
-import { presetUno } from 'unocss'
 import legacy from '@vitejs/plugin-legacy'
+import vue from '@vitejs/plugin-vue'
+import { presetUno } from 'unocss'
+import Unocss from 'unocss/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [

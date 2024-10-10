@@ -24,10 +24,9 @@ UnoCSS 的基本预设，仅包含最基本的工具类。
   ```
 :::
 
-```ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import presetMini from '@unocss/preset-mini'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [

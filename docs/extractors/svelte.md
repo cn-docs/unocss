@@ -32,10 +32,9 @@ title: Svelte 提取器
   ```
 :::
 
-```ts
-// uno.config.js
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import extractorSvelte from '@unocss/extractor-svelte'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   extractors: [

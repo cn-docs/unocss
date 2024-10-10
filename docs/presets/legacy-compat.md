@@ -28,10 +28,9 @@ outline: deep
   ```
 :::
 
-```ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import presetLegacyCompat from '@unocss/preset-legacy-compat'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [

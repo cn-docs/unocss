@@ -21,8 +21,7 @@ description: Astro 的 UnoCSS 集成 (@unocss/astro)。
   ```
 :::
 
-```ts
-// astro.config.ts
+```ts [astro.config.ts]
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
 
@@ -35,8 +34,7 @@ export default defineConfig({
 
 创建一个 `uno.config.ts` 文件：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
@@ -62,8 +60,7 @@ export default defineConfig({
 
 并更新你的 `astro.config.ts`：
 
-```ts
-// astro.config.ts
+```ts [astro.config.ts]
 import { defineConfig } from 'astro/config'
 import UnoCSS from 'unocss/astro'
 
@@ -92,8 +89,7 @@ export default defineConfig({
   ```
 :::
 
-```ts
-// astro.config.mjs
+```ts [astro.config.mjs]
 import UnoCSS from '@unocss/astro'
 
 export default {

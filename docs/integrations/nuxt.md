@@ -23,8 +23,7 @@ description: Nuxt 模块用于 UnoCSS。
 
 在你的 Nuxt 配置文件中添加 `@unocss/nuxt`：
 
-```ts
-// nuxt.config.ts
+```ts [nuxt.config.ts]
 export default defineNuxtConfig({
   modules: [
     '@unocss/nuxt',
@@ -34,8 +33,7 @@ export default defineNuxtConfig({
 
 创建一个 `uno.config.ts` 文件：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
@@ -60,8 +58,7 @@ export default defineConfig({
 
 可以启用 `nuxtLayers` 选项，这样 Nuxt 会自动合并每个 Nuxt 层中的 `uno.config` 文件：
 
-```ts
-// nuxt.config.ts
+```ts [nuxt.config.ts]
 export default defineNuxtConfig({
   // ...
   unocss: {
@@ -72,8 +69,7 @@ export default defineNuxtConfig({
 
 然后你可以在根配置文件中重新导出生成的配置：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import config from './.nuxt/uno.config.mjs'
 
 export default config

@@ -28,10 +28,9 @@ UnoCSS的默认预设。目前等同于 [`@unocss/preset-wind`](/presets/wind)�
   ```
 :::
 
-```ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import presetUno from '@unocss/preset-uno'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [

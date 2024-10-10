@@ -23,8 +23,7 @@ UnoCSS 的 ESLint 配置：`@unocss/eslint-config`。
 
 使用 [扁平配置样式](https://eslint.org/docs/latest/use/configure/configuration-files-new)：
 
-```js
-// eslint.config.js
+```js [eslint.config.js]
 import unocss from '@unocss/eslint-config/flat'
 
 export default [
@@ -35,7 +34,7 @@ export default [
 
 在传统的 `.eslintrc` 样式中：
 
-```json
+```json [.eslintrc]
 {
   "extends": [
     "@unocss"
@@ -54,7 +53,7 @@ export default [
 
 这些规则默认不启用。要启用它们，请在你的 `.eslintrc` 中添加以下内容：
 
-```json
+```json [.eslintrc]
 {
   "extends": [
     "@unocss"
@@ -72,8 +71,7 @@ export default [
 
 You can customize messages for blocked rules to make them more informative and context-specific by using the `message` property of the meta object:
 
-```ts
-// uno.config.ts
+```ts [unocss.config.ts]
 export default defineConfig({
   blocklist: [
     ['bg-red-500', { message: 'Use bg-red-600 instead' }],

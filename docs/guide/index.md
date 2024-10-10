@@ -9,8 +9,7 @@ UnoCSS 是即时原子 CSS 引擎，旨在灵活和可扩展。核心是不带�
 
 例如，您可以通过在本地 [配置文件](/guide/config-file) 中提供规则来定义自定义 CSS 工具类。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
@@ -34,8 +33,7 @@ export default defineConfig({
 
 为了使它更灵活，您可以通过将规则的第一个参数（我们称之为匹配器）更改为 `RegExp`，并将主体更改为函数来使您的规则动态化，例如：
 
-```diff
-// uno.config.ts
+```diff [uno.config.ts]
 export default defineConfig({
   rules: [
 -    ['m-1', { margin: '1px' }],
@@ -60,8 +58,7 @@ export default defineConfig({
 
 一旦您制定了几条规则，就可以将它们提取到一个预设中，并与他人共享。例如，您可以为公司的设计系统创建一个预设，并与团队共享。
 
-```ts
-// my-preset.ts
+```ts [my-preset.ts]
 import { Preset } from 'unocss'
 
 export const myPreset: Preset = {
@@ -76,8 +73,7 @@ export const myPreset: Preset = {
 }
 ```
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 import { myPreset } from './my-preset'
 

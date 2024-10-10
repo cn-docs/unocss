@@ -28,10 +28,9 @@ UnoCSS 的 Tailwind CSS / Windi CSS 紧凑预设。
   ```
 :::
 
-```ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import presetWind from '@unocss/preset-wind'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -136,12 +135,9 @@ Tailwind [允许](https://tailwindcss.com/docs/background-position#using-custom-
 
 为了解决这个问题，您可以将 important 设置为 ID 选择器，例如 `#app`：
 
-```ts
-// uno.config.ts
-import { defineConfig } from
-
-  'unocss'
+```ts [uno.config.ts]
 import presetWind from '@unocss/preset-wind'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [

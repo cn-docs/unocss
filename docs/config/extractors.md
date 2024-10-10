@@ -2,8 +2,7 @@
 
 提取器用于从源代码中提取工具类的使用。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
@@ -17,8 +16,7 @@ export default defineConfig({
 
 要覆盖默认的提取器，你可以使用 `extractorDefault` 选项。
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({

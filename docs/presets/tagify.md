@@ -24,10 +24,9 @@ outline: deep
   ```
 :::
 
-```ts
-// uno.config.ts
-import { defineConfig } from 'unocss'
+```ts [uno.config.ts]
 import presetTagify from '@unocss/preset-tagify'
+import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [

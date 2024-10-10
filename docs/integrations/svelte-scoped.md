@@ -194,11 +194,10 @@ Svelte 作用域甚至能够正确处理如 `dark:text-white` 这样的上下文
 
 将 `@unocss/svelte-scoped/vite` 添加到你的 Vite 配置中：
 
-```ts
-// vite.config.ts
-import { defineConfig } from 'vite'
+```ts [vite.config.ts]
 import { sveltekit } from '@sveltejs/kit/vite'
 import UnoCSS from '@unocss/svelte-scoped/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
@@ -221,7 +220,7 @@ export default defineConfig({
 
 将 `%unocss-svelte-scoped.global%` 占位符添加到你的 `<head>` 标签中。在 Svelte 中，这是 `index.html`。在 SvelteKit 中，这将在 `app.html` 的 `%sveltekit.head%` 之前：
 
-```html
+```html [index.html]
 <head>
   <!-- ... -->
   <title>SvelteKit using UnoCSS Svelte Scoped</title>
@@ -232,7 +231,7 @@ export default defineConfig({
 
 如果使用 SvelteKit，你还必须在你的 `src/hooks.server.js` 文件中的 `transformPageChunk` 钩子中添加以下内容：
 
-```js
+```js [src/hooks.server.js]
 /** @type {import('@sveltejs/kit').Handle} */
 export async function handle({ event, resolve }) {
   const response = await resolve(event, {
@@ -274,8 +273,7 @@ export async function handle({ event, resolve }) {
 
 将 `@unocss/svelte-scoped/preprocess` 添加到你的 Svelte 配置中：
 
-```ts
-// svelte.config.js
+```ts [svelte.config.js]
 import adapter from '@sveltejs/adapter-auto'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
 import UnoCSS from '@unocss/svelte-scoped/preprocess'
@@ -346,8 +344,7 @@ const config = {
 
 将你的 UnoCSS 设置放在 `uno.config.ts` 文件中：
 
-```ts
-// uno.config.ts
+```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
@@ -377,8 +374,7 @@ export default defineConfig({
 
 变换器支持你的 CSS 文件（css|postcss|sass|scss|less|stylus|styl）。要使用它们，请在你的 `vite.config.ts` 中的 `cssFileTransformers` 选项中添加变换器：
 
-```ts
-// vite.config.ts
+```ts [vite.config.ts]
 import transformerDirectives from '@unocss/transformer-directives'
 
 export default defineConfig({

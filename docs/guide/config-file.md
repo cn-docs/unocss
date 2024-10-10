@@ -4,8 +4,7 @@
 
 一个完整的配置文件看起来像这样：
 
-```ts twoslash
-// uno.config.ts
+```ts twoslash [uno.config.ts]
 import {
   defineConfig,
   presetAttributify,
@@ -48,10 +47,9 @@ export default defineConfig({
 
 默认情况下，UnoCSS 将自动查找项目根目录中的 `uno.config.{js,ts,mjs,mts}` 或 `unocss.config.{js,ts,mjs,mts}`。您也可以手动指定配置文件，例如在 Vite 中：
 
-```ts
-// vite.config.ts
-import { defineConfig } from 'vite'
+```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
