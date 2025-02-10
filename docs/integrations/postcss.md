@@ -1,19 +1,19 @@
 ---
-title: UnoCSS PostCSS Plugin
+title: UnoCSS PostCSS 插件
 outline: deep
 ---
 
-# PostCSS Plugin
+# PostCSS 插件
 
-PostCSS plugin for UnoCSS. Supports `@apply`, `@screen` and `theme()` directives.
+UnoCSS 的 PostCSS 插件，支持 `@apply`、`@screen` 与 `theme()` 指令。
 
-[Source Code](https://github.com/unocss/unocss/tree/main/packages-integrations/postcss)
+[源代码](https://github.com/unocss/unocss/tree/main/packages-integrations/postcss)
 
 ::: warning
-This package is in an experimental state right now. It doesn't follow semver, and may introduce breaking changes in patch versions.
+该包目前仍处于实验阶段，不遵循 semver，可能在补丁版本中引入破坏性更改。
 :::
 
-## Install
+## 安装
 
 ::: code-group
 
@@ -31,6 +31,8 @@ npm install -D unocss @unocss/postcss
 
 :::
 
+在 PostCSS 配置中使用：
+
 ```ts [postcss.config.mjs]
 import UnoCSS from '@unocss/postcss'
 
@@ -40,6 +42,8 @@ export default {
   ],
 }
 ```
+
+同时配置 UnoCSS 文件：
 
 ```ts [uno.config.ts]
 import { defineConfig, presetUno } from 'unocss'
@@ -56,30 +60,31 @@ export default defineConfig({
 })
 ```
 
+在 CSS 文件中使用占位符：
+
 ```css [style.css]
 @unocss;
 ```
 
-## Usage
+## 用法
 
 ### `@unocss`
 
-`@unocss` at-rule is a placeholder. It will be replaced by the generated CSS.
+`@unocss` 规则是一个占位符，会被生成的 CSS 替换。
 
-You can also inject each layer individually:
+你也可以分别注入各层：
 
 ```css [style.css]
 @unocss preflights;
 @unocss default;
 
 /*
-  Fallback layer. It's always recommended to include.
-  Only unused layers will be injected here.
+  补充层：推荐包含所有未被其它层覆盖的样式。
 */
 @unocss;
 ```
 
-If you want to include all layers no matter whether they are previously included or not, you can use `@unocss all`. This is useful if you want to include generated CSS in multiple files.
+如果你想无论之前是否注入都包含所有层，可以使用 `@unocss all`：
 
 ```css
 @unocss all;
@@ -93,7 +98,7 @@ If you want to include all layers no matter whether they are previously included
 }
 ```
 
-Will be transformed to:
+将转换为：
 
 ```css
 .custom-div {
@@ -106,7 +111,7 @@ Will be transformed to:
 
 ### `@screen`
 
-The `@screen` directive allows you to create media queries that reference your breakpoints by name comes from [`theme.breakpoints`](https://github.com/unocss/unocss/blob/main/README.md#extend-theme).
+`@screen` 指令允许引用 [`theme.breakpoints`](https://github.com/unocss/unocss/blob/main/README.md#extend-theme) 中的断点名称创建媒体查询：
 
 ```css
 .grid {
@@ -125,7 +130,7 @@ The `@screen` directive allows you to create media queries that reference your b
 /* ... */
 ```
 
-Will be transformed to:
+转换后为：
 
 ```css
 .grid {
@@ -145,9 +150,9 @@ Will be transformed to:
 /* ... */
 ```
 
-#### Breakpoint Variant Support
+#### 断点变体支持
 
-`@screen` also supports `lt`、`at` variants
+`@screen` 同时支持 `lt` 与 `at` 变体。
 
 ##### `@screen lt`
 
@@ -168,7 +173,7 @@ Will be transformed to:
 /* ... */
 ```
 
-Will be transformed to:
+转换为：
 
 ```css
 .grid {
@@ -212,7 +217,7 @@ Will be transformed to:
 /* ... */
 ```
 
-Will be transformed to:
+转换后为：
 
 ```css
 .grid {
@@ -239,7 +244,7 @@ Will be transformed to:
 
 ### `theme()`
 
-Use the `theme()` function to access your theme config values using dot notation.
+使用 `theme()` 函数可通过点语法访问主题配置的值：
 
 ```css
 .btn-blue {
@@ -247,7 +252,7 @@ Use the `theme()` function to access your theme config values using dot notation
 }
 ```
 
-Will be compiled to:
+将编译为：
 
 ```css
 .btn-blue {

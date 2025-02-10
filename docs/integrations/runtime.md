@@ -1,57 +1,57 @@
 ---
-title: UnoCSS CDN Runtime
-description: CSS-in-JS runtime of UnoCSS (@unocss/runtime).
+title: UnoCSS CDN 运行时
+description: UnoCSS 的 CSS-in-JS 运行时（@unocss/runtime）。
 outline: deep
 ---
 
-# Runtime
+# 运行时
 
-UnoCSS runtime provide a CDN build that runs the UnoCSS right in the browser. It will detect the DOM changes and generate the styles on the fly.
+UnoCSS 运行时提供了一个 CDN 版本，能够在浏览器中直接运行 UnoCSS。它会监控 DOM 变化，并动态生成样式。
 
-## Usage
+## 用法
 
-Add the following line to your `index.html`:
+在你的 `index.html` 中加入如下代码：
 
 ```html [index.html]
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
 ```
 
-The runtime may be configured by defining the configuration before loading the runtime:
+你可在加载运行时之前通过定义配置对其进行配置：
 
 ```html
-<!-- define unocss options... -->
+<!-- 定义 UnoCSS 选项 -->
 <script>
   window.__unocss = {
     rules: [
-      // custom rules...
+      // 自定义规则...
     ],
     presets: [
-      // custom presets...
+      // 自定义预设...
     ],
     // ...
   }
 </script>
-<!-- ... and then load the runtime -->
+<!-- 加载运行时 -->
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime"></script>
 ```
 
-By default, the [Uno preset](/presets/uno) is be applied.
+默认情况下，会自动应用 [Uno 预设](/presets/uno)。
 
-The runtime does not come with preflights, if you want to have style resets, you can either add your own, or use one from [Reset package](/guide/style-reset).
+该运行时不自带预设样式，若需要样式重置，请自行添加或使用 [Reset 包](/guide/style-reset) 提供的样式重置。
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/normalize.min.css" />
-<!-- or -->
+<!-- 或者 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@unocss/reset/tailwind.min.css" />
 ```
 
-## Builds
+## 构建版本
 
-Several builds are available for different use cases.
+针对不同使用需求，提供了多种构建版本：
 
-### Uno (default)
+### Uno（默认）
 
-With `@unocss/preset-uno` preset:
+内置 `@unocss/preset-uno` 预设：
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/uno.global.js"></script>
@@ -59,7 +59,7 @@ With `@unocss/preset-uno` preset:
 
 ### Attributify
 
-With `@unocss/preset-uno` and `@unocss/preset-attributify` presets:
+内置 `@unocss/preset-uno` 和 `@unocss/preset-attributify` 预设：
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/attributify.global.js"></script>
@@ -67,7 +67,7 @@ With `@unocss/preset-uno` and `@unocss/preset-attributify` presets:
 
 ### Mini
 
-With `@unocss/preset-mini` and `@unocss/preset-attributify` preset:
+内置 `@unocss/preset-mini` 和 `@unocss/preset-attributify` 预设：
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/mini.global.js"></script>
@@ -75,7 +75,7 @@ With `@unocss/preset-mini` and `@unocss/preset-attributify` preset:
 
 ### Core
 
-If you need to mix and match presets, you can load only the core runtime and assign the presets manually. All the [official presets](/presets/#presets) from UnoCSS are available. Load the one you need before initializing the core runtime.
+如果你需要自由组合预设，可以只加载核心运行时，并手动传入预设。所有官方预设（参见 [预设列表](/presets/#presets)）均可使用。在初始化核心运行时之前先加载所需预设：
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/preset-icons.global.js"></script>
@@ -93,7 +93,7 @@ If you need to mix and match presets, you can load only the core runtime and ass
 <script src="https://cdn.jsdelivr.net/npm/@unocss/runtime/core.global.js"></script>
 ```
 
-## Bundler Usage
+## 打包工具用法
 
 ```bash
 npm i @unocss/runtime
@@ -105,7 +105,7 @@ import initUnocssRuntime from '@unocss/runtime'
 initUnocssRuntime({ /* options */ })
 ```
 
-A UnoCSS config can be provided using the `defaults` property:
+你也可以通过 `defaults` 属性传入 UnoCSS 配置：
 
 ```ts
 import initUnocssRuntime from '@unocss/runtime'
@@ -114,7 +114,7 @@ import config from './uno.config'
 initUnocssRuntime({ defaults: config })
 ```
 
-Presets can be imported from `esm.sh`:
+预设也可以从 `esm.sh` 导入：
 
 ```ts
 import { defineConfig } from '@unocss/runtime'
@@ -126,11 +126,9 @@ export default defineConfig({
 })
 ```
 
-## Preventing FOUC
+## 防止 FOUC
 
-Since UnoCSS runs after the DOM is ready, there can be a "flash of unstyled content" (FOUC) which may leads the user to see the page as unstyled.
-
-Use `un-cloak` attribute with CSS rules such as `[un-cloak] { display: none }` to hide the unstyled element until UnoCSS applies the styles for it.
+由于 UnoCSS 在 DOM 加载完成后运行，可能会出现“未样式化内容闪烁”（FOUC）。为防止这种情况，可以利用 `un-cloak` 属性，并在 CSS 中设置例如 `[un-cloak] { display: none }` 来隐藏未应用样式的部分。
 
 ::: code-group
 
@@ -141,7 +139,7 @@ Use `un-cloak` attribute with CSS rules such as `[un-cloak] { display: none }` t
 ```
 
 ```html
-<div class="text-blue-500" un-cloak>This text will only be visible in blue color.</div>
+<div class="text-blue-500" un-cloak>该文本仅在应用蓝色样式后显示。</div>
 ```
 
 :::

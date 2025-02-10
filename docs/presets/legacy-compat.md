@@ -1,20 +1,20 @@
 ---
-title: Legacy Compat preset
-description: Collections of legacy compatibility utilities.
+title: Legacy 兼容预设
+description: 传统兼容性工具集合。
 outline: deep
 ---
 
-# Legacy Compat Preset
+# Legacy 兼容预设
 
-Collections of legacy compatibility utilities.
+传统兼容性工具集合。
 
-This preset does not include any rules, it's applying postprocess to the generated CSS from other presets.
+该预设不包含任何规则，而是对其他预设生成的 CSS 进行后处理。
 
-By default none of the options are enabled, you need to opt-in each of them explicitly.
+默认情况下，这些选项均未启用，需要你显式选择启用其中的功能。
 
-[Source Code](https://github.com/unocss/unocss/tree/main/packages-presets/preset-legacy-compat)
+[源码](https://github.com/unocss/unocss/tree/main/packages-presets/preset-legacy-compat)
 
-## Installation
+## 安装
 
 ::: code-group
 
@@ -38,9 +38,9 @@ import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
-    // ...other presets
+    // ...其他预设
     presetLegacyCompat({
-      // options
+      // 选项
       commaStyleColorFunction: true,
       legacyColorSpace: true
     }),
@@ -48,16 +48,16 @@ export default defineConfig({
 })
 ```
 
-## Options
+## 选项
 
 ### `commaStyleColorFunction`
 
-- **Type:** `boolean`
-- **Default:** `false`
+- **类型:** `boolean`
+- **默认值:** `false`
 
-Convert color functions (`rgb()` and `hsl()`) from space-separated to comma-separated, for better compatibility with legacy browsers. Bring back the old behavior before UnoCSS v0.57.0 that was changed to space-separated in [#3221](https://github.com/unocss/unocss/pull/3221) to align with Tailwind CSS.
+将颜色函数（如 `rgb()` 和 `hsl()`）从空格分隔转换为逗号分隔，以便与传统浏览器更好兼容。此行为恢复了 UnoCSS v0.57.0 之前的做法（因 [#3221](https://github.com/unocss/unocss/pull/3221) 改为用空格分隔以与 Tailwind CSS 保持一致）。
 
-For examples:
+例如：
 
 - `rgb(255 0 0)` -> `rgb(255, 0, 0)`
 - `rgb(255 0 0 / 50%)` -> `rgba(255, 0, 0, 50%)`
@@ -65,9 +65,9 @@ For examples:
 
 ### `legacyColorSpace`
 
-- **Type:** `boolean`
-- **Default:** `false`
+- **类型:** `boolean`
+- **默认值:** `false`
 
-Removes color space keywords such as `in oklch` and `in oklab` from the generated styles. This is useful for ensuring compatibility with legacy browsers that do not support these modern color spaces.
+移除生成样式中的颜色空间关键字（例如 `in oklch` 和 `in oklab`），以确保与不支持这些现代颜色空间的传统浏览器兼容。
 
-To enable this feature, set the `legacyColorSpace` option to `true`.
+要启用此功能，请将 `legacyColorSpace` 选项设置为 `true`。

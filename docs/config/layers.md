@@ -6,16 +6,16 @@ description: UnoCSS 允许您根据需要定义层级。
 
 # 层级
 
-CSS 的顺序会影响它们的优先级。虽然引擎会[保持规则的顺序](/config/rules#排序)，但有时您可能希望将一些工具类分组以显式控制它们的顺序。
+CSS 的顺序会影响其优先级。虽然引擎会 [保持规则的顺序](/config/rules#排序)，但有时您可能希望将某些工具类分组，以显式控制它们的顺序。
 
 ## 用法
 
-与 Tailwind CSS 提供的三个固定层级（`base`、`components`、`utilities`）不同，UnoCSS 允许您根据需要定义层级。要设置层级，您可以将元数据作为规则的第三项传递：
+与 Tailwind CSS 固定的三个层级（`base`、`components`、`utilities`）不同，UnoCSS 允许您根据需要自定义层级。设置层级时，您可以将元数据作为规则的第三项传递：
 
 ```ts
 rules: [
   [/^m-(\d)$/, ([, d]) => ({ margin: `${d / 4}rem` }), { layer: 'utilities' }],
-  // 当您省略层级时，它将是 `default`
+  // 当省略层级时，默认为 `default`
   ['btn', { padding: '4px' }],
 ]
 ```
@@ -31,7 +31,7 @@ rules: [
 .m-2 { margin: 0.5rem; }
 ```
 
-也可以在每个预设样式上设置层级：
+您也可以在每个预设样式中设置层级：
 
 ```ts
 preflights: [
@@ -44,7 +44,7 @@ preflights: [
 
 ## 排序
 
-您可以通过以下方式控制层级顺序：
+您可以通过如下方式控制层级顺序：
 
 <!--eslint-skip-->
 
@@ -59,7 +59,7 @@ layers: {
 
 未指定顺序的层级将按字母顺序排序。
 
-当您希望在层级之间加入自定义 CSS 时，可以更新您的入口模块：
+如果您希望在层级之间插入自定义 CSS，可以更新入口模块：
 
 ```ts
 // 'uno:[layer-name].css'
@@ -71,41 +71,41 @@ import 'uno.css'
 // 您自己的 CSS
 import './my-custom.css'
 
-// "utilities" 层级将具有最高优先级
+// "utilities" 层级具有最高优先级
 import 'uno:utilities.css'
 ```
 
 ## CSS 层叠层
 
-您可以通过以下方式输出 CSS 层叠层：
+可通过以下方式输出 CSS 级联层：
 
 ```ts
 outputToCssLayers: true
 ```
 
-您可以通过以下方式更改 CSS 层的名称：
+并可修改 CSS 层的名称：
 
 ```ts
 outputToCssLayers: {
   cssLayerName: (layer) => {
-    // 默认的 layer 会输出到 "utilities" CSS layer。
+    // 默认情况下，内部层 `default` 会输出到 "utilities" CSS 层
     if (layer === 'default')
       return 'utilities'
 
-    // "shortcuts" layer 会输出到 "utilities" CSS layer 的 "shortcuts" 子层。
+    // "shortcuts" 层会输出到 "utilities.shortcuts" 子层
     if (layer === 'shortcuts')
       return 'utilities.shortcuts'
 
-    // 所有其他的 layer 都会使用它们的名字作为 CSS layer 的名称。
+    // 其它层则使用其自身的名称作为 CSS 层名称
   }
 }
 ```
 
-## Layers using variants
+## 利用变体创建层
 
-Layers can be created using variants.
+可以使用变体来创建层。
 
-`uno-layer-<name>:` can be used to create a UnoCSS layer.
+使用 `uno-layer-<name>:` 可创建 UnoCSS 层，例如：
 
 ```html
 <p class="uno-layer-my-layer:text-xl">text</p>
@@ -115,10 +115,10 @@ Layers can be created using variants.
 
 ```css
 /* layer: my-layer */
-.uno-layer-my-layer\:text-xl{ font-size:1.25rem; line-height:1.75rem; }
+.uno-layer-my-layer\:text-xl { font-size: 1.25rem; line-height: 1.75rem; }
 ```
 
-`layer-<name>:` can be used to create a CSS @layer.
+使用 `layer-<name>:` 可创建 CSS 中的 `@layer`，例如：
 
 ```html
 <p class="layer-my-layer:text-xl">text</p>
@@ -128,5 +128,5 @@ Layers can be created using variants.
 
 ```css
 /* layer: default */
-@layer my-layer{ .layer-my-layer\:text-xl{ font-size:1.25rem; line-height:1.75rem; } }
+@layer my-layer { .layer-my-layer\:text-xl { font-size: 1.25rem; line-height: 1.75rem; } }
 ```

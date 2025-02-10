@@ -1,19 +1,19 @@
 ---
 title: UnoCSS CLI
-description: The CLI for UnoCSS (@unocss/cli).
+description: UnoCSS 的命令行工具（@unocss/cli）。
 ---
 
 # CLI
 
-The command line interface for UnoCSS: `@unocss/cli`.
+UnoCSS 的命令行工具：`@unocss/cli`。
 
-- 🍱 Suited for traditional backends like Laravel or Kirby
-- 👀 [Watch mode](#development) included
-- 🔌 Supports custom configurations via [`uno.config.ts`](#configurations)
+- 🍱 适用于传统后端（如 Laravel 或 Kirby）
+- 👀 内置[监视模式](#development)
+- 🔌 支持通过 [`uno.config.ts`](#configurations) 进行自定义配置
 
-## Installation
+## 安装
 
-This package is shipped with the `unocss` package:
+该包默认随 `unocss` 一起发布：
 
 ::: code-group
 
@@ -31,7 +31,7 @@ npm install -D unocss
 
 :::
 
-You can also install the standalone package:
+你也可以安装独立包：
 
 ::: code-group
 
@@ -50,21 +50,21 @@ npm install -D @unocss/cli
 :::
 
 ::: info
-If you are not able to find the binary (e.g. with `pnpm` and only `unocss` is installed), you'll need to explicit install `@unocss/cli` standalone package.
+如果找不到可执行文件（例如，使用 pnpm 只安装了 `unocss`），请显式安装 `@unocss/cli` 独立包。
 :::
 
-## Usage
+## 用法
 
-You can also pass multiple glob patterns to `@unocss/cli`:
+你可以为 `@unocss/cli` 传入多个 glob 模式：
 
 ```bash
-unocss "site/snippets/**/*.php" "site/templates/**/*.php"
+unocss "site/snippets/**/\*.php" "site/templates/**/\*.php"
 ```
 
-Example package configuration:
+例如，在 package.json 中的配置：
 
 ::: info
-Make sure to add escaped quotes to your npm script glob patterns.
+请确保在 npm 脚本中的 glob 模式引号使用转义字符。
 :::
 
 ```json [package.json]
@@ -79,27 +79,27 @@ Make sure to add escaped quotes to your npm script glob patterns.
 }
 ```
 
-### Development
+### 开发模式
 
-Add the `--watch` (or `-w`) flag to enable watching for file changes:
-
-```bash
-unocss "site/{snippets,templates}/**/*.php" --watch
-```
-
-### Production
+添加 `--watch`（或 `-w`）参数以开启文件变更监视：
 
 ```bash
-unocss "site/{snippets,templates}/**/*.php"
+unocss "site/{snippets,templates}/\*_/_.php" --watch
 ```
 
-The final `uno.css` will be generated to the current directory by default.
+### 生产模式
 
-## Built-in features
+```bash
+unocss "site/{snippets,templates}/\*_/_.php"
+```
 
-### Configurations
+默认情况下，最终生成的 `uno.css` 文件输出到当前目录。
 
-Create a `uno.config.js` or `uno.config.ts` configuration file the root-level of your project to customize UnoCSS.
+## 内置特性
+
+### 配置
+
+在项目根目录下创建 `uno.config.js` 或 `uno.config.ts` 文件来自定义 UnoCSS：
 
 ```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
@@ -108,7 +108,7 @@ export default defineConfig({
   cli: {
     entry: {}, // CliEntryItem | CliEntryItem[]
   },
-  // ...
+// ...
 })
 
 interface CliEntryItem {
@@ -123,18 +123,18 @@ interface CliEntryItem {
 }
 ```
 
-For a list of options, head over to the [UnoCSS configurations](/config/) docs.
+有关更多配置选项，请参阅 [UnoCSS 配置](/config/) 文档。
 
-## Options
+## 选项
 
-| Options                    |                                                                                                           |
-| -------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `-v, --version`            | Display the current version of UnoCSS                                                                     |
-| `-c, --config-file <file>` | Config file                                                                                               |
-| `-o, --out-file <file>`    | The output filename for the generated UnoCSS file. Defaults to `uno.css` in the current working directory |
-| `--stdout`                 | Write the generated UnoCSS file to STDOUT. Will cause the `--watch` and `--out-file` being ignored        |
-| `-w, --watch`              | Indicates if the files found by the glob pattern should be watched                                        |
-| `--preflights`             | Enable preflight styles                                                                                   |
-| `--write-transformed`      | Update source files with transformed utilities                                                            |
-| `-m, --minify`             | Minify generated CSS                                                                                      |
-| `-h, --help`               | Display available CLI options                                                                             |
+| 选项                       | 描述                                                                    |
+| -------------------------- | ----------------------------------------------------------------------- |
+| `-v, --version`            | 显示当前 UnoCSS 版本                                                    |
+| `-c, --config-file <file>` | 指定配置文件                                                            |
+| `-o, --out-file <file>`    | 生成的 UnoCSS 文件输出文件名，默认为当前工作目录中的 `uno.css`          |
+| `--stdout`                 | 将生成的 UnoCSS 文件输出到 STDOUT，会导致忽略 `--watch` 和 `--out-file` |
+| `-w, --watch`              | 开启文件监视，用于检测 glob 模式匹配到的文件                            |
+| `--preflights`             | 启用预设样式                                                            |
+| `--write-transformed`      | 将转换后的工具类写回到源文件中                                          |
+| `-m, --minify`             | 压缩生成的 CSS                                                          |
+| `-h, --help`               | 显示可用 CLI 选项                                                       |

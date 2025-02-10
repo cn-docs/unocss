@@ -2,39 +2,36 @@
 outline: deep
 ---
 
-# Why UnoCSS?
+# 为什么选择 UnoCSS？
 
-## Motivations
+## 动机
 
-We recommend you to read the blog post [Reimagine Atomic CSS](https://antfu.me/posts/reimagine-atomic-css) written by the creator of UnoCSS, [Anthony Fu](https://antfu.me/), to get a better understanding of the motivation behind UnoCSS.
+我们推荐你阅读 UnoCSS 创建者 [Anthony Fu](https://antfu.me/) 所撰写的博客文章 [Reimagine Atomic CSS](https://antfu.me/posts/reimagine-atomic-css)，以便更好地理解 UnoCSS 背后的理念。
 
-## How is UnoCSS Different from X?
+## UnoCSS 与其他方案有何不同？
 
 ### Windi CSS
 
-UnoCSS was started by one of the [Windi CSS](https://windicss.org/)'s team members, with a lot of inspiration taken from the work we did in Windi CSS. While Windi CSS is no longer actively maintained (as of March 2023), you may consider UnoCSS as a _"spiritual successor"_ of Windi CSS.
+UnoCSS 的起源可以追溯到 [Windi CSS](https://windicss.org/) 团队的一员，其设计灵感来源于我们在 Windi CSS 中的工作。虽然自 2023 年 3 月起 Windi CSS 已不再积极维护，但你可以把 UnoCSS 看作是 Windi CSS 的“精神继承者”。
 
-UnoCSS inherits Windi CSS's on-demand nature, [attributify mode](/presets/attributify), [shortcuts](/config/shortcuts), [variant groups](/transformers/variant-group), [compilation mode](/transformers/compile-class) and a lot more. On top of that, UnoCSS is built from the ground up with the maximum extensibility and performance in mind, making us able to introduce new features like [pure CSS icons](/presets/icons), [valueless attributify](/presets/attributify#valueless-attributify), [tagify](/presets/tagify), [web fonts](/presets/web-fonts), etc.
+UnoCSS 继承了 Windi CSS 的按需生成、[attributify 模式](/presets/attributify)、[快捷方式](/config/shortcuts)、[variant groups](/transformers/variant-group)、[编译模式](/transformers/compile-class) 等特性。同时，UnoCSS 从设计之初便注重扩展性和性能，因此可以轻松引入例如 [纯 CSS 图标](/presets/icons)、[无值 attributify](/presets/attributify#无值-attributify)、[tagify](/presets/tagify)、[Web 字体](/presets/web-fonts) 等新特性。
 
-Most importantly, UnoCSS is extracted as an atomic CSS engine, where all the features are optional, and making it easy to create your own conventions, own design system, and own presets - with the combinations of the features you want.
+更重要的是，UnoCSS 被设计为一个原子 CSS 引擎，所有特性都可以按需启用，允许你轻松创建自己的约定、自定义设计系统以及专属预设。
 
 ### Tailwind CSS
 
-Both Windi CSS and UnoCSS took a lot of inspiration from [Tailwind CSS](https://tailwindcss.com/). Since UnoCSS is built from the ground up, we are able to have a great overview of how atomic CSS has been designed with prior arts and abstracted into an elegant and powerful API. With quite different design goals, it's not really an apples-to-apples comparison with Tailwind CSS. But we will try to list a few differences.
+Windi CSS 和 UnoCSS 都受到了 [Tailwind CSS](https://tailwindcss.com/) 的启发。由于 UnoCSS 从零构建，我们对原子 CSS 体系及其优雅且功能强大的 API 有了全面认识。虽然两者设计目标不同，无法直接对比，但我们依然列出以下几点区别：
 
-Tailwind CSS is a PostCSS plugin, while UnoCSS is an isomorphic engine with a collection of first-class integrations with build tools (including a [PostCSS plugin](/integrations/postcss)). This means UnoCSS can be much more flexible to be used in different places (for example, [CDN Runtime](/integrations/runtime), which generates CSS on the fly) and have deep integrations with build tools to provide better HMR, performance, and developer experience (for example, the [Inspector](/tools/inspector)).
+- **技术实现**：Tailwind CSS 是一个 PostCSS 插件，而 UnoCSS 是一个同构引擎，并通过一流的构建工具集成（包括 [PostCSS 插件](/integrations/postcss)）实现更灵活的使用场景，比如 [CDN 运行时](/integrations/runtime) 能实时生成 CSS，以及深度集成带来的更好 HMR、性能和开发体验（例如 [检查器](/tools/inspector)）。
+- **扩展与自定义**：Tailwind CSS 的配置较为固定，而 UnoCSS 允许你根据需要自定义规则、预设及其它功能。例如，我们在 [单一预设](/presets/wind) 中实现了完全兼容 Tailwind CSS 的工具类，而社区中也有许多其它风格的 [预设](/presets/community)。
 
-Technical trade-offs aside, UnoCSS is also designed to be fully extensible and customizable, while Tailwind CSS is more opinionated. Building a custom design system (or design tokens) on top of Tailwind CSS can be hard, and you can't really move away from the Tailwind CSS's conventions. With UnoCSS, you can build pretty much anything you want with full control. For example, we implemented the whole Tailwind CSS compatible utilities within [a single preset](/presets/wind), and there are a lot of [awesome community presets](/presets/community) implemented with other interesting philosophies.
+得益于其出色的扩展性，UnoCSS 能够不断尝试新的功能，例如：
 
-Thanks to the flexibility UnoCSS provides, we are able to experiment with a lot of innovative features on top of it, for example:
-
-- [Pure CSS icons](/presets/icons)
-- [Attributify Mode](/presets/attributify)
+- [纯 CSS 图标](/presets/icons)
+- [Attributify 模式](/presets/attributify)
 - [Variant Groups](/transformers/variant-group)
-- [Shortcuts](/config/shortcuts)
+- [快捷方式](/config/shortcuts)
 - [Tagify](/presets/tagify)
-- [Web fonts](/presets/web-fonts)
-- [CDN Runtime](/integrations/runtime)
-- [Inspector](/tools/inspector)
-
-Due to the differing design goals over Tailwind CSS, UnoCSS does not support Tailwind CSS's plugin system or configurations, meaning it might make it harder to migrate from a heavily customized Tailwind CSS project. This is the intended decision to make UnoCSS high-performant and extensible, and we believe the trade-off is worth it.
+- [Web 字体](/presets/web-fonts)
+- [CDN 运行时](/integrations/runtime)
+- [检查器](/tools/inspector)

@@ -139,4 +139,4 @@ Error: ENOENT: no such file or directory, open '.../_virtual_/__uno.css'
 
 你可能需要将 `tsconfig.json` 中的目标至少提升到 `es2015` 才能构建你的项目。
 
-默认不支持 `.js` 扩展名的文件。将文件扩展名改为 `.jsx` 或尝试在配置中包含 js 文件 `include: /\.js$/`。[了解更多](/guide/extracting#从构建工具管道中提取)。
+默认不支持 `.js` 扩展名的文件。将文件扩展名改为 `.jsx` 或尝试在配置中包含 js 文件 `include: /\.js$/`。[了解更多](/guide/extracting#从构建工具流水线中提取)。

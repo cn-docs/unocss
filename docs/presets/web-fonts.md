@@ -1,18 +1,18 @@
 ---
-title: Web fonts preset
-description: Web fonts support for UnoCSS (@unocss/preset-web-fonts).
+title: 网络字体预设
+description: UnoCSS 的网络字体支持预设 (@unocss/preset-web-fonts)。
 outline: deep
 ---
 
-# Web Fonts preset
+# 网络字体预设
 
-Use web fonts from [Google Fonts](https://fonts.google.com/), [FontShare](https://www.fontshare.com/) by simply providing the font names.
+通过只提供字体名称，即可从 [Google Fonts](https://fonts.google.com/)、[FontShare](https://www.fontshare.com/) 等源获取网络字体。
 
-See [all supported providers](#providers).
+参见 [所有支持的提供者](#providers)。
 
-[Source Code](https://github.com/unocss/unocss/tree/main/packages-presets/preset-web-fonts)
+[源码](https://github.com/unocss/unocss/tree/main/packages-presets/preset-web-fonts)
 
-## Installation
+## 安装
 
 ::: code-group
 
@@ -38,13 +38,13 @@ import { defineConfig } from 'unocss'
 export default defineConfig({
   presets: [
     presetUno(),
-    presetWebFonts({ /* options */ }),
+    presetWebFonts({ /* 选项 */ }),
   ],
 })
 ```
 
 ::: tip
-This preset is included in the `unocss` package, you can also import it from there:
+该预设包含在 `unocss` 包中，也可以直接从中导入：
 
 ```ts
 import { presetWebFonts } from 'unocss'
@@ -52,22 +52,22 @@ import { presetWebFonts } from 'unocss'
 
 :::
 
-## Providers
+## 提供者
 
-Currently supported Providers:
+目前支持的提供者：
 
-- `none` - do nothing, treat the font as system font
+- `none` - 不进行处理，视字体为系统字体
 - `google` - [Google Fonts](https://fonts.google.com/)
-- `bunny` - [Privacy-Friendly Google Fonts](https://fonts.bunny.net/)
-- `fontshare` - [Quality Font Service by ITF](https://www.fontshare.com/)
+- `bunny` - [隐私友好的 Google Fonts](https://fonts.bunny.net/)
+- `fontshare` - [FontShare](https://www.fontshare.com/) —— ITF 提供的高质量字体服务
 
 ::: info
-PR welcome to add more providers. 🙌
+欢迎提交 PR 以添加更多提供者。🙌
 :::
 
-### Custom fetch function
+### 自定义获取函数
 
-Use your own function to fetch font source.
+你可以使用自己的函数获取字体资源。
 
 ```ts [uno.config.ts]
 import presetUno from '@unocss/preset-uno'
@@ -80,7 +80,7 @@ export default defineConfig({
   presets: [
     presetUno(),
     presetWebFonts({
-      // use axios with an https proxy
+      // 使用带 https 代理的 axios
       customFetch: (url: string) => axios.get(url, { httpsAgent: new ProxyAgent('https://localhost:7890') }).then(it => it.data),
       provider: 'google',
       fonts: {
@@ -92,14 +92,14 @@ export default defineConfig({
 })
 ```
 
-## Options
+## 选项
 
 ### provider
 
-- **Type:** `WebFontsProviders`
-- **Default:** `google`
+- **类型:** `WebFontsProviders`
+- **默认值:** `google`
 
-Provider service of the web fonts.
+字体提供服务。
 
 ```ts
 type WebFontsProviders = 'google' | 'bunny' | 'fontshare' | 'none'
@@ -107,9 +107,9 @@ type WebFontsProviders = 'google' | 'bunny' | 'fontshare' | 'none'
 
 ### fonts
 
-- **Type:** `Record<string, WebFontMeta | string | (WebFontMeta | string)[]>`
+- **类型:** `Record<string, WebFontMeta | string | (WebFontMeta | string)[]>`
 
-The fonts. See [example](#example) for more details.
+字体配置详情请参见下方示例。
 
 ```ts
 interface WebFontMeta {
@@ -117,8 +117,8 @@ interface WebFontMeta {
   weights?: (string | number)[]
   italic?: boolean
   /**
-   * Override the provider
-   * @default <matches root config>
+   * 覆盖默认提供者
+   * @default <与根配置匹配>
    */
   provider?: WebFontsProviders
 }
@@ -126,42 +126,42 @@ interface WebFontMeta {
 
 ### extendTheme
 
-- **Type:** `boolean`
-- **Default:** `true`
+- **类型:** `boolean`
+- **默认值:** `true`
 
-Extend the theme object.
+扩展主题对象。
 
 ### themeKey
 
-- **Type:** `string`
-- **Default:** `fontFamily`
+- **类型:** `string`
+- **默认值:** `fontFamily`
 
-Key for the theme object.
+在主题对象中对应的键名。
 
 ### inlineImports
 
-- **Type:** `boolean`
-- **Default:** `true`
+- **类型:** `boolean`
+- **默认值:** `true`
 
-Inline CSS `@import()`.
+内联 CSS `@import()`。
 
 ### customFetch
 
-- **Type:** `(url: string) => Promise<string>`
-- **Default:** `undefined`
+- **类型:** `(url: string) => Promise<string>`
+- **默认值:** `undefined`
 
-Use your own function to fetch font source. See [Custom fetch function](#custom-fetch-function).
+使用你自己的函数获取字体资源，详见 [自定义获取函数](#custom-fetch-function)。
 
-## Example
+## 示例
 
 ```ts
 presetWebFonts({
-  provider: 'google', // default provider
+  provider: 'google', // 默认提供者
   fonts: {
-    // these will extend the default theme
+    // 这些配置将扩展默认主题
     sans: 'Roboto',
     mono: ['Fira Code', 'Fira Mono:400,700'],
-    // custom ones
+    // 自定义字体
     lobster: 'Lobster',
     lato: [
       {
@@ -178,7 +178,7 @@ presetWebFonts({
 })
 ```
 
-The following CSS will be generated automatically:
+将自动生成以下 CSS：
 
 <!-- eslint-skip -->
 
@@ -204,9 +204,9 @@ The following CSS will be generated automatically:
 }
 ```
 
-## Serve Fonts Locally
+## 本地服务字体
 
-By default the preset will fetch the fonts from the provider's CDN. If you want to serve the fonts locally, you can download the fonts and serve them from your own server using the processor from `@unocss/preset-web-fonts/local`.
+默认情况下，预设会从提供者的 CDN 获取字体。如果你希望自建字体服务，可以下载字体并使用 `@unocss/preset-web-fonts/local` 中的处理器将其托管到你自己的服务器。
 
 ```ts
 import presetWebFonts from '@unocss/preset-web-fonts'
@@ -221,15 +221,15 @@ export default defineConfig({
         sans: 'Roboto',
         mono: 'Fira Code',
       },
-      // This will download the fonts and serve them locally
+      // 该配置将下载字体并在本地提供服务
       processors: createLocalFontProcessor({
-        // Directory to cache the fonts
+        // 用于缓存字体的目录
         cacheDir: 'node_modules/.cache/unocss/fonts',
 
-        // Directory to save the fonts assets
+        // 保存字体文件的目录
         fontAssetsDir: 'public/assets/fonts',
 
-        // Base URL to serve the fonts from the client
+        // 客户端访问字体的基础 URL
         fontServeBaseUrl: '/assets/fonts'
       })
     }),
@@ -237,10 +237,8 @@ export default defineConfig({
 })
 ```
 
-This will download the fonts assets to `public/assets/fonts` and serve them from `/assets/fonts` on the client. When doing this, please make sure the license of the fonts allows you to redistribute so, the tool is not responsible for any legal issues.
+这将把字体资源下载到 `public/assets/fonts` 中，并使客户端通过 `/assets/fonts` 访问。在使用时，请确保字体许可证允许重新分发，工具不对此承担法律责任。
 
 ::: info
-
-This feature is Node.js specific and will not work in the browser.
-
+此功能仅适用于 Node.js 环境，在浏览器中将无法使用。
 :::

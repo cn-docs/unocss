@@ -1,13 +1,13 @@
 ---
-title: UnoCSS ESLint Config
-description: ESLint config for UnoCSS (@unocss/eslint-config).
+title: UnoCSS ESLint 配置
+description: UnoCSS 的 ESLint 配置（@unocss/eslint-config）。
 ---
 
-# ESLint Config
+# ESLint 配置
 
-ESLint config for UnoCSS: `@unocss/eslint-config`.
+UnoCSS 提供的 ESLint 配置：`@unocss/eslint-config`。
 
-## Installation
+## 安装
 
 ::: code-group
 
@@ -25,18 +25,18 @@ npm install -D @unocss/eslint-config
 
 :::
 
-In [Flat Config Style](https://eslint.org/docs/latest/use/configure/configuration-files-new):
+在 [Flat Config Style](https://eslint.org/docs/latest/use/configure/configuration-files-new) 中配置如下：
 
 ```js [eslint.config.js]
 import unocss from '@unocss/eslint-config/flat'
 
 export default [
   unocss,
-  // other configs
+// 其他配置
 ]
 ```
 
-In legacy `.eslintrc` style:
+在传统的 `.eslintrc` 格式中：
 
 ```json [.eslintrc]
 {
@@ -46,16 +46,16 @@ In legacy `.eslintrc` style:
 }
 ```
 
-## Rules
+## 规则
 
-- `@unocss/order` - Enforce a specific order for class selectors.
-- `@unocss/order-attributify` - Enforce a specific order for attributify selectors.
-- `@unocss/blocklist` - Disallow specific class selectors [Optional].
-- `@unocss/enforce-class-compile` - Enforce class compile [Optional].
+- `@unocss/order` - 强制工具类选择器的特定排序。
+- `@unocss/order-attributify` - 强制 attributify 选择器的排序。
+- `@unocss/blocklist` - 禁止使用特定的工具类（可选）。
+- `@unocss/enforce-class-compile` - 强制工具类编译（可选）。
 
-### Optional rules
+### 可选规则
 
-These rules are not enabled by default. To enable it, add the following to your `.eslintrc`:
+这些规则默认不启用。启用方法如下：
 
 ```json [.eslintrc]
 {
@@ -63,42 +63,36 @@ These rules are not enabled by default. To enable it, add the following to your 
     "@unocss"
   ],
   "rules": {
-    "@unocss/<rule-name>": "warn", // or "error",
-    "@unocss/<another-rule-name>": ["warn" /* or "error" */, { /* options */ }]
+    "@unocss/<rule-name>": "warn", // 或 "error"
+    "@unocss/<another-rule-name>": ["warn" /* 或 "error" */, { /* 配置选项 */ }]
   }
 }
 ```
 
 #### `@unocss/blocklist`
 
-Throw warning or error when using utilities listed in `blocklist` get matched.
-
-You can customize messages for blocked rules to make them more informative and context-specific by using the `message` property of the meta object:
+当使用被 `blocklist` 匹配的工具类时，会报出警告或错误。你可以通过 meta 对象的 `message` 属性自定义提示信息，例如：
 
 ```ts [unocss.config.ts]
 export default defineConfig({
   blocklist: [
-    ['bg-red-500', { message: 'Use bg-red-600 instead' }],
-    [/-auto$/, { message: s => `Use ${s.replace(/-auto$/, '-a')} instead` }], // -> "my-auto" is in blocklist: Use "my-a" instead
+    ['bg-red-500', { message: '请使用 bg-red-600 替换' }],
+    [/-auto$/, { message: s => `请将 ${s.replace(/-auto$/, '-a')} 替换使用` }],
   ],
 })
 ```
 
 #### `@unocss/enforce-class-compile` :wrench:
 
-_This rule is designed to work in combination with [compile class transformer](https://unocss.dev/transformers/compile-class)._
+_该规则配合 [compile class transformer](https://unocss.dev/transformers/compile-class) 使用。_
 
-Throw warning or error when class attribute or directive doesn't start with `:uno:`.
+若工具类的 class 属性或指令不以 `:uno:` 开头，则会报出警告或错误。
 
-:wrench: automatically adds prefix `:uno:` to all class attributes and directives.
+该规则会自动为所有工具类前缀添加 `:uno:`。
 
-Options:
+可选项：
 
-- `prefix` (string) - can be used in combination with [custom prefix](https://github.com/unocss/unocss/blob/main/packages-presets/transformer-compile-class/src/index.ts#L34). Default: `:uno:`
-- `enableFix` (boolean) - can be used for gradual migration when `false`. Default: `true`
+- `prefix` (字符串)：可与 [自定义前缀](https://github.com/unocss/unocss/blob/main/packages-presets/transformer-compile-class/src/index.ts#L34) 配合使用。默认值为 `:uno:`
+- `enableFix` (布尔值)：用于渐进式迁移，默认值为 `true`
 
-**Note**: currently only Vue supported. _Contribute a PR_ if you want this in JSX. If you're looking for this in Svelte, you might be looking for [`svelte-scoped`](https://unocss.dev/integrations/svelte-scoped) mode.
-
-## Prior Arts
-
-Thanks to [eslint-plugin-unocss](https://github.com/devunt/eslint-plugin-unocss) by [@devunt](https://github.com/devunt).
+**注意**：目前该规则仅支持 Vue。如果需要在 JSX 中使用，请提交 PR；若在 Svelte 中需要此功能，请考虑 [svelte-scoped](https://unocss.dev/integrations/svelte-scoped) 模式。

@@ -1,6 +1,6 @@
 ---
-title: Icons preset
-description: Use any icon with Pure CSS for UnoCSS (@unocss/preset-icons).
+title: 图标预设
+description: 用纯 CSS 实现图标的 UnoCSS 预设 (@unocss/preset-icons)。
 outline: deep
 ---
 
@@ -10,33 +10,33 @@ const toggleDark = () => {
 }
 </script>
 
-# Icons preset
+# 图标预设
 
-Use any icon with Pure CSS for UnoCSS.
+使用纯 CSS 实现任意图标的 UnoCSS 预设。
 
-[Source Code](https://github.com/unocss/unocss/tree/main/packages-presets/preset-icons)
+[源码](https://github.com/unocss/unocss/tree/main/packages-presets/preset-icons)
 
 ::: tip
-Recommended reading: [Icons in Pure CSS](https://antfu.me/posts/icons-in-pure-css)
+推荐阅读：[纯 CSS 图标](https://antfu.me/posts/icons-in-pure-css)
 :::
 
-Follow the following conventions to use the icons
+遵循以下约定使用图标：
 
-- `<prefix><collection>-<icon>`
-- `<prefix><collection>:<icon>`
+- `<前缀><集合>-<图标>`
+- `<前缀><集合>:<图标>`
 
-For example:
+例如：
 
 ```html
-<!-- A basic anchor icon from Phosphor icons -->
+<!-- 来自 Phosphor 图标的基本锚点图标 -->
 <div class="i-ph-anchor-simple-thin" />
-<!-- An orange alarm from Material Design Icons -->
+<!-- 来自 Material Design Icons 的一个橙色闹钟 -->
 <div class="i-mdi-alarm text-orange-400" />
-<!-- A large Vue logo -->
+<!-- 一个大尺寸的 Vue 标志 -->
 <div class="i-logos-vue text-3xl" />
-<!-- Sun in light mode, Moon in dark mode, from Carbon -->
+<!-- 太阳在亮模式，月亮在暗模式，来自 Carbon -->
 <button class="i-carbon-sun dark:i-carbon-moon" />
-<!-- Twemoji of laugh, turns to tear on hovering -->
+<!-- Twemoji 笑脸，悬停时变成流泪表情 -->
 <div class="i-twemoji-grinning-face-with-smiling-eyes hover:i-twemoji-face-with-tears-of-joy" />
 ```
 
@@ -44,32 +44,32 @@ For example:
   <div class="i-ph:anchor-simple-thin" />
   <div class="i-mdi:alarm text-orange-400 hover:text-teal-400" />
   <div class="w-2em h-2em i-logos:vue transform transition-800 hover:rotate-180" />
-  <button class="i-carbon:sun dark:i-carbon:moon !w-2em !h-2em" @click="toggleDark()" title="toggle dark mode"/>
+  <button class="i-carbon:sun dark:i-carbon:moon !w-2em !h-2em" @click="toggleDark()" title="切换暗模式"/>
   <div class="i-twemoji:grinning-face-with-smiling-eyes hover:i-twemoji:face-with-tears-of-joy" />
-  <div class="text-base my-auto flex"><div class="i-carbon:arrow-left my-auto mr-1" /> Hover it</div>
+  <div class="text-base my-auto flex"><div class="i-carbon:arrow-left my-auto mr-1" /> 悬停试试</div>
 </div>
 
-Check [all available icons](https://icones.js.org/).
+请参阅 [所有可用图标](https://icones.js.org/)。
 
-## Install
+## 安装
 
 ::: code-group
 
 ```bash [pnpm]
-pnpm add -D @unocss/preset-icons @iconify-json/[the-collection-you-want]
+pnpm add -D @unocss/preset-icons @iconify-json/[你需要的集合]
 ```
 
 ```bash [yarn]
-yarn add -D @unocss/preset-icons @iconify-json/[the-collection-you-want]
+yarn add -D @unocss/preset-icons @iconify-json/[你需要的集合]
 ```
 
 ```bash [npm]
-npm install -D @unocss/preset-icons @iconify-json/[the-collection-you-want]
+npm install -D @unocss/preset-icons @iconify-json/[你需要的集合]
 ```
 
 :::
 
-We use [Iconify](https://iconify.design) as our data source of icons. You need to install the corresponding icon-set in `devDependencies` by following the `@iconify-json/*` pattern. For example, `@iconify-json/mdi` for [Material Design Icons](https://materialdesignicons.com/), `@iconify-json/tabler` for [Tabler](https://tabler-icons.io/). You can refer to [Icônes](https://icones.js.org/) or [Iconify](https://icon-sets.iconify.design/) for all the collections available.
+我们使用 [Iconify](https://iconify.design) 作为图标数据源。你需要按 `@iconify-json/*` 模式将相应的图标集安装到 `devDependencies` 中。例如，使用 `@iconify-json/mdi` 对应 [Material Design Icons](https://materialdesignicons.com/)，使用 `@iconify-json/tabler` 对应 [Tabler](https://tabler-icons.io/)。可参阅 [Icônes](https://icones.js.org/) 或 [Iconify](https://icon-sets.iconify.design/) 获取所有可用集合。
 
 ```ts [uno.config.ts]
 import presetIcons from '@unocss/preset-icons'
@@ -77,14 +77,14 @@ import { defineConfig } from 'unocss'
 
 export default defineConfig({
   presets: [
-    presetIcons({ /* options */ }),
-    // ...other presets
+    presetIcons({ /* 选项 */ }),
+    // ...其他预设
   ],
 })
 ```
 
 ::: tip
-This preset is included in the `unocss` package, you can also import it from there:
+该预设包含在 `unocss` 包中，也可以直接从中导入：
 
 ```ts
 import { presetIcons } from 'unocss'
@@ -93,10 +93,10 @@ import { presetIcons } from 'unocss'
 :::
 
 ::: info
-You can also use this preset alone as a complement to your existing UI frameworks to have pure CSS icons!
+你也可以单独使用此预设，作为现有 UI 框架的补充，拥有纯 CSS 图标！
 :::
 
-If you prefer to install all the icon sets available on Iconify at once (~130MB):
+如果你希望一次性安装 Iconify 上所有图标集（约 130MB）：
 
 ::: code-group
 
@@ -114,9 +114,9 @@ npm install -D @iconify/json
 
 :::
 
-### Extra Properties
+### 附加属性
 
-You can provide the extra CSS properties to control the default behavior of the icons. The following is an example of making icons inlined by default:
+你可以提供额外的 CSS 属性来控制图标的默认行为。例如，将图标设置为行内显示：
 
 ```ts
 presetIcons({
@@ -128,14 +128,14 @@ presetIcons({
 })
 ```
 
-## Modes Overriding
+## 模式重写
 
-By default, this preset will choose the rendering modes automatically for each icon based on the icons' characteristics. You can read more in this [blog post](https://antfu.me/posts/icons-in-pure-css). In some cases, you may want to explicitly set the rendering modes for each icon.
+默认情况下，此预设会根据图标特性自动选择渲染模式。详细信息请参阅 [博客文章](https://antfu.me/posts/icons-in-pure-css)。在某些情况下，你可能希望为每个图标显式设置渲染模式。
 
-- `?bg` for `background-img` - renders the icon as a background image
-- `?mask` for `mask` - renders the icon as a mask image
+- `?bg` 表示 `background-img` —— 将图标作为背景图像渲染。
+- `?mask` 表示 `mask` —— 将图标作为蒙版图像渲染。
 
-For example, `vscode-icons:file-type-light-pnpm`, an icon with colors (the `svg` doesn't contain `currentColor`) that will be rendered as a background image. Use `vscode-icons:file-type-light-pnpm?mask` to render it as a mask image and bypass it's colors.
+例如，对于带有颜色的图标 `vscode-icons:file-type-light-pnpm`（SVG 不包含 `currentColor`），默认会以背景图像渲染。使用 `vscode-icons:file-type-light-pnpm?mask` 可将其渲染为蒙版图像，从而去除颜色。
 
 ```html
 <div class="w-full flex items-center justify-center gap-x-4 text-4xl p-2 mt-4">
@@ -149,17 +149,17 @@ For example, `vscode-icons:file-type-light-pnpm`, an icon with colors (the `svg`
   <div class="i-vscode-icons:file-type-light-pnpm?mask text-red-300" />
 </div>
 
-## Configuring collections and icons resolvers
+## 配置集合和图标解析器
 
-You can provide collections via `@iconify-json/[the-collection-you-want]`, `@iconify/json` or using your custom ones using `collections` option on your `UnoCSS` configuration.
+你可以通过 `@iconify-json/[你需要的集合]`、`@iconify/json` 或者自定义集合，通过 `UnoCSS` 配置中的 `collections` 选项来提供集合。
 
-### Browser
+### 浏览器端
 
-To load `iconify` collections you should use `@iconify-json/[the-collection-you-want]` and not `@iconify/json` since the `json` file is huge.
+在加载 Iconify 图标集合时，请使用 `@iconify-json/[你需要的集合]` 而非 `@iconify/json`，后者体积庞大。
 
-#### Bundler
+#### 打包工具
 
-When using bundlers, you can provide the collections using `dynamic imports` so they will be bundler as async chunk and loaded on demand.
+在使用打包工具时，你可以通过 `动态导入` 提供集合，这样它们会被打包成异步 chunk，并按需加载。
 
 ```ts
 import presetIcons from '@unocss/preset-icons/browser'
@@ -179,7 +179,7 @@ export default defineConfig({
 
 #### CDN
 
-Or if you prefer to fetch them from CDN, you can specify the `cdn` option since `v0.32.10`. We recommend [esm.sh](https://esm.sh/) as the CDN provider.
+如果你希望从 CDN 加载集合，可以指定 `cdn` 选项，自 `v0.32.10` 起支持。我们推荐 [esm.sh](https://esm.sh/) 作为 CDN 提供者。
 
 ```ts
 presetIcons({
@@ -187,9 +187,9 @@ presetIcons({
 })
 ```
 
-#### Customization
+#### 自定义
 
-You can also provide your own custom collections using [CustomIconLoader](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L17) or [InlineCollection](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L86), for example using `InlineCollection`:
+你还可以使用 [CustomIconLoader](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L17) 或 [InlineCollection](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L86) 来提供自定义集合，例如使用 `InlineCollection`：
 
 ```ts
 presetIcons({
@@ -204,21 +204,21 @@ presetIcons({
 })
 ```
 
-And then, you can use it on your html: `<span class="i-custom:circle"></span>`
+然后，你可以在 HTML 中这样使用：`<span class="i-custom:circle"></span>`。
 
 ### Node.js
 
-In `Node.js` the preset will search for the installed iconify dataset automatically, so you don't need to register the `iconify` collections.
+在 Node.js 环境下，预设会自动搜索已安装的 Iconify 数据集，因此你无需手动注册图标集合。
 
-You can also provide your own custom collections using also [CustomIconLoader](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L24) or [InlineCollection](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L100).
+你也可以使用 [CustomIconLoader](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L24) 或 [InlineCollection](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/types.ts#L100) 来提供自定义集合。
 
 #### FileSystemIconLoader
 
-Additionally, you can also use [FileSystemIconLoader](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/node-loaders.ts#L9) to load your custom icons from your file system. You will need to install `@iconify/utils` package as `dev dependency`.
+此外，你还可以使用 [FileSystemIconLoader](https://github.com/iconify/iconify/blob/master/packages/utils/src/loader/node-loaders.ts#L9) 从文件系统加载自定义图标。你需要将 `@iconify/utils` 包作为 dev 依赖安装。
 
 ```ts [unocss.config.ts]
 import fs from 'node:fs/promises'
-// loader helpers
+// loader 辅助函数
 import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 import { defineConfig, presetIcons } from 'unocss'
 
@@ -226,21 +226,21 @@ export default defineConfig({
   presets: [
     presetIcons({
       collections: {
-        // key as the collection name
+        // 以集合名称作为键
         'my-icons': {
           account: '<svg><!-- ... --></svg>',
-          // load your custom icon lazily
+          // 懒加载你的自定义图标
           settings: () => fs.readFile('./path/to/my-icon.svg', 'utf-8'),
           /* ... */
         },
         'my-other-icons': async (iconName) => {
-          // your custom loader here. Do whatever you want.
-          // for example, fetch from a remote server:
+          // 你的自定义加载器。在这里可以执行任何操作。
+          // 例如，从远程服务器获取：
           return await fetch(`https://example.com/icons/${iconName}.svg`).then(res => res.text())
         },
-        // a helper to load icons from the file system
-        // files under `./assets/icons` with `.svg` extension will be loaded as it's file name
-        // you can also provide a transform callback to change each icon (optional)
+        // 一个帮助器，从文件系统加载图标
+        // 将加载 `./assets/icons` 下的所有 `.svg` 文件，文件名作为图标名称
+        // 你也可以提供可选的转换回调来更改每个图标
         'my-yet-other-icons': FileSystemIconLoader(
           './assets/icons',
           svg => svg.replace(/#fff/, 'currentColor')
@@ -253,13 +253,13 @@ export default defineConfig({
 
 #### ExternalPackageIconLoader
 
-From `@iconify/utils v2.1.20` you can use other packages to load icons from others authors using the new [createExternalPackageIconLoader](https://github.com/iconify/iconify/blob/main/packages/utils/src/loader/external-pkg.ts#L13) helper.
+从 `@iconify/utils v2.1.20` 开始，你可以使用其他包来加载第三方图标，利用新的 [createExternalPackageIconLoader](https://github.com/iconify/iconify/blob/main/packages/utils/src/loader/external-pkg.ts#L13) 辅助函数。
 
-::: warning WARNING
-External packages must include `icons.json` file with the `icons` data in `IconifyJSON` format, which can be exported with Iconify Tools. Check [Exporting icon set as JSON package](https://iconify.design/docs/libraries/tools/export/json-package.html) for more details.
+::: warning 警告
+外部包必须包含 `icons.json` 文件，其中包含 `IconifyJSON` 格式的图标数据，此文件可通过 Iconify Tools 导出。详见 [导出图标集为 JSON 包](https://iconify.design/docs/libraries/tools/export/json-package.html)。
 :::
 
-For example, you can use `an-awesome-collection` or `@my-awesome-collections/some-collection` to load your custom or third party icons:
+例如，你可以使用 `an-awesome-collection` 或 `@my-awesome-collections/some-collection` 来加载自定义或第三方图标：
 
 ```ts [unocss.config.ts]
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
@@ -274,7 +274,7 @@ export default defineConfig({
 })
 ```
 
-You can also combine it with other custom icon loaders, for example:
+你还可以将其与其他自定义图标加载器结合使用，例如：
 
 ```ts [unocss.config.ts]
 import { createExternalPackageIconLoader } from '@iconify/utils/lib/loader/external-pkg'
@@ -298,25 +298,25 @@ export default defineConfig({
 })
 ```
 
-## Icon Customizations
+## 图标自定义
 
-You can customize all icons using `customizations` configuration option.
+你可以使用 `customizations` 配置选项自定义所有图标。
 
-Available customizations functions:
+可用的自定义函数有：
 
-- `transform`: transform raw `svg`, will be only applied when using `custom` icon collection (`iconify` collections excluded).
-- `customize`: change default icon customizations values.
-- `iconCustomizer`: change default icon customizations values.
+- `transform`：对原始 `svg` 进行转换，仅在使用自定义图标集合（Iconify 集合除外）时应用。
+- `customize`：更改默认图标自定义的数值。
+- `iconCustomizer`：针对每个图标或集合进行更细粒度的自定义，其优先级高于 `customize`。
 
-For each loaded icon, the customizations will be applied in this order:
+对于每个加载的图标，自定义应用顺序为：
 
-- apply `transform` to raw `svg`, if provided and using custom icon collection
-- apply `customize` with default customizations, if provided
-- apply `iconCustomizer` with `customize` customizations, if provided
+1. 如果提供了 `transform` 并且使用自定义图标集合，则先对原始 `svg` 应用转换。
+2. 应用 `customize` 针对默认自定义值进行修改。
+3. 如果提供了 `iconCustomizer`，则其基于 `customize` 的结果继续修改。
 
-### Global Custom Icon Transformation
+### 全局自定义图标转换
 
-When loading your custom icons, you can transform them, for example adding `fill` attribute with `currentColor`:
+在加载自定义图标时，你可以对它们进行转换，例如将 `fill` 属性设置为 `currentColor`：
 
 ```ts
 presetIcons({
@@ -328,13 +328,13 @@ presetIcons({
 })
 ```
 
-From version `0.30.8` the `transform` provides the `collection` and `icon` names:
+从版本 `0.30.8` 开始，`transform` 函数还会接收 `collection` 和 `icon` 参数：
 
 ```ts
 presetIcons({
   customizations: {
     transform(svg, collection, icon) {
-      // do not apply fill to this icons on this collection
+      // 对于自定义集合中的特定图标不进行填充转换
       if (collection === 'custom' && icon === 'my-icon')
         return svg
       return svg.replace(/#fff/, 'currentColor')
@@ -343,9 +343,9 @@ presetIcons({
 })
 ```
 
-### Global Icon Customization
+### 全局图标自定义
 
-When loading any icon you can customize common properties to all of them, for example configuring the same size:
+加载的任意图标，你可以为其统一设置属性，例如统一调整大小：
 
 ```ts
 presetIcons({
@@ -359,31 +359,27 @@ presetIcons({
 })
 ```
 
-### Icon/Collection Customization
+### 单个图标 / 集合自定义
 
-You can customize each icon using `iconCustomizer` configuration option.
+你可以使用 `iconCustomizer` 针对每个集合或具体图标进行自定义，其优先级高于全局配置。
 
-The `iconCustomizer` will take precedence over configuration.
-
-The `iconCustomizer` will be applied to any collection, that is, for each icon from `custom` loader, `inlined` on `custom collections` or from `@iconify`.
-
-For example, you can configure `iconCustomizer` to change all icons for a collection or individual icons on a collection:
+例如，可以为某一集合的所有图标，或者针对特定图标进行自定义：
 
 ```ts
 presetIcons({
   customizations: {
     iconCustomizer(collection, icon, props) {
-      // customize all icons in this collection
+      // 针对集合 `my-other-icons` 中所有图标进行自定义
       if (collection === 'my-other-icons') {
         props.width = '4em'
         props.height = '4em'
       }
-      // customize this icon in this collection
+      // 针对集合 `my-icons` 中特定图标进行自定义
       if (collection === 'my-icons' && icon === 'account') {
         props.width = '6em'
         props.height = '6em'
       }
-      // customize this @iconify icon in this collection
+      // 针对 Iconify 的 mdi 集合中特定图标进行自定义
       if (collection === 'mdi' && icon === 'account') {
         props.width = '2em'
         props.height = '2em'
@@ -393,9 +389,9 @@ presetIcons({
 })
 ```
 
-## Directives
+## 指令
 
-You can use the `icon()` directive in your CSS to get the metadata of the icon.
+你可以在 CSS 中使用 `icon()` 指令来获取图标的元数据。
 
 ```css
 .icon {
@@ -404,147 +400,134 @@ You can use the `icon()` directive in your CSS to get the metadata of the icon.
 ```
 
 ::: warning
-`icon()` depends on `@unocss/preset-icons` and will use the configuration, make sure you have added this preset.
+`icon()` 指令依赖于 `@unocss/preset-icons` 预设，因此请确保已添加此预设。
 :::
 
-More about `icon()` directive, check [Directives](/transformers/directives#icon).
+关于 `icon()` 指令更多内容，请参阅 [指令](/transformers/directives#icon)。
 
-## Options
+## 选项
 
 ### scale
 
-- Type: `number`
-- Default: `1`
+- **类型:** `number`
+- **默认值:** `1`
 
-Scale related to the current font size (1em).
+与当前字体大小相关的缩放比例（1em）。
 
 ### mode
 
-- Type: `'mask' | 'bg' | 'auto'`
-- Default: `'auto'`
-- See: https://antfu.me/posts/icons-in-pure-css
+- **类型:** `'mask' | 'bg' | 'auto'`
+- **默认值:** `'auto'`
+- 详见: https://antfu.me/posts/icons-in-pure-css
 
-Mode of generated CSS icons.
+生成图标 CSS 的渲染模式。
 
-:::tip
+::: tip
 
-- `mask` - use background color and the `mask` property for monochrome icons
-- `bg` - use background image for the icons, colors are static
-- `auto` - smartly decide mode between `mask` and `bg` per icon based on its style
+- `mask` - 使用背景色和 `mask` 属性实现单色图标
+- `bg` - 使用背景图像渲染图标，颜色固定
+- `auto` - 根据图标样式智能选择 `mask` 或 `bg` 模式
 
 :::
 
 ### prefix
 
-- Type: `string | string[]`
-- Default: `'i-'`
+- **类型:** `string | string[]`
+- **默认值:** `'i-'`
 
-Class prefix for matching icon rules.
+图标规则匹配所使用的类名前缀。
 
 ### extraProperties
 
-- Type: `Record<string, string>`
-- Default: `{}`
+- **类型:** `Record<string, string>`
+- **默认值:** `{}`
 
-Extra CSS properties applied to the generated CSS.
+应用于生成 CSS 的额外属性。
 
 ### warn
 
-- Type: `boolean`
-- Default: `false`
+- **类型:** `boolean`
+- **默认值:** `false`
 
-Emit warning when missing icons are matched.
+当匹配到缺失图标时是否输出警告。
 
 ### iconifyCollectionsNames
 
-- Type: `string[]`
-- Default: `undefined`
+- **类型:** `string[]`
+- **默认值:** `undefined`
 
-Additional `@iconify-json` collections to use. This option should be used when there are new `@iconify-json` collections not listed in the default icons preset collection names.
+额外的 `@iconify-json` 集合名称。当存在未包含在默认图标预设集合中的新集合时，请使用此选项。
 
 ### collections
 
-- Type: `Record<string, (() => Awaitable<IconifyJSON>) | undefined | CustomIconLoader | InlineCollection>`
-- Default: `undefined`
+- **类型:** `Record<string, (() => Awaitable<IconifyJSON>) | undefined | CustomIconLoader | InlineCollection>`
+- **默认值:** `undefined`
 
-In Node.js environment, the preset will search for the installed iconify dataset automatically. When using in the browser, this options is provided to provide dataset with custom loading mechanism.
+在 Node.js 环境下，预设会自动搜索已安装的 Iconify 数据集；在浏览器中，此选项用于以自定义加载机制提供图标数据集。
 
 ### layer
 
-- Type: `string`
-- Default: `'icons'`
+- **类型:** `string`
+- **默认值:** `'icons'`
 
-Rule layer.
+规则层次。
 
 ### customizations
 
-- Type: `Omit<IconCustomizations, 'additionalProps' | 'trimCustomSvg'>`
-- Default: `undefined`
+- **类型:** `Omit<IconCustomizations, 'additionalProps' | 'trimCustomSvg'>`
+- **默认值:** `undefined`
 
-Custom icon customizations.
+图标自定义相关配置。
 
 ### autoInstall
 
-- Type: `boolean`
-- Default: `false`
+- **类型:** `boolean`
+- **默认值:** `false`
 
-Auto install icon sources package when the usages is detected.
-
-:::warning
-Only on `node` environment, on `browser` this option will be ignored.
-:::
+当检测到图标使用时，自动安装图标源包。（仅适用于 Node.js 环境，浏览器下此选项无效）
 
 ### unit
 
-- Type: `string`
-- Default: `'em'`
+- **类型:** `string`
+- **默认值:** `'em'`
 
-Custom icon unit.
+图标单位的自定义。
 
 ### cdn
 
-- Type: `string`
-- Default: `undefined`
+- **类型:** `string`
+- **默认值:** `undefined`
 
-Load icons from CDN. Should starts with `https://` and ends with `/`.
+从 CDN 加载图标。应以 `https://` 开头并以 `/` 结尾。
 
-Recommends:
+推荐使用：
 
 - `https://esm.sh/`
 - `https://cdn.skypack.dev/`
 
 ### customFetch
 
-- Type: `(url: string) => Promise<any>`
-- Default: `undefined`
+- **类型:** `(url: string) => Promise<any>`
+- **默认值:** `undefined`
 
-Preset used [`ofetch`](https://github.com/unjs/ofetch) as the default fetcher, you can also custom fetch function to provide the icon data.
+使用自定义函数获取图标数据（默认使用 [`ofetch`](https://github.com/unjs/ofetch)）。
 
 ### processor
 
-- Type: `(cssObject: CSSObject, meta: Required<IconMeta>) => void`
-- Default: `undefined`
+- **类型:** `(cssObject: CSSObject, meta: Required<IconMeta>) => void`
+- **默认值:** `undefined`
 
-```ts
-interface IconMeta {
-  collection: string
-  icon: string
-  svg: string
-  mode?: IconsOptions['mode']
-}
-```
+在生成 CSS 字符串前，对 CSS 对象进行处理的处理器函数。详见示例：https://github.com/unocss/unocss/blob/7d83789b0dee8c72c401db24263ea429086de95d/test/preset-icons.test.ts#L66-L82
 
-Processor for the CSS object before stringify. See [example](https://github.com/unocss/unocss/blob/7d83789b0dee8c72c401db24263ea429086de95d/test/preset-icons.test.ts#L66-L82).
+## 高级自定义图标集清理
 
-## Advanced Custom Icon Set Cleanup
+在与自定义图标集一同使用此预设时，建议使用类似 [Iconify](https://iconify.design/) 的清理流程对图标集进行整理。所有所需工具均可在 [Iconify Tools](https://iconify.design/docs/libraries/tools/) 中找到。
 
-When using this preset with your custom icons, consider using a cleanup process similar to that done by [Iconify](https://iconify.design/) for any icons sets. All the tools you need are available in [Iconify Tools](https://iconify.design/docs/libraries/tools/).
+例如，你可以参考此仓库，该仓库展示了在 `Vue 3` 项目中如何使用此预设：[@iconify/tools/@iconify-demo/unocss](https://github.com/iconify/tools/tree/main/%40iconify-demo/unocss)。
 
-You can check this repo, using this preset on a `Vue 3` project: [@iconify/tools/@iconify-demo/unocss](https://github.com/iconify/tools/tree/main/%40iconify-demo/unocss).
+阅读 [清理图标](https://iconify.design/docs/articles/cleaning-up-icons/) 文章了解更多细节。
 
-Read [Cleaning up icons](https://iconify.design/docs/articles/cleaning-up-icons/) article from [Iconify](https://iconify.design/) for more details.
+## 鸣谢
 
-## Credits
-
-- This preset is inspired from [this issue](https://github.com/antfu/unplugin-icons/issues/88) created by [@husayt](https://github.com/husayt).
-- Based on the work of [this PR](https://github.com/antfu/unplugin-icons/pull/90) by [@userquin](https://github.com/userquin).
+- 此预设的初始想法来自 [@husayt](https://github.com/husayt)。
+- 基于 [@userquin](https://github.com/userquin) 提交的 [PR](https://github.com/antfu/unplugin-icons/pull/90) 工作。

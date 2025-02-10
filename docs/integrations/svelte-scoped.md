@@ -1,20 +1,20 @@
 ---
 title: UnoCSS Svelte Scoped
-description: Svelte Scoped Vite Plugin and Svelte Preprocessor for UnoCSS.
+description: UnoCSS 的 Svelte Scoped Vite 插件和 Svelte 预处理器。
 outline: deep
 ---
 
 # Svelte Scoped
 
-Place generated CSS for each Svelte component's utility styles directly into the Svelte component's `<style>` block instead of in a global CSS file.
+该插件将每个 Svelte 组件中工具类的样式直接注入到组件的 `<style>` 块中，而不是放在全局 CSS 文件中。
 
-This component:
+例如，下面这个 Svelte 组件：
 
 ```svelte
 <div class="mb-1" />
 ```
 
-is transformed into:
+会被转换为：
 
 ```svelte
 <div class="uno-ei382o" />
@@ -26,44 +26,44 @@ is transformed into:
 </style>
 ```
 
-## When to use
+## 何时使用
 
-| Use Case          |     | Description                                                                                                                                                 | Package to Use                                           |
-| ----------------- | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| Smaller apps      | :x: | Having 1 global CSS file is more convenient. Use the regular Vite plugin for [Svelte](/integrations/vite#svelte)/[SvelteKit](/integrations/vite#sveltekit). | [unocss/vite](/integrations/vite#svelte)                 |
-| Larger apps       | ✅  | Svelte Scoped can help you avoid an ever-growing global CSS file.                                                                                           | [@unocss/svelte-scoped/vite](#vite-plugin)               |
-| Component library | ✅  | Generated styles are placed directly in built components without the need to use UnoCSS in a consuming app's build pipeline.                                | [@unocss/svelte-scoped/preprocess](#svelte-preprocessor) |
+| 使用场景 |     | 描述                                                                                                                                           | 推荐使用方案                                         |
+| -------- | --- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| 小型应用 | :x: | 拥有一个全局 CSS 文件更便捷，建议使用常规 Vite 插件（参见 [Svelte](/integrations/vite#svelte) 或 [SvelteKit](/integrations/vite#sveltekit)）。 | [unocss/vite](/integrations/vite#svelte)             |
+| 大型应用 | ✅  | Svelte Scoped 能有效避免全局 CSS 文件体积不断增长。                                                                                            | [@unocss/svelte-scoped/vite](#vite-plugin)           |
+| 组件库   | ✅  | 工具类样式直接打包进组件，无需依赖使用端构建时载入 UnoCSS。                                                                                    | [@unocss/svelte-scoped/preprocess](#svelte-预处理器) |
 
-## How it works
+## 工作原理
 
-A regular UnoCSS/Tailwind CSS setup places utility styles in a global CSS file with proper ordering. In contrast, Svelte Scoped distributes your styles across many arbitrarily ordered Svelte component CSS files. However, it must keep the utility styles global to allow them to be context aware as needed for things like right-to-left and other [use cases](#context-aware) listed below. This presents a challenge that is solved by using Svelte's `:global()` wrapper to opt out of the default Svelte CSS hashing method and instead use a hash based on filename + class name(s) to compile unique class names that can be made global without style conflicts.
+常规的 UnoCSS/Tailwind CSS 配置会将工具类样式生成到全局 CSS 文件中，并保证正确的顺序。而 Svelte Scoped 则会将生成的样式分散到各个 Svelte 组件中，但同时需要确保这些工具类全局可用（以支持如右-to-left 等场景）。这通过将样式使用 Svelte 的 `:global()` 包裹，并基于文件名及类名生成独一无二的全局类名来实现。
 
-## Usage
+## 用法
 
-Because Svelte Scoped rewrites your utility class names, you are limited in where you can write them:
+由于 Svelte Scoped 会重写工具类名称，因此仅支持以下场景：
 
-| Supported Syntax          | Example                          |
-| ------------------------- | -------------------------------- |
-| Class attribute           | `<div class="mb-1" />`           |
-| Class directive           | `<div class:mb-1={condition} />` |
-| Class directive shorthand | `<div class:logo />`             |
-| Class prop                | `<Button class="mb-1" />`        |
+| 支持的语法        | 示例                             |
+| ----------------- | -------------------------------- |
+| 类属性            | `<div class="mb-1" />`           |
+| 类指令            | `<div class:mb-1={condition} />` |
+| 类指令简写        | `<div class:logo />`             |
+| 组件的 class 属性 | `<Button class="mb-1" />`        |
 
-Svelte Scoped is designed to be a drop-in replacement for a project that uses utility styles. As such, expressions found within class attributes are also supported (e.g. `<div class="mb-1 {foo ? 'mr-1' : 'mr-2'}" />`) but we recommend you use the class directive syntax moving forward. Note also that if you've used class names in other ways like placing them in a `<script>` block or using attributify mode then you'll need to take additional steps before using Svelte Scoped. You can utilize the `safelist` option and also check the [presets](#presets-support) section below for more tips.
+Svelte Scoped 设计为可以直接替换现有的工具类写法。尽管支持类属性中的表达式（例如 `<div class="mb-1 {foo ? 'mr-1' : 'mr-2'}" />`），但建议使用类指令语法。此外，若你在 `<script>` 中或其他地方（如使用 attributify 模式）使用工具类，可能需要借助 `safelist` 等选项来确保这些工具类正确生成，请参考下文[预设支持](#presets-support)部分。
 
-### Context aware
+### 上下文感知
 
-Even though styles are distributed across your app's Svelte components, they are still global classes and will work in relationship to elements found outside of their specific components. Here are some examples:
+虽然样式在各组件中生成，但它们依然作为全局类存在，可作用于组件外的元素。例如：
 
-#### Parent dependent
+#### 依赖父元素
 
-Classes that depend on attributes found in a parent component:
+例如依赖父组件属性的类：
 
 ```svelte
 <div class="dark:mb-2 rtl:right-0"></div>
 ```
 
-turn into:
+转换后为：
 
 ```svelte
 <div class="uno-3hashz"></div>
@@ -78,9 +78,9 @@ turn into:
 </style>
 ```
 
-#### Children influencing
+#### 子元素间距
 
-You can add space between 3 children elements of which some are in separate components:
+为多个子元素添加间距，即使它们来自不同组件：
 
 ```svelte
 <div class="space-x-1">
@@ -90,7 +90,7 @@ You can add space between 3 children elements of which some are in separate comp
 </div>
 ```
 
-turns into:
+转换后为：
 
 ```svelte
 <div class="uno-7haszz">
@@ -108,15 +108,15 @@ turns into:
 </style>
 ```
 
-#### Passing classes to child components
+#### 传递类给子组件
 
-You can add a `class` prop to a component to allow passing custom classes wherever that component is consumed.
+可以在组件中通过 `class` 属性传递自定义类：
 
 ```svelte
 <Button class="px-2 py-1">Login</Button>
 ```
 
-turns into:
+转换后为：
 
 ```svelte
 <Button class="uno-4hshza">Login</Button>
@@ -131,13 +131,17 @@ turns into:
 </style>
 ```
 
-An easy way to implement the class in a receiving component would be to place them on to an element using `{$$props.class}` as in `div class="{$$props.class} foo bar" />`.
+在接收组件中，你可以通过 `{$$props.class}` 将外部传入的类连接到目标元素上，例如：
 
-### Apply directives
+```svelte
+<div class="{$$props.class} foo bar"></div>
+```
 
-You can use apply directives inside your `<style>` blocks with either `--at-apply` or `@apply` or a custom value set using the `applyVariables` option.
+### 应用指令
 
-Svelte Scoped even properly handles context dependent classes like `dark:text-white` that the regular [`@unocss/transformer-directives`](/transformers/directives) package can't handle properly because it wasn't built specifically for Svelte style blocks. For example, with Svelte Scoped this component:
+你可以在 `<style>` 块中使用应用指令，如 `--at-apply` 或 `@apply`，也可通过 `applyVariables` 选项自定义变量。
+
+Svelte Scoped 可以正确处理诸如 `dark:text-white` 等依赖上下文的工具类，而常规的 [`@unocss/transformer-directives`](/transformers/directives) 由于没有针对 Svelte 进行专门设计，可能无法正确处理。例如，以下示例：
 
 ```svelte
 <div />
@@ -149,7 +153,7 @@ Svelte Scoped even properly handles context dependent classes like `dark:text-wh
 </style>
 ```
 
-will be transformed into:
+会被转换为：
 
 ```svelte
 <div />
@@ -161,19 +165,19 @@ will be transformed into:
 </style>
 ```
 
-In order for `rtl:ml-2` to work properly, the `[dir="rtl"]` selector is wrapped with `:global()` to keep the Svelte compiler from stripping it out automatically as the component has no element with that attribute. However, `div` can't be included in the `:global()` wrapper because that style would then affect every `div` in your app.
+为确保 `rtl:ml-2` 能生效，`[dir="rtl"]` 需要使用 `:global()` 包裹，而不可将 `div` 同时包含进去，否则会影响所有 `div`。
 
-### Other style block directives
+### 其他样式块指令
 
-Using [theme()](https://unocss.dev/transformers/directives#theme) is also supported, but [@screen](https://unocss.dev/transformers/directives#screen) is **not**.
+`theme()` 同样受支持，但 [@screen](https://unocss.dev/transformers/directives#screen) 指令则**不**支持。
 
 ## Vite Plugin
 
-In Svelte or SvelteKit apps, inject generated styles directly into your Svelte components, while placing the minimum necessary styles in a global stylesheet. Check out the [SvelteKit example](https://github.com/unocss/unocss/tree/main/examples/sveltekit-scoped) in Stackblitz:
+在 Svelte 或 SvelteKit 应用中，Svelte Scoped 可将生成的样式直接注入组件，同时保留全局中仅必要的样式。请参阅 [SvelteKit 示例](https://github.com/unocss/unocss/tree/main/examples/sveltekit-scoped)（StackBlitz）。
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/fork/github/unocss/unocss/tree/main/examples/sveltekit-scoped)
+[![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/fork/github/unocss/unocss/tree/main/examples/sveltekit-scoped)
 
-### Install
+### 安装
 
 ::: code-group
 
@@ -191,9 +195,9 @@ npm install -D unocss @unocss/svelte-scoped
 
 :::
 
-#### Add plugin
+#### 添加插件
 
-Add `@unocss/svelte-scoped/vite` to your Vite config:
+在你的 Vite 配置中添加 `@unocss/svelte-scoped/vite` 插件：
 
 ```ts [vite.config.ts]
 import { sveltekit } from '@sveltejs/kit/vite'
@@ -203,36 +207,35 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
     UnoCSS({
-      // injectReset: '@unocss/reset/normalize.css', // see type definition for all included reset options or how to pass in your own
-      // ...other Svelte Scoped options
+      // injectReset: '@unocss/reset/normalize.css', // 查看类型定义以了解所有内置重置选项或如何传入自定义文件
+      // ...其他 Svelte Scoped 选项
     }),
     sveltekit(),
   ],
 })
 ```
 
-#### Add config file
+#### 添加配置文件
 
-Setup your `uno.config.ts` file as described [below](#configuration).
+请按照需求配置你的 `uno.config.ts` 文件，配置方法与其它集成一致。
 
-#### Global styles
+#### 全局样式
 
-While almost all styles are placed into individual components, there are still a few that must be placed into a global stylesheet: preflights, safelist, and an optional reset (if you use the `injectReset` option).
-
-Add the `%unocss-svelte-scoped.global%` placeholder into your `<head>` tag. In Svelte this is `index.html`. In SvelteKit this will be in `app.html` before `%sveltekit.head%`:
+虽然大部分工具类样式会放入各个组件中，但预设样式、白名单和（可选的）重置样式需放入全局样式表中。
+在 `<head>` 标签中添加 `%unocss-svelte-scoped.global%` 占位符（在 Svelte 中位于 `index.html`；在 SvelteKit 中放在 `app.html` 中并位于 `%sveltekit.head%` 之前）：
 
 <!-- eslint-skip -->
 
 ```html [index.html]
 <head>
   <!-- ... -->
-  <title>SvelteKit using UnoCSS Svelte Scoped</title>
+  <title>SvelteKit 使用 UnoCSS Svelte Scoped</title>
   %unocss-svelte-scoped.global%
   %sveltekit.head%
 </head>
 ```
 
-If using SvelteKit, you also must add the following to the `transformPageChunk` hook in your `src/hooks.server.js` file:
+如果你使用 SvelteKit，还必须在 `src/hooks.server.js` 文件中添加如下代码，在 `transformPageChunk` 钩子中替换占位符：
 
 ```js [src/hooks.server.js]
 /** @type {import('@sveltejs/kit').Handle} */
@@ -248,17 +251,14 @@ export async function handle({ event, resolve }) {
 }
 ```
 
-This transformation must be in a file whose [path includes `hooks` and `server`](https://github.com/unocss/unocss/blob/main/packages-integrations/svelte-scoped/src/_vite/global.ts#L12) (e.g. `src/hooks.server.js`, `src/hooks.server.ts`) as `svelte-scoped` will be looking in your server hooks file to replace `unocss_svelte_scoped_global_styles` with your global styles. Make sure to not import this transformation from another file, such as when using [sequence](https://kit.svelte.dev/docs/modules#sveltejs-kit-hooks-sequence) from `@sveltejs/kit/hooks`.
+请确保此转换代码所在的文件路径中包含 `hooks` 与 `server`，以便 Svelte Scoped 正确查找并替换全局样式占位符。
+在普通的 Svelte 项目中，Vite 的 `transformIndexHtml` 钩子会自动处理该操作。
 
-_In a regular Svelte project, Vite's `transformIndexHtml` hook will do this automatically._
+## Svelte 预处理器
 
-## Svelte Preprocessor
+在构建独立组件库时，可以使用预处理器将生成的样式直接嵌入到组件内部，从而使组件库无需依赖外部 CSS 文件。请参考 [SvelteKit Library 示例](https://github.com/unocss/unocss/tree/main/examples/sveltekit-preprocess)（StackBlitz）。
 
-Use utility styles to build a component library that is not dependent on including a companion CSS file by using a preprocessor to place generated styles directly into built components. Check out the [SvelteKit Library example](https://github.com/unocss/unocss/tree/main/examples/sveltekit-preprocess) in Stackblitz:
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/fork/github/unocss/unocss/tree/main/examples/sveltekit-preprocess)
-
-### Install
+### 安装
 
 ::: code-group
 
@@ -276,9 +276,9 @@ npm install -D unocss @unocss/svelte-scoped
 
 :::
 
-#### Add preprocessor
+#### 添加预处理器
 
-Add `@unocss/svelte-scoped/preprocess` to your Svelte config:
+在你的 Svelte 配置文件（例如 `svelte.config.js`）中引入 `@unocss/svelte-scoped/preprocess`：
 
 ```ts [svelte.config.js]
 import adapter from '@sveltejs/adapter-auto'
@@ -289,24 +289,23 @@ const config = {
   preprocess: [
     vitePreprocess(),
     UnoCSS({
-      // ... preprocessor options
+      // ...预处理器选项
     }),
   ],
-  // other Svelte config
+  // 其他 Svelte 配置
 }
 ```
 
-#### Don't combine class names in development
+#### 开发模式下不合并类名
 
-When using Svelte Scoped in a normal app, the Vite plugin will automatically detect `dev` vs `build`. In development, classes will be kept distinct and hashed in place for ease of toggling on/off in your browser's developer tools. `class="mb-1 mr-1"` will turn into something like `class="_mb-1_9hwi32 _mr-1_84jfy4`. In production, these will be compiled into a single class name using your desired prefix, `uno-` by default, and a hash based on the filename + class names, e.g. `class="uno-84dke3`.
-
-If you want this same behavior when using the preprocessor, you must manually set the the `combine` option based on environemnt. One way to do this is to install [cross-env](https://www.npmjs.com/package/cross-env) and update your dev script to this:
+在开发模式中，Vite 插件会自动检测环境，使生成的类名保留各自的独立哈希，便于调试。而在生产中则合并多个工具类为单一类。
+若使用预处理器，也需手动根据环境设置 `combine` 选项。例如，安装 [cross-env](https://www.npmjs.com/package/cross-env) 并在 package.json 中这样配置：
 
 ```
 "dev": "cross-env NODE_ENV=development vite dev"
 ```
 
-Then adjust your svelte.config.js:
+然后在 `svelte.config.js` 中：
 
 ```diff
 +const prod = process.env.NODE_ENV !== 'development'
@@ -320,63 +319,63 @@ const config = {
 }
 ```
 
-#### Add config file
+#### 添加配置文件
 
-Setup your `uno.config.ts` file as described [below](#configuration).
+按照常规方法配置你的 `uno.config.ts` 文件即可。
 
-### Preflights
+### 预设样式
 
-When using the preprocessor you have the option to include preflights in the specific component(s) where they are needed by adding `uno-preflights` as a style attribute.
+当使用预处理器时，可以在需要的组件中通过添加 `uno-preflights` 属性来注入预设样式。例如：
 
 ```html
 <style uno-preflights></style>
 ```
 
-Any special preflights that start with a period, such as `.prose :where(a):not(:where(.not-prose, .not-prose *))`, will be wrapped with `:global()` to avoid being automatically stripped out by the Svelte compiler.
+以“.”开头的预设样式（如 `.prose :where(a):not(:where(.not-prose, .not-prose *))`）会自动被包裹在 `:global()` 中，避免被 Svelte 编译器剔除。
 
-_Adding preflights into individual components is unnecessary if your classes do not depend on preflights or your built components are being consumed only in apps that already include preflights._
+如果你的组件不依赖这些预设样式，或仅在已注入预设样式的应用中使用，则无需在组件中添加。
 
-### Safelist
+### 白名单
 
-When using the preprocessor you have the option to include safelist classes in a component by adding `uno-safelist` as a style attribute.
+使用预处理器时，你可通过添加 `uno-safelist` 属性，将白名单内的工具类注入到当前组件中：
 
 ```html
 <style uno-safelist></style>
 ```
 
-Your safelist styles will be wrapped with `:global()` to avoid being automatically stripped out by the Svelte compiler.
+这些样式也会自动被包裹在 `:global()` 中，避免被 Svelte 剔除。
 
-## Configuration
+## 配置
 
-Place your UnoCSS settings in an `uno.config.ts` file:
+在 `uno.config.ts` 中配置 UnoCSS：
 
 ```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
-  // ...UnoCSS options
+  // ...UnoCSS 选项
 })
 ```
 
-Extractors are not supported due to the differences in normal UnoCSS global usage and Svelte Scoped usage. Presets and Transformers are supported as described in the following sections. See [Config File](/guide/config-file) and [Config reference](/config/) for all other details.
+由于普通的提取器不适用于 Svelte Scoped，因此 extractors 不受支持；预设与转换器的使用方式与标准用法一致，详情请参阅 [配置文件](/guide/config-file) 与 [配置参考](/config/)。
 
-### Presets support
+### 预设支持
 
-Do to the nature of having a few necessary styles in a global stylesheet and everything else contained in each component where needed, presets need to be handled on a case-by-case basis:
+由于部分样式必须在全局中生成，而其它则在组件中生成，预设支持需区分对待：
 
-| Preset                                                                                                                                                                                                                                                                                                                                                                | Supported | Notes                                                                                                                                                                                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [@unocss/preset-uno](https://unocss.dev/presets/uno), [@unocss/preset-mini](https://unocss.dev/presets/mini), [@unocss/preset-wind](https://unocss.dev/presets/wind), [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages-presets/preset-icons), [@unocss/web-fonts](https://github.com/unocss/unocss/tree/main/packages-presets/preset-icons) | ✅        | These and all community plugins, e.g. [unocss-preset-forms](https://github.com/Julien-R44/unocss-preset-forms), that only rely on rules/variants/preflights will work.                                                                                            |
-| [@unocss/preset-typography](https://github.com/unocss/unocss/tree/main/packages-presets/preset-typography)                                                                                                                                                                                                                                                            | ✅        | Due to how this preset adds rulesets to your preflights you must add the `prose` class to your safelist when using this preset, otherwise the preflights will never be triggered. All other classes from this preset, e.g. `prose-pink`, can be component scoped. |
-| [@unocss/preset-rem-to-px](https://github.com/unocss/unocss/tree/main/packages-presets/preset-rem-to-px)                                                                                                                                                                                                                                                              | ✅        | This and all presets like it that only modify style output will work.                                                                                                                                                                                             |
-| [@unocss/preset-attributify](https://github.com/unocss/unocss/tree/main/packages-presets/preset-attributify)                                                                                                                                                                                                                                                          | -         | Preset won't work. Instead use [unplugin-attributify-to-class](https://github.com/MellowCo/unplugin-attributify-to-class) Vite plugin (`attributifyToClass({ include: [/\.svelte$/]})`) before the Svelte Scoped Vite plugin                                      |
-| [@unocss/preset-tagify](https://github.com/unocss/unocss/tree/main/packages-presets/preset-tagify)                                                                                                                                                                                                                                                                    | -         | Presets that add custom extractors will not work. Create a preprocessor to convert `<text-red>Hi</text-red>` to `<span class="text-red">Hi</span>`, then create a PR to add the link here.                                                                        |
+| 预设                                                                                                                                                                                                                                                                                                                                                                  | 支持情况 | 备注                                                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [@unocss/preset-uno](https://unocss.dev/presets/uno), [@unocss/preset-mini](https://unocss.dev/presets/mini), [@unocss/preset-wind](https://unocss.dev/presets/wind), [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages-presets/preset-icons), [@unocss/web-fonts](https://github.com/unocss/unocss/tree/main/packages-presets/preset-icons) |    ✅    | 这些（以及所有仅依赖规则、变体、预设样式的社区预设，例如 [unocss-preset-forms](https://github.com/Julien-R44/unocss-preset-forms)）均可使用。                                                                          |
+| [@unocss/preset-typography](https://github.com/unocss/unocss/tree/main/packages-presets/preset-typography)                                                                                                                                                                                                                                                            |    ✅    | 此预设通过在全局预设样式中添加规则组实现，需确保触发该预设的 `prose` 类被加入白名单，否则预设样式不会被应用；其它如 `prose-pink` 等类可直接在组件中生效。                                                              |
+| [@unocss/preset-rem-to-px](https://github.com/unocss/unocss/tree/main/packages-presets/preset-rem-to-px)                                                                                                                                                                                                                                                              |    ✅    | 该预设以及所有仅修改样式输出的预设均可使用。                                                                                                                                                                           |
+| [@unocss/preset-attributify](https://github.com/unocss/unocss/tree/main/packages-presets/preset-attributify)                                                                                                                                                                                                                                                          |    -     | 不支持该预设。请使用 [unplugin-attributify-to-class](https://github.com/MellowCo/unplugin-attributify-to-class) Vite 插件（配置 `attributifyToClass({ include: [/\.svelte$/]})`）在 Svelte Scoped 之前转换属性为类名。 |
+| [@unocss/preset-tagify](https://github.com/unocss/unocss/tree/main/packages-presets/preset-tagify)                                                                                                                                                                                                                                                                    |    -     | 添加自定义提取器的预设不支持。建议创建预处理器将 `<text-red>Hi</text-red>` 转换为 `<span class="text-red">Hi</span>`，然后提交 PR 将链接添加到文档中。                                                                 |
 
-For other presets, if they don't rely on traditional `class="..."` usage you will need to first preprocess those class names into the `class="..."` attribute. If they add presets like typography's `.prose` class then you will need to place the classes which trigger the preset additions into your safelist.
+对于其它预设，如不依赖传统 `class="..."` 写法，则需要先通过预处理器将其转换为相应的类；若预设添加了类似 `.prose` 类，则需将触发该预设的类加入白名单。
 
-### Transformers support
+### 转换器支持
 
-Transformers are supported for your CSS files (css|postcss|sass|scss|less|stylus|styl). To use them, add the transformer into the `cssFileTransformers` option in your `vite.config.ts`:
+转换器支持适用于普通 CSS 文件（css|postcss|sass|scss|less|stylus|styl）。在 `vite.config.ts` 配置中，通过 `cssFileTransformers` 选项添加所需转换器：
 
 ```ts [vite.config.ts]
 import transformerDirectives from '@unocss/transformer-directives'
@@ -392,13 +391,5 @@ export default defineConfig({
 ```
 
 ::: info
-Transformers are not supported in Svelte components due to how Svelte Scoped works.
+由于 Svelte Scoped 的工作原理，转换器在 Svelte 组件内部不支持使用。
 :::
-
-## Scoped utility classes unleash creativity
-
-Some advice on when you might want to use scoped styles: If you have come to the point in a large project's life when every time you use a class like `.md:max-w-[50vw]` that you know is only used once you cringe as you feel the size of your global style sheet getting larger and larger, then give this package a try. Hesitancy to use exactly the class you need inhibits creativity. Sure, you could use `--at-apply: md:max-w-[50vw]` in the style block but that gets tedious and styles in context are useful. Furthermore, if you would like to include a great variety of icons in your project, you will begin to feel the weight of adding them to the global stylesheet. When each component bears the weight of its own styles and icons you can continue to expand your project without having to analyze the cost benefit of each new addition.
-
-## License
-
-- MIT License &copy; 2022-PRESENT [Jacob Bowdoin](https://github.com/jacob-8)

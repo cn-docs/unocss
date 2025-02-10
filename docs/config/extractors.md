@@ -1,33 +1,33 @@
-# Extractors
+# 提取器
 
-Extractors are used to extract the usage of utilities from your source code.
+提取器用于从您的源代码中提取工具类的使用情况。
 
 ```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
   extractors: [
-    // your extractors
+    // 您的提取器
   ],
 })
 ```
 
-By default [extractorSplit](https://github.com/unocss/unocss/blob/main/packages-engine/core/src/extractors/split.ts) will always be applied, which splits the source code into tokens and directly feed to the engine.
+默认情况下，会始终应用 [extractorSplit](https://github.com/unocss/unocss/blob/main/packages-engine/core/src/extractors/split.ts)，它将源代码拆分为标记并直接传递给引擎。
 
-To override the default extractors, you can use `extractorDefault` option.
+要覆盖默认提取器，您可以使用 `extractorDefault` 选项：
 
 ```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
   extractors: [
-    // your extractors
+    // 您的提取器
   ],
-  // disable the default extractor
+  // 禁用默认提取器
   extractorDefault: false,
-  // override the default extractor with your own
+  // 使用您自己的提取器覆盖默认提取器
   extractorDefault: myExtractor,
 })
 ```
 
-For example, please check the implementation of [pug extractor](https://github.com/unocss/unocss/tree/main/packages-integrations/extractor-pug) or the [attributify extractor](https://github.com/unocss/unocss/blob/main/packages-presets/preset-attributify/src/extractor.ts).
+例如，请查看 [pug 提取器](https://github.com/unocss/unocss/tree/main/packages-integrations/extractor-pug) 或 [attributify 提取器](https://github.com/unocss/unocss/blob/main/packages-presets/preset-attributify/src/extractor.ts) 的实现。

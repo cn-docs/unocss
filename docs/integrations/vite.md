@@ -1,6 +1,6 @@
 ---
-title: UnoCSS Vite Plugin
-description: The Vite plugin for UnoCSS (@unocss/vite).
+title: UnoCSS Vite 插件
+description: UnoCSS 的 Vite 插件（@unocss/vite）。
 outline: deep
 ---
 
@@ -13,11 +13,11 @@ const playgrounds = examples.reduce((acc, cur) => {
 }, {})
 </script>
 
-# Vite Plugin
+# Vite 插件
 
-The Vite plugin ships with the `unocss` package.
+该插件随 `unocss` 包一同发布。
 
-## Installation
+## 安装
 
 ::: code-group
 
@@ -35,7 +35,7 @@ npm install -D unocss
 
 :::
 
-Install the plugin:
+安装插件：
 
 ```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
@@ -48,59 +48,53 @@ export default defineConfig({
 })
 ```
 
-Create a `uno.config.ts` file:
+创建一个 `uno.config.ts` 文件：
 
 ```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
-  // ...UnoCSS options
+// ...UnoCSS 选项
 })
 ```
 
-Add `virtual:uno.css` to your main entry:
+在主入口中导入 `virtual:uno.css`：
 
 ```ts [main.ts]
 import 'virtual:uno.css'
 ```
 
-## Modes
+## 模式
 
-The Vite plugin comes with a set of modes that enable different behaviors.
+该插件内置多种模式以实现不同的行为。
 
-### `global` (default)
+### `global`（默认）
 
-This is the default mode for the plugin: in this mode you need to add the import of `uno.css` on your entry point.
-
-This mode enables a set of Vite plugins for `build` and for `dev` with `HMR` support.
-
-The generated `css` will be a global stylesheet injected on the `index.html`.
+默认模式下，需要在入口文件中导入 `uno.css`。此模式为 `build` 与支持 HMR 的 `dev` 环境启用了多种 Vite 插件，生成的 CSS 会以全局样式注入到 `index.html` 中。
 
 ### `vue-scoped`
 
-This mode will inject generated CSS to Vue SFCs `<style scoped>` for isolation.
+该模式会将生成的 CSS 注入到 Vue SFC 的 `<style scoped>` 中，从而实现样式隔离。
 
 ### `svelte-scoped`
 
-`svelte-scoped` mode has been moved to its own package, see [@unocss/svelte-scoped/vite](/integrations/svelte-scoped).
+`svelte-scoped` 模式现已移至独立包，参见 [@unocss/svelte-scoped/vite](/integrations/svelte-scoped)。
 
 ### `shadow-dom`
 
-Since `Web Components` uses `Shadow DOM`, there is no way to style content directly from a global stylesheet (unless you use `CSS custom properties`, those will penetrate the `Shadow DOM`), you need to inline the generated CSS by the plugin into the `Shadow DOM` style.
+针对 Web 组件，由于 Shadow DOM 无法直接引用全局样式（除非使用 CSS 自定义属性），此模式会将生成的 CSS 内联到 Shadow DOM 中。使用时，只需将插件模式设置为 `shadow-dom` 并在每个 Web 组件样式块中添加 `@unocss-placeholder` 占位符即可。如果在 Vue SFC 中定义组件并希望添加自定义样式，可将占位符包裹在 CSS 注释中以避免 IDE 报错。
 
-To inline the generated CSS, you only need to configure the plugin mode to `shadow-dom` and include `@unocss-placeholder` magic placeholder on each web component style CSS block. If you are defining your Web Components in Vue SFCs and want to define custom styles alongside UnoCSS, you can wrap placeholder in a CSS comment to avoid syntax errors in your IDE.
+### `per-module`（实验性）
 
-### `per-module` (experimental)
+该模式为每个模块生成独立的 CSS 文件，并可实现样式隔离。
 
-This mode will generate a CSS sheet for each module, can be scoped.
+### `dist-chunk`（实验性）
 
-### `dist-chunk` (experimental)
+该模式在构建时为每个代码块生成 CSS 文件，适用于多页应用（MPA）。
 
-This mode will generate a CSS sheet for each code chunk on build, great for MPA.
+## 在开发者工具中编辑类名
 
-## Edit classes in DevTools
-
-Because of limitation of "on-demand" where the DevTools don't know those you haven't used in your source code yet. So if you want to try how things work by directly changing the classes in DevTools, just add the following lines to your main entry.
+由于按需生成机制可能导致开发者工具中暂未显示全部工具类，你可以在入口文件中添加以下代码，从而使开发者工具实时检测类名变化：
 
 ```ts
 import 'uno.css'
@@ -108,20 +102,20 @@ import 'virtual:unocss-devtools'
 ```
 
 ::: warning
-Please use it with caution, under the hood we use [`MutationObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to detect the class changes. Which means not only your manual changes but also the changes made by your scripts will be detected and included in the stylesheet. This could cause some misalignment between dev and the production build when you add dynamic classes based on some logic in script tags. We recommended adding your dynamic parts to the [safelist](https://github.com/unocss/unocss/issues/511) or setup UI regression tests for your production build if possible.
+请谨慎使用。底层使用 [`MutationObserver`](https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver) 监测类名变化，这可能导致开发环境与生产构建之间出现不一致。建议将动态生成的类添加到 [白名单](https://github.com/unocss/unocss/issues/511) 中，或者为生产构建配置 UI 回归测试。
 :::
 
-## Frameworks
+## 框架支持
 
-Some UI/App frameworks have some caveats that must be fixed to make it work, if you're using one of the following frameworks, just apply the suggestions.
+部分 UI/应用框架可能需特殊配置以确保正常工作：
 
 ### VanillaJS / TypeScript
 
-When using VanillaJS or TypeScript, you need to add `js` and `ts` files extensions to allow UnoCSS read and parse the content, by default `js` and `ts` files are excluded, check out the [Extracting from Build Tools Pipeline](/guide/extracting#extracting-from-build-tools-pipeline) section.
+在使用 VanillaJS 或 TypeScript 时，需要将 `.js` 与 `.ts` 文件扩展名加入 UnoCSS 扫描范围，参见[从构建工具流水线中提取](#extracting-from-build-tools-pipeline)章节。
 
 ### React
 
-If you're using `@vitejs/plugin-react`:
+如果使用 `@vitejs/plugin-react`：
 
 ```ts [vite.config.ts]
 import React from '@vitejs/plugin-react'
@@ -135,9 +129,8 @@ export default {
 }
 ```
 
-If you're using `@unocss/preset-attributify` you should remove `tsc` from the `build` script.
-
-If you are using `@vitejs/plugin-react` with `@unocss/preset-attributify`, you must add the plugin before `@vitejs/plugin-react`.
+若使用 `@unocss/preset-attributify`，请从 `build` 脚本中移除 `tsc`。
+且当将 `@vitejs/plugin-react` 与 `@unocss/preset-attributify` 同时使用时，务必确保 UnoCSS 插件位于 `@vitejs/plugin-react` 之前：
 
 ```ts [vite.config.ts]
 import React from '@vitejs/plugin-react'
@@ -151,13 +144,13 @@ export default {
 }
 ```
 
-You have a `React` example project on [examples/vite-react](https://github.com/unocss/unocss/tree/main/examples/vite-react) directory using both plugins, check the scripts on `package.json` and its Vite configuration file.
+在 `examples/vite-react` 目录中提供了 React 示例项目，可参考其 package.json 与 Vite 配置。
 
 <ContentExample :item="playgrounds['vite-react']"  class="Link" integrations />
 
 ### Preact
 
-If you're using `@preact/preset-vite`:
+如果使用 `@preact/preset-vite`：
 
 ```ts [vite.config.ts]
 import Preact from '@preact/preset-vite'
@@ -171,7 +164,7 @@ export default {
 }
 ```
 
-or if you're using `@prefresh/vite`:
+或者使用 `@prefresh/vite`：
 
 ```ts [vite.config.ts]
 import Prefresh from '@prefresh/vite'
@@ -185,19 +178,14 @@ export default {
 }
 ```
 
-If you're using `@unocss/preset-attributify` you should remove `tsc` from the `build` script.
-
-You have a `Preact` example project on [examples/vite-preact](https://github.com/unocss/unocss/tree/main/examples/vite-preact) directory using both plugins, check the scripts on `package.json` and its Vite configuration file.
+若使用 `@unocss/preset-attributify`，同样请移除构建时的 `tsc`，并参考 `examples/vite-preact` 项目。
 
 <ContentExample :item="playgrounds['vite-preact']"  class="Link" integrations />
 
 ### Svelte
 
-You must add the plugin before `@sveltejs/vite-plugin-svelte`.
-
-To support `class:foo` and `class:foo={bar}` add the plugin and configure `extractorSvelte` on `extractors` option.
-
-You can use simple rules with `class:`, for example `class:bg-red-500={foo}` or using `shortcuts` to include multiples rules, see `src/App.svelte` on linked example project below.
+使用 Svelte 时必须将 UnoCSS 插件置于 `@sveltejs/vite-plugin-svelte` 之前。
+要支持 `class:foo` 以及 `class:foo={bar}` 的写法，需在 `UnoCSS` 配置中添加 `extractorSvelte` 选项：
 
 ```ts [vite.config.ts]
 import { svelte } from '@sveltejs/vite-plugin-svelte'
@@ -219,11 +207,9 @@ export default {
 
 <ContentExample :item="playgrounds['vite-svelte']"  class="Link" integrations />
 
-### Sveltekit
+### SvelteKit
 
-To support `class:foo` and `class:foo={bar}` add the plugin and configure `extractorSvelte` on `extractors` option.
-
-You can use simple rules with `class:`, for example `class:bg-red-500={foo}` or using `shortcuts` to include multiples rules, see `src/routes/+layout.svelte` on linked example project below.
+在 SvelteKit 中，同样需要添加 `extractorSvelte` 以支持 `class:foo` 与 `class:foo={bar}`：
 
 ```ts [vite.config.ts]
 import { sveltekit } from '@sveltejs/kit/vite'
@@ -252,9 +238,7 @@ const config = {
 
 ### Web Components
 
-To work with web components you need to enable `shadow-dom` mode on the plugin.
-
-Don't forget to remove the import for `uno.css` since the `shadow-dom` mode will not expose it and the application will not work.
+对于 Web 组件，需要在 UnoCSS 插件中启用 `shadow-dom` 模式，并移除全局 `uno.css` 引入，否则应用将无法工作。
 
 ```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
@@ -263,51 +247,48 @@ export default {
   plugins: [
     UnoCSS({
       mode: 'shadow-dom',
-      /* more options */
+      /* 更多选项 */
     }),
   ],
 }
 ```
 
-On each `web component` just add `@unocss-placeholder` to its style CSS block:
+在 Web 组件中，在样式块中添加 `@unocss-placeholder` 占位符：
 
 ```ts
 const template = document.createElement('template')
 template.innerHTML = `
+
 <style>
-:host {...}
+:host { ... }
 @unocss-placeholder
 </style>
 <div class="m-1em">
-...
+  ...
 </div>
 `
 ```
 
-If you're using [Lit](https://lit.dev/):
+如果你使用 [Lit](https://lit.dev/)：
 
 ```ts
 @customElement('my-element')
 export class MyElement extends LitElement {
-  static styles = css`
-    :host {...}
-    @unocss-placeholder
-  `
-  // ...
+  static styles = css`  :host { ... }
+    @unocss-placeholder`
+// ...
 }
 ```
 
-You have a `Web Components` example project on [examples/vite-lit](https://github.com/unocss/unocss/tree/main/examples/vite-lit) directory.
+有关 Web Components 示例，请参考 `examples/vite-lit`。
 
-#### `::part` built-in support
+#### `::part` 内置支持
 
-You can use `::part` since the plugin supports it via `shortcuts` and using `part-[<part-name>]:<rule|shortcut>` rule from `preset-mini`, for example using it with simple rules like `part-[<part-name>]:bg-green-500` or using some `shortcut`: check `src/my-element.ts` on linked example project below.
+插件支持 `::part`，可以使用 `part-[<part-name>]:<rule|shortcut>` 规则，在 Web 组件中使用（仅在 `shadow-dom` 模式下有效）。插件会使用 `nth-of-type` 避免多个 part 冲突。
 
-The `part-[<part-name>]:<rule|shortcut>` will work only with this plugin using the `shadow-dom` mode.
+例如：
 
-The plugin uses `nth-of-type` to avoid collisions with multiple parts in the same web component and for the same parts on distinct web components, you don't need to worry about it, the plugin will take care for you.
-
-```ts [vite.config.ts]
+```ts
 import UnoCSS from 'unocss/vite'
 
 export default {
@@ -324,15 +305,17 @@ export default {
 }
 ```
 
-then in your web components:
+然后在 Web 组件中：
 
 ```ts
 // my-container-wc.ts
 const template = document.createElement('template')
 template.innerHTML = `
+
 <style>
 @unocss-placeholder
 </style>
+
 <my-wc-with-parts class="part-[cool-part]:cool-blue part-[another-cool-part]:cool-green">...</my-wc-with-parts>
 `
 ```
@@ -341,6 +324,7 @@ template.innerHTML = `
 // my-wc-with-parts.ts
 const template = document.createElement('template')
 template.innerHTML = `
+
 <style>
 @unocss-placeholder
 </style>
@@ -355,7 +339,7 @@ template.innerHTML = `
 
 ### Solid
 
-You need to add the `vite-plugin-solid` plugin after UnoCSS's plugin.
+使用 Solid 时，需要将 `vite-plugin-solid` 插件放在 UnoCSS 插件之后：
 
 ```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
@@ -364,7 +348,7 @@ import solidPlugin from 'vite-plugin-solid'
 export default {
   plugins: [
     UnoCSS({
-      /* options */
+      /* 选项 */
     }),
     solidPlugin(),
   ],
@@ -375,7 +359,7 @@ export default {
 
 ### Elm
 
-You need to add the `vite-plugin-elm` plugin before UnoCSS's plugin.
+使用 Elm 时，需要将 `vite-plugin-elm` 插件放在 UnoCSS 插件之前：
 
 ```ts [vite.config.ts]
 import UnoCSS from 'unocss/vite'
@@ -392,21 +376,21 @@ export default defineConfig({
 
 <ContentExample :item="playgrounds['vite-elm']"  class="Link" integrations />
 
-## Legacy
+## Legacy 模式
 
-If `@vitejs/plugin-legacy` with `renderModernChunks: false`, your need add it to `unocss` option
+若使用 `@vitejs/plugin-legacy` 且配置了 `renderModernChunks: false`，则需要在 UnoCSS 选项中作相应配置：
 
 ```ts
 import legacy from '@vitejs/plugin-legacy'
 import vue from '@vitejs/plugin-vue'
 import { presetUno } from 'unocss'
-import Unocss from 'unocss/vite'
+import UnoCSS from 'unocss/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   plugins: [
     vue(),
-    Unocss({
+    UnoCSS({
       presets: [presetUno()],
       legacy: {
         renderModernChunks: false,
@@ -420,6 +404,6 @@ export default defineConfig({
 })
 ```
 
-## License
+## 许可证
 
-- MIT License &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)
+- MIT 许可证 &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)

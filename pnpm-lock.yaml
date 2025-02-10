@@ -276,9 +276,6 @@ catalogs:
     perfect-debounce:
       specifier: ^1.0.0
       version: 1.0.0
-    pnpm:
-      specifier: ^9.15.4
-      version: 9.15.4
     postcss:
       specifier: ^8.5.1
       version: 8.5.1
@@ -666,9 +663,6 @@ importers:
       nuxt-tsconfig-stub:
         specifier: 'catalog:'
         version: 0.0.2
-      pnpm:
-        specifier: 'catalog:'
-        version: 9.15.4
       postcss:
         specifier: 'catalog:'
         version: 8.5.1
@@ -8194,11 +8188,6 @@ packages:
   pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
-
-  pnpm@9.15.4:
-    resolution: {integrity: sha512-stwg4vxys+GISEWbNzWaMgZGY+VielHkx0ssKd2OjgSRSDw6u0B4nP1Xi/Ni+2uoJhsF8Dh9dnku1uI+o7G2oA==}
-    engines: {node: '>=18.12'}
-    hasBin: true
 
   portfinder@1.0.32:
     resolution: {integrity: sha512-on2ZJVVDXRADWE6jnQaX0ioEylzgBpQk8r55NE4wjXW1ZxO+BgDlY6DXwj20i0V8eB4SenDQ00WEaxfiIQPcxg==}
@@ -18452,8 +18441,6 @@ snapshots:
       pathe: 2.0.2
 
   pluralize@8.0.0: {}
-
-  pnpm@9.15.4: {}
 
   portfinder@1.0.32:
     dependencies:

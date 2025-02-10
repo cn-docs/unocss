@@ -18,8 +18,8 @@ theme: {
   colors: {
     veryCool: '#0000ff', // class="text-very-cool"
     brand: {
-      primary: 'hsl(var(--hue, 217) 78% 51%)', //class="bg-brand-primary"
-      DEFAULT: '#942192' //class="bg-brand"
+      primary: 'hsl(var(--hue, 217) 78% 51%)', // class="bg-brand-primary"
+      DEFAULT: '#942192' // class="bg-brand"
     },
   },
 }
@@ -90,7 +90,7 @@ theme: {
 }
 ```
 
-如果你想继承`original`主题的断点，你可以使用`extendTheme`：
+如果您想继承原始主题的断点，可以使用 `extendTheme`：
 
 ```ts
 extendTheme: (theme) => {
@@ -109,7 +109,7 @@ extendTheme: (theme) => {
 `verticalBreakpoints` 与 `breakpoints` 相同，但用于垂直布局。
 :::
 
-另外，我们将按照大小（相同单位）对屏幕点进行排序。对于不同单位的屏幕点，为了避免错误，请在配置中使用统一的单位。
+另外，我们将按照相同单位的大小对断点排序。对于不同单位的断点，为了避免错误，请在配置中使用统一的单位。
 
 <!--eslint-skip-->
 
@@ -118,7 +118,7 @@ theme: {
   // ...
   breakpoints: {
     sm: '320px',
-    // 由于 uno 不支持不同单位大小的比较排序，请转换为相同单位。
+    // 由于 UnoCSS 不支持不同单位的大小比较排序，请转换为相同单位。
     // md: '40rem',
     md: `${40 * 16}px`,
     lg: '960px',
@@ -128,9 +128,9 @@ theme: {
 
 ## ExtendTheme
 
-`ExtendTheme` allows you to edit the **deeply merged theme** to get the complete theme object.
+`ExtendTheme` 允许您修改深度合并后的主题以获得完整的主题对象。
 
-Custom functions mutate the theme object.
+自定义函数可改变主题对象：
 
 ```ts
 extendTheme: (theme) => {
@@ -141,7 +141,7 @@ extendTheme: (theme) => {
 }
 ```
 
-It's also possible to return a new theme object to completely replace the original one.
+您也可以返回一个新的主题对象以完全替换原始主题：
 
 ```ts
 extendTheme: (theme) => {

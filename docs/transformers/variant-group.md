@@ -38,7 +38,7 @@ export default defineConfig({
 ```
 
 ::: tip
-这个预设包含在 `unocss` 包中，你也可以从包里导入它：
+这个预设包含在 `unocss` 包中，你也可以从中导入：
 
 ```ts
 import { transformerVariantGroup } from 'unocss'
