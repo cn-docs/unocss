@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { ResultItem } from '~/types'
+
 import { onBeforeRouteUpdate } from 'vue-router'
 
 // @ts-expect-error missing types
 import { RecycleScroller } from 'vue-virtual-scroller'
-
 import { input, isSearching, searchResult, selectIndex, userConfigLoading } from '~/composables/state'
-import type { ResultItem } from '~/types'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 const route = useRoute()
@@ -23,7 +23,7 @@ watch(
   },
 )
 
-function mapSearch(result: import('@unocss/shared-docs').ResultItem[]) {
+function mapSearch(result: import('#docs').ResultItem[]) {
   return result.map((item) => {
     if (item.type === 'guide') {
       return {
@@ -53,7 +53,7 @@ async function executeSearch() {
   if (input.value)
     isSearching.value = true
   try {
-    searchResult.value = mapSearch(await searcher.search(input.value))
+    searchResult.value = mapSearch(await searcher.value?.search(input.value) || [])
   }
   catch (e) {
     console.error(e)
@@ -126,7 +126,7 @@ async function openItem(item: ResultItem) {
   if (isMobile.value && !isModalOpen.value)
     isModalOpen.value = true
   else
-    input.value = await searcher.getItemId(item)
+    input.value = await searcher.value.getItemId(item)
 }
 
 function selectItem(item: ResultItem) {

@@ -2,54 +2,54 @@
 outline: deep
 ---
 
-# 提取
+# Extracting
 
-UnoCSS 通过搜索您的代码库中的工具类用法并根据需要生成相应的 CSS 来工作。我们称这个过程为**提取**。
+UnoCSS works by searching for the utilities usages from your codebase and generate the corresponding CSS on-demand. We call this process **extracting**.
 
-## 内容来源
+## Content Sources
 
-UnoCSS 支持从多个来源提取实用程序用法：
+UnoCSS supports extracting utilities usages from multiple sources:
 
-- [Pipeline](#从构建工具管道中提取) - 从您的构建工具管道中提取
-- [文件系统](#从文件系统中提取) - 通过读取和监视文件从文件系统中提取
-- [内联](#从内联文本中提取) - 从内联纯文本中提取
+- [Pipeline](#extracting-from-build-tools-pipeline) - Extract right from your build tools pipeline
+- [Filesystem](#extracting-from-filesystem) - Extract from your filesystem by reading and watching files
+- [Inline](#extracting-from-inline-text) - Extract from inline plain text
 
-来自不同来源的实用程序用法将合并在一起，并生成最终的 CSS。
+Usages of utilities that comes from different sources will be merged together and generate the final CSS.
 
-### 从构建工具管道中提取
+### Extracting from Build Tools Pipeline
 
-这在 [Vite](/integrations/vite) 和 [Webpack](/integrations/webpack) 集成中受支持。
+This is supported in the [Vite](/integrations/vite) and [Webpack](/integrations/webpack) integrations.
 
-UnoCSS 将读取通过您的构建工具管道的内容，并从中提取实用程序用法。这是最有效和准确的提取方式，因为我们只提取实际在您的应用程序中使用的用法，而无需在提取过程中进行额外的文件 I/O。
+UnoCSS will read the content that goes through your build tools pipeline and extract the utilities usages from them. This is the most efficient and accurate way to extract as we only extract the usages that are actually used in your app smartly with no additional file I/O is made during the extraction.
 
-默认情况下，UnoCSS 将从您的构建管道中的文件中提取实用程序用法，后缀为 `.jsx`, `.tsx`, `.vue`, `.md`, `.html`, `.svelte`, `.astro` 的文件，然后根据需要生成适当的 CSS。默认情况下**不包含**`.js`和`.ts`文件。
+By default, UnoCSS will extract the utilities usage from files in your build pipeline with extension `.jsx`, `.tsx`, `.vue`, `.md`, `.html`, `.svelte`, `.astro` and then generate the appropriate CSS on demand. `.js` and `.ts` files are **NOT included by default**.
 
-要配置它们，您可以更新您的 `uno.config.ts`：
+To configure them, you can update your `uno.config.ts`:
 
 ```ts [uno.config.ts]
 export default defineConfig({
   content: {
     pipeline: {
       include: [
-        // 默认
+        // the default
         /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
-        // 包括 js/ts 文件
+        // include js/ts files
         'src/**/*.{js,ts}',
       ],
-      // 排除文件
+      // exclude files
       // exclude: []
     },
   },
 })
 ```
 
-您还可以添加 `@unocss-include` 魔术注释，基于文件的基础，放置在您想要 UnoCSS 扫描的文件的任何位置。如果需要扫描 `*.js` 或 `*.ts` 文件，请在配置中将它们包含为扫描目标。
+You can also add `@unocss-include` magic comment, per-file basis, anywhere in the file that you want UnoCSS to scan. If you need to scan `*.js` or `*.ts` files, add them in the configuration to include all js/ts files as scan targets.
 
 ```ts
 // ./some-utils.js
 
-// 由于 `.js` 文件默认不包括在内，
-// 下面的注释告诉 UnoCSS 强制扫描此文件。
+// since `.js` files are not included by default,
+// the following comment tells UnoCSS to force scan this file.
 // @unocss-include
 export const classes = {
   active: 'bg-primary text-white',
@@ -57,26 +57,22 @@ export const classes = {
 }
 ```
 
-类似地，您还可以添加 `@unocss-ignore` 来绕过扫描和转换整个文件。
+Similarly, you can also add `@unocss-ignore` to bypass the scanning and transforming for the whole file.
 
-如果您希望 UnoCSS 在提取文件时跳过一段代码块，而不是在任何提取文件中提取它，请使用成对的 `@unocss-skip-start` `@unocss-skip-end`。请注意，它必须**成对**使用才能生效。
+If you want the UnoCSS to skip a block of code without being extracted in any extracting files, you can use `@unocss-skip-start` `@unocss-skip-end` in pairs. Note that it must be used **in pairs** to be effective.
 
 ```html
-<p class="text-green text-xl">
-  绿色大
-</p>
+<p class="text-green text-xl">Green Large</p>
 
 <!-- @unocss-skip-start -->
-<!-- `text-red` 将不会被提取 -->
-<p class="text-red">
-  红色
-</p>
+<!-- `text-red` will not be extracted -->
+<p class="text-red">Red</p>
 <!-- @unocss-skip-end -->
 ```
 
-### 从文件系统中提取
+### Extracting from Filesystem
 
-在您使用无法访问构建工具管道的集成（例如 [PostCSS](/integrations/postcss) 插件）的情况下，或者您正在与后端框架集成以使代码不通过管道，您可以手动指定要提取的文件。
+In cases that you are using integrations that does not have access to the build tools pipeline (for example, the [PostCSS](/integrations/postcss) plugin), or you are integrating with backend frameworks such that the code does not go through the pipeline, you can manually specify the files to be extracted.
 
 ```ts [uno.config.ts]
 export default defineConfig({
@@ -89,21 +85,21 @@ export default defineConfig({
 })
 ```
 
-匹配的文件将直接从文件系统中读取，并在开发模式下监视更改。
+The files matched will be read directly from the filesystem and watched for changes at dev mode.
 
-### 从内联文本中提取
+### Extracting from Inline Text
 
-此外，您还可以从内联文本中提取实用程序用法，这些文本可能来自其他地方。
+Additionally, you can also extract utilities usages from inline text, that you might retrieve from elsewhere.
 
-您还可以传递一个异步函数来返回内容。但是请注意，此函数仅在构建时调用一次。
+You may also pass an async function to return the content. But note that the function will only be called once at the build time.
 
 ```ts [uno.config.ts]
 export default defineConfig({
   content: {
     inline: [
-      // 纯文本
-      '<div class="p-4 text-red">一些文本</div>',
-      // 异步获取器
+      // plain text
+      '<div class="p-4 text-red">Some text</div>',
+      // async getter
       async () => {
         const response = await fetch('https://example.com')
         return response.text()
@@ -113,36 +109,37 @@ export default defineConfig({
 })
 ```
 
-## 限制
+## Limitations
 
-由于 UnoCSS 是在**构建时**工作的，这意味着只有静态呈现的实用程序将被生成并发送到您的应用程序。动态使用或在运行时从外部资源获取的实用程序可能 **无法** 被检测或应用。
+Since UnoCSS works **at build time**, it means that only statically presented utilities will be generated and shipped to your app. Utilities that are used dynamically or fetched from external resources at runtime might **NOT** be detected or applied.
 
-### 白名单
+### Safelist
 
-有时您可能希望使用动态连接，例如：
+Sometimes you might want to use dynamic concatenations like:
 
 ```html
-<div class="p-${size}"></div> <!-- 这不起作用！ -->
+<div class="p-${size}"></div>
+<!-- this won't work! -->
 ```
 
-由于 UnoCSS 在构建时使用静态提取工作，因此在编译时它无法知道所有实用程序的组合。为此，您可以配置 `safelist` 选项。
+Due the fact that UnoCSS works in build time using static extraction, at the compile time it can't possibility know all the combination of the utilities then. For that, you can configure the `safelist` option.
 
 ```ts [uno.config.ts]
 safelist: 'p-1 p-2 p-3 p-4'.split(' ')
 ```
 
-将始终生成相应的 CSS：
+The corresponding CSS will always be generated:
+
+<!-- eslint-skip -->
 
 ```css
 .p-1 { padding: 0.25rem; }
 .p-2 { padding: 0.5rem; }
-.p-3 { padding: 0.
-
-75rem; }
+.p-3 { padding: 0.75rem; }
 .p-4 { padding: 1rem; }
 ```
 
-或者更灵活：
+Or more flexible:
 
 ```ts [uno.config.ts]
 safelist: [
@@ -150,20 +147,21 @@ safelist: [
 ]
 ```
 
-如果您正在寻找真正的运行时动态生成，您可能希望查看 [@unocss/runtime](/integrations/runtime) 包。
+If you are seeking for a true dynamic generation at runtime, you may want to check out the [@unocss/runtime](/integrations/runtime) package.
 
-### 静态列表组合
+### Static List Combinations
 
-解决动态构建实用程序的限制的另一种方法是使用对象，以静态方式列出所有组合。例如，如果您希望有这个：
+Another ways to work around the limitation of dynamically constructed utilities is that you can use an object that list all the combinations **statically**. For example, if you want to have this:
 
 ```html
-<div class="text-${color} border-${color}"></div> <!-- 这不起作用！ -->
+<div class="text-${color} border-${color}"></div>
+<!-- this won't work! -->
 ```
 
-您可以创建一个对象，列出所有组合（假设您知道要使用的 `color` 的所有可能值）
+You can create an object that lists all the combinations (assuming you know any possible values of `color` you want to use)
 
 ```ts
-// 由于它们是静态的，UnoCSS 将能够在构建时提取它们
+// Since they are static, UnoCSS will able to extract them on build time
 const classes = {
   red: 'text-red border-red',
   green: 'text-green border-green',
@@ -171,15 +169,15 @@ const classes = {
 }
 ```
 
-然后在您的模板中使用它：
+And then use it in your template:
 
 ```html
 <div class="${classes[color]}"></div>
 ```
 
-### 屏蔽列表
+### Blocklist
 
-与 `safelist` 类似，您还可以配置 `blocklist` 来排除一些实用程序不生成。这对于排除一些提取误报非常有用。与 `safelist` 不同，`blocklist` 同时接受字符串进行精确匹配和正则表达式进行模式匹配。
+Similar to `safelist`, you can also configure `blocklist` to exclude some utilities from being generated. This is useful to exclude some extraction false positives. Different from `safelist`, `blocklist` accepts both string for exact match and regular expression for pattern match.
 
 ```ts [uno.config.ts]
 blocklist: [
@@ -188,4 +186,4 @@ blocklist: [
 ]
 ```
 
-这将排除 `p-1` 和 `p-2`、`p-3`、`p-4` 的生成。
+This will exclude `p-1` and `p-2`, `p-3`, `p-4` from being generated.

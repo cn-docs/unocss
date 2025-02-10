@@ -1,24 +1,28 @@
 ---
-title: UnoCSS Astro 集成
-description: Astro 的 UnoCSS 集成 (@unocss/astro)。
+title: UnoCSS Astro Integration
+description: The UnoCSS integration for Astro (@unocss/astro).
 ---
 
-# Astro 集成
+# Astro Integration
 
-为 [Astro](https://astro.build/) 提供的 UnoCSS 集成：`@unocss/astro`。查看 [示例](https://github.com/unocss/unocss/tree/main/examples/astro)。
+The UnoCSS integration for [Astro](https://astro.build/): `@unocss/astro`. Check the [example](https://github.com/unocss/unocss/tree/main/examples/astro).
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D unocss
-  ```
-  ```bash [yarn]
-  yarn add -D unocss
-  ```
-  ```bash [npm]
-  npm install -D unocss
-  ```
+
+```bash [pnpm]
+pnpm add -D unocss
+```
+
+```bash [yarn]
+yarn add -D unocss
+```
+
+```bash [npm]
+npm install -D unocss
+```
+
 :::
 
 ```ts [astro.config.ts]
@@ -32,33 +36,37 @@ export default defineConfig({
 })
 ```
 
-创建一个 `uno.config.ts` 文件：
+Create a `uno.config.ts` file:
 
 ```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
-  // ...UnoCSS 选项
+  // ...UnoCSS options
 })
 ```
 
-### 样式重置
+### Style Reset
 
-默认情况下，不会注入[浏览器样式重置](/guide/style-reset)。要启用它，请安装 `@unocss/reset` 包：
+By default, [browser style reset](/guide/style-reset) will not be injected. To enable it, install the `@unocss/reset` package:
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/reset
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/reset
-  ```
-  ```bash [npm]
-  npm install -D @unocss/reset
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/reset
+```
+
+```bash [yarn]
+yarn add -D @unocss/reset
+```
+
+```bash [npm]
+npm install -D @unocss/reset
+```
+
 :::
 
-并更新你的 `astro.config.ts`：
+And update your `astro.config.ts`:
 
 ```ts [astro.config.ts]
 import { defineConfig } from 'astro/config'
@@ -67,26 +75,30 @@ import UnoCSS from 'unocss/astro'
 export default defineConfig({
   integrations: [
     UnoCSS({
-      injectReset: true // 或重置文件的路径
+      injectReset: true // or a path to the reset file
     }),
   ],
 })
 ```
 
-### 未使用预设的用法
+### Usage without presets
 
-此插件不附带任何默认预设。
+This plugin does not come with any default presets.
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/astro
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/astro
-  ```
-  ```bash [npm]
-  npm install -D @unocss/astro
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/astro
+```
+
+```bash [yarn]
+yarn add -D @unocss/astro
+```
+
+```bash [npm]
+npm install -D @unocss/astro
+```
+
 :::
 
 ```ts [astro.config.mjs]
@@ -99,12 +111,12 @@ export default {
 }
 ```
 
-有关更多详细信息，请参考 [Vite 插件](/integrations/vite)。
+For more details, please refer to the [Vite plugin](/integrations/vite).
 
 ::: info
-如果你正在构建基于 UnoCSS 的元框架，请参考 [此文件](https://github.com/unocss/unocss/blob/main/packages/unocss/src/astro.ts)，查看如何绑定默认预设的示例。
+If you are building a meta framework on top of UnoCSS, see [this file](https://github.com/unocss/unocss/blob/main/packages-presets/unocss/src/astro.ts) for an example on how to bind the default presets.
 :::
 
-## 注意事项
+## Notes
 
-必须将 [`client:only`](https://docs.astro.build/en/reference/directives-reference/#clientonly) 组件放置在 [`components`](https://docs.astro.build/en/core-concepts/project-structure/#srccomponents) 文件夹中，或添加到 UnoCSS 的 `content` 配置中，以便进行处理。
+[`client:only`](https://docs.astro.build/en/reference/directives-reference/#clientonly) components must be placed in [`components`](https://docs.astro.build/en/core-concepts/project-structure/#srccomponents) folder or added to UnoCSS's `content` config in order to be processed.

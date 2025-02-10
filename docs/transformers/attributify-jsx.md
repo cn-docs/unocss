@@ -1,13 +1,13 @@
 ---
-title: 属性化 JSX 转换器
-description: 支持 JSX/TSX 中的无值属性化 (@unocss/transformer-attributify-jsx)。
+title: Attributify JSX transformer
+description: Support valueless attributify in JSX/TSX (@unocss/transformer-attributify-jsx)
 ---
 
-# 属性化 JSX 转换器
+# Attributify JSX transformer
 
-在 JSX/TSX 中支持 [无值属性化](/presets/attributify#valueless-attributify)：`@unocss/transformer-attributify-jsx`。
+Support [valueless attributify](/presets/attributify#valueless-attributify) in JSX/TSX: `@unocss/transformer-attributify-jsx`.
 
-## 演示
+## Presentation
 
 <!-- @unocss-ignore -->
 
@@ -21,7 +21,7 @@ export function Component() {
 }
 ```
 
-将被转换为：
+Will be transformed to:
 
 ```jsx
 export function Component() {
@@ -33,7 +33,8 @@ export function Component() {
 }
 ```
 
-::: details 没有此转换器，JSX 将无值属性视为布尔属性。
+::: details Without this transformer, JSX treats valueless attributes as boolean attributes.
+
 ```jsx
 export function Component() {
   return (
@@ -43,20 +44,25 @@ export function Component() {
   )
 }
 ```
+
 :::
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/transformer-attributify-jsx
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/transformer-attributify-jsx
-  ```
-  ```bash [npm]
-  npm install -D @unocss/transformer-attributify-jsx
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/transformer-attributify-jsx
+```
+
+```bash [yarn]
+yarn add -D @unocss/transformer-attributify-jsx
+```
+
+```bash [npm]
+npm install -D @unocss/transformer-attributify-jsx
+```
+
 :::
 
 ```ts{11} [uno.config.ts]
@@ -74,27 +80,31 @@ export default defineConfig({
   ],
 })
 ```
+
 ::: tip
-这个预设包含在 `unocss` 包中，你也可以从包里导入它：
+This preset is included in the `unocss` package, you can also import it from there:
 
 ```ts
 import { transformerAttributifyJsx } from 'unocss'
 ```
+
 :::
 
-## 注意事项
+## Caveats
 
 ::: warning
-规则几乎与 [属性化预设](/presets/attributify) 相同，但有一些注意事项。
+The rules are almost the same as those of [Attributify preset](/presets/attributify), but there are several precautions.
 :::
 
 ```html
-<div translate-x-100% /> <!-- 不能以 `%` 结尾 -->
+<div translate-x-100% />
+<!-- cannot end with `%` -->
 
-<div translate-x-[100px] /> <!-- 不能包含 `[` 或 `]` -->
+<div translate-x-[100px] />
+<!-- cannot contain `[` or `]` -->
 ```
 
-相反，您可能想要使用带有值的属性：
+Instead, you may want to use valued attributes instead:
 
 ```html
 <div translate="x-100%" />
@@ -102,10 +112,10 @@ import { transformerAttributifyJsx } from 'unocss'
 <div translate="x-[100px]" />
 ```
 
-## 屏蔽列表
+## Blocklist
 
-此转换器仅会转换有效的 UnoCSS 实用程序属性。
-您还可以通过 `blocklist` 屏蔽一些属性不被转换。
+This transformer will only transform attributes that are valid UnoCSS utilities.
+You can also `blocklist` bypass some attributes from been transformed.
 
 ```js
 transformerAttributifyJsx({
@@ -119,10 +129,8 @@ transformerAttributifyJsx({
 </div>
 ```
 
-将被编译为：
+Will be compiled to:
 
 ```html
-<div text-red text-center text-5xl animate-bounce="">
-  unocss
-</div>
+<div text-red text-center text-5xl animate-bounce="">unocss</div>
 ```

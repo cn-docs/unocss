@@ -1,27 +1,31 @@
 ---
-title: UnoCSS Nuxt 模块
-description: Nuxt 模块用于 UnoCSS。
+title: UnoCSS Nuxt Module
+description: Nuxt module for UnoCSS.
 ---
 
-# Nuxt 模块
+# Nuxt Module
 
-这是一个用于 UnoCSS 的 Nuxt 模块。
+The Nuxt module for UnoCSS.
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D unocss @unocss/nuxt
-  ```
-  ```bash [yarn]
-  yarn add -D unocss @unocss/nuxt
-  ```
-  ```bash [npm]
-  npm install -D unocss @unocss/nuxt
-  ```
+
+```bash [pnpm]
+pnpm add -D unocss @unocss/nuxt
+```
+
+```bash [yarn]
+yarn add -D unocss @unocss/nuxt
+```
+
+```bash [npm]
+npm install -D unocss @unocss/nuxt
+```
+
 :::
 
-在你的 Nuxt 配置文件中添加 `@unocss/nuxt`：
+Add `@unocss/nuxt` to your Nuxt config file:
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -31,32 +35,32 @@ export default defineNuxtConfig({
 })
 ```
 
-创建一个 `uno.config.ts` 文件：
+Create a `uno.config.ts` file:
 
 ```ts [uno.config.ts]
 import { defineConfig } from 'unocss'
 
 export default defineConfig({
-  // ...UnoCSS 选项
+  // ...UnoCSS options
 })
 ```
 
-`uno.css` 入口将由模块自动注入。
+The `uno.css` entry will be automatically injected by the module.
 
-## 支持状态
+## Support status
 
-| | Nuxt 2 | Nuxt Bridge | Nuxt 3 |
-| --- | :-- | :-- | :-- |
-| Webpack 开发 | ✅ | ✅ | 🚧 |
-| Webpack 构建 | ✅ | ✅ | ✅ |
-| Vite 开发 | - | ✅ | ✅ |
-| Vite 构建 | - | ✅ | ✅ |
+|               | Nuxt 2 | Nuxt Bridge | Nuxt 3 |
+| ------------- | :----- | :---------- | :----- |
+| Webpack Dev   | ✅     | ✅          | 🚧     |
+| Webpack Build | ✅     | ✅          | ✅     |
+| Vite Dev      | -      | ✅          | ✅     |
+| Vite Build    | -      | ✅          | ✅     |
 
-## 配置
+## Configuration
 
-我们推荐使用专门的 `uno.config.ts` 文件进行配置。详情见 [配置文件](/guide/config-file)。
+We recommend to use the dedicated `uno.config.ts` file for configuration. See [Config File](/guide/config-file) for more details.
 
-可以启用 `nuxtLayers` 选项，这样 Nuxt 会自动合并每个 Nuxt 层中的 `uno.config` 文件：
+You can enable the `nuxtLayers` option, so Nuxt will automatically merge `uno.config` files from each Nuxt layer:
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -67,7 +71,7 @@ export default defineNuxtConfig({
 })
 ```
 
-然后你可以在根配置文件中重新导出生成的配置：
+then you can reexport the generated config in the root config file:
 
 ```ts [uno.config.ts]
 import config from './.nuxt/uno.config.mjs'
@@ -75,17 +79,17 @@ import config from './.nuxt/uno.config.mjs'
 export default config
 ```
 
-或者修改/扩展它：
+or modify/extend it:
 
 ```ts
 import { mergeConfigs } from '@unocss/core'
 import config from './.nuxt/uno.config.mjs'
 
 export default mergeConfigs([config, {
-  // 你的覆盖配置
+  // your overrides
 }])
 ```
 
-## 许可证
+## License
 
-- MIT 许可证 &copy; 2021-至今 [Anthony Fu](https://github.com/antfu)
+- MIT License &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)

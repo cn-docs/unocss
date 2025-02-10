@@ -1,39 +1,43 @@
 ---
 title: Core
-description: UnoCSS 的核心引擎，没有任何预设。可以用作您自己原子 CSS 框架的引擎。
+description: The core engine of UnoCSS without any presets. It can be used as the engine of your own atomic CSS framework.
 ---
 
 # Core
 
-UnoCSS 的核心引擎，没有任何预设：`@unocss/core`。可以用作您自己原子 CSS 框架的引擎。
+The core engine of UnoCSS without any presets: `@unocss/core`. It can be used as the engine of your own atomic CSS framework.
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/core
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/core
-  ```
-  ```bash [npm]
-  npm install -D @unocss/core
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/core
+```
+
+```bash [yarn]
+yarn add -D @unocss/core
+```
+
+```bash [npm]
+npm install -D @unocss/core
+```
+
 :::
 
-## 用法
+## Usage
 
 ```ts
 import { createGenerator } from '@unocss/core'
 
-const generator = createGenerator(
-  { /* 用户选项 */ },
-  { /* 默认选项 */ }
+const generator = await createGenerator(
+  { /* user options */ },
+  { /* default options */ }
 )
 
 const { css } = await generator.generate(code)
 ```
 
-## 许可证
+## License
 
-- MIT 许可证 &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)
+- MIT License &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)

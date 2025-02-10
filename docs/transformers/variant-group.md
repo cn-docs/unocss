@@ -10,15 +10,19 @@ description: 启用 UnoCSS 的 Windi CSS 变体组功能 (@unocss/transformer-va
 ## 安装
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/transformer-variant-group
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/transformer-variant-group
-  ```
-  ```bash [npm]
-  npm install -D @unocss/transformer-variant-group
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/transformer-variant-group
+```
+
+```bash [yarn]
+yarn add -D @unocss/transformer-variant-group
+```
+
+```bash [npm]
+npm install -D @unocss/transformer-variant-group
+```
+
 :::
 
 ```ts [uno.config.ts]
@@ -39,18 +43,19 @@ export default defineConfig({
 ```ts
 import { transformerVariantGroup } from 'unocss'
 ```
+
 :::
 
 ## 用法
 
 ```html
-<div class="hover:(bg-gray-400 font-medium) font-(light mono)"/>
+<div class="hover:(bg-gray-400 font-medium) font-(light mono)" />
 ```
 
 将被转换为：
 
 ```html
-<div class="hover:bg-gray-400 hover:font-medium font-light font-mono"/>
+<div class="hover:bg-gray-400 hover:font-medium font-light font-mono" />
 ```
 
 ## 许可证

@@ -7,13 +7,13 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
-    "@iconify-json/carbon": "^1.2.1",
+    "@iconify-json/carbon": "^1.2.5",
     "@nuxt/bridge-edge": "latest",
-    "@unocss/core": "link:../../packages/core",
-    "@unocss/nuxt": "link:../../packages/nuxt",
-    "@unocss/reset": "link:../../packages/reset",
+    "@unocss/core": "link:../../packages-engine/core",
+    "@unocss/nuxt": "link:../../packages-integrations/nuxt",
+    "@unocss/reset": "link:../../packages-presets/reset",
     "nuxt-edge": "latest",
-    "unocss": "link:../../packages/unocss"
+    "unocss": "link:../../packages-presets/unocss"
   },
   "stackblitz": {
     "installDependencies": false,

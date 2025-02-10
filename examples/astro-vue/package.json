@@ -9,14 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "vue": "^3.5.10"
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "@astrojs/vue": "^4.5.1",
-    "@iconify-json/logos": "^1.2.1",
-    "@unocss/reset": "link:../../packages/reset",
-    "astro": "^4.15.10",
-    "unocss": "link:../../packages/unocss"
+    "@astrojs/vue": "^4.5.3",
+    "@iconify-json/logos": "^1.2.4",
+    "@unocss/reset": "link:../../packages-presets/reset",
+    "astro": "^4.16.18",
+    "unocss": "link:../../packages-presets/unocss"
   },
   "stackblitz": {
     "installDependencies": false,

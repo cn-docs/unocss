@@ -9,17 +9,17 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "solid-js": "^1.9.1"
+    "solid-js": "^1.9.4"
   },
   "devDependencies": {
-    "@iconify-json/logos": "^1.2.1",
-    "@unocss/core": "link:../../packages/core",
-    "@unocss/preset-attributify": "link:../../packages/preset-attributify",
-    "@unocss/preset-icons": "link:../../packages/preset-icons",
-    "typescript": "^5.6.2",
-    "unocss": "link:../../packages/unocss",
-    "vite": "^5.4.8",
-    "vite-plugin-solid": "^2.10.2"
+    "@iconify-json/logos": "^1.2.4",
+    "@unocss/core": "link:../../packages-engine/core",
+    "@unocss/preset-attributify": "link:../../packages-presets/preset-attributify",
+    "@unocss/preset-icons": "link:../../packages-presets/preset-icons",
+    "typescript": "^5.7.3",
+    "unocss": "link:../../packages-presets/unocss",
+    "vite": "^6.0.11",
+    "vite-plugin-solid": "^2.11.0"
   },
   "stackblitz": {
     "installDependencies": false,

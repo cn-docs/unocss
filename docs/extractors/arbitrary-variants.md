@@ -17,15 +17,19 @@ title: 任意变体提取器
 ## 安装
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/extractor-arbitrary-variants
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/extractor-arbitrary-variants
-  ```
-  ```bash [npm]
-  npm install -D @unocss/extractor-arbitrary-variants
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/extractor-arbitrary-variants
+```
+
+```bash [yarn]
+yarn add -D @unocss/extractor-arbitrary-variants
+```
+
+```bash [npm]
+npm install -D @unocss/extractor-arbitrary-variants
+```
+
 :::
 
 ```ts [uno.config.ts]

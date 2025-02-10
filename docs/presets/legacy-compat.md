@@ -1,31 +1,35 @@
 ---
-title: Legacy Compat 预设
-description: 旧版兼容工具类的集合。
+title: Legacy Compat preset
+description: Collections of legacy compatibility utilities.
 outline: deep
 ---
 
-# Legacy Compat 预设
+# Legacy Compat Preset
 
-旧版兼容工具类的集合。
+Collections of legacy compatibility utilities.
 
-该预设不包含任何规则，而是对其他预设生成的 CSS 应用后处理。
+This preset does not include any rules, it's applying postprocess to the generated CSS from other presets.
 
-默认情况下，没有任何选项被启用，您需要显式地选择每个选项。
+By default none of the options are enabled, you need to opt-in each of them explicitly.
 
-[源代码](https://github.com/unocss/unocss/tree/main/packages/preset-legacy-compat)
+[Source Code](https://github.com/unocss/unocss/tree/main/packages-presets/preset-legacy-compat)
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/preset-legacy-compat
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/preset-legacy-compat
-  ```
-  ```bash [npm]
-  npm install -D @unocss/preset-legacy-compat
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/preset-legacy-compat
+```
+
+```bash [yarn]
+yarn add -D @unocss/preset-legacy-compat
+```
+
+```bash [npm]
+npm install -D @unocss/preset-legacy-compat
+```
+
 :::
 
 ```ts [uno.config.ts]
@@ -38,22 +42,32 @@ export default defineConfig({
     presetLegacyCompat({
       // options
       commaStyleColorFunction: true,
+      legacyColorSpace: true
     }),
   ],
 })
 ```
 
-## 选项
+## Options
 
 ### `commaStyleColorFunction`
 
-- **类型：** `boolean`
-- **默认值：** `false`
+- **Type:** `boolean`
+- **Default:** `false`
 
-将颜色函数（`rgb()` 和 `hsl()`）从空格分隔改为逗号分隔，以更好地与旧版浏览器兼容。在 UnoCSS v0.57.0 之前的行为被改为空格分隔，以与 Tailwind CSS 对齐。
+Convert color functions (`rgb()` and `hsl()`) from space-separated to comma-separated, for better compatibility with legacy browsers. Bring back the old behavior before UnoCSS v0.57.0 that was changed to space-separated in [#3221](https://github.com/unocss/unocss/pull/3221) to align with Tailwind CSS.
 
-例如：
+For examples:
 
 - `rgb(255 0 0)` -> `rgb(255, 0, 0)`
 - `rgb(255 0 0 / 50%)` -> `rgba(255, 0, 0, 50%)`
 - `hsl(0 100% 50% / 50%)` -> `hsla(0, 100%, 50%, 50%)`
+
+### `legacyColorSpace`
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+Removes color space keywords such as `in oklch` and `in oklab` from the generated styles. This is useful for ensuring compatibility with legacy browsers that do not support these modern color spaces.
+
+To enable this feature, set the `legacyColorSpace` option to `true`.

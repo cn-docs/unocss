@@ -1,27 +1,31 @@
 ---
-title: 编译类转换器
-description: 将一组类编译成一个类 (@unocss/transformer-compile-class)
+title: Compile class transformer
+description: Compile group of classes into one class (@unocss/transformer-compile-class)
 outline: deep
 ---
 
-# 编译类转换器
+# Compile class transformer
 
 <!-- @unocss-ignore -->
 
-将一组类编译成一个类。受到了 [Windi CSS 的编译模式](https://windicss.org/posts/modes.html#compilation-mode) 和 [@UltraCakeBakery](https://github.com/UltraCakeBakery) 的 [issue #948](https://github.com/unocss/unocss/issues/948) 的启发。
+Compile group of classes into one class. Inspired by the [compilation mode](https://windicss.org/posts/modes.html#compilation-mode) of Windi CSS and [issue #948](https://github.com/unocss/unocss/issues/948) by [@UltraCakeBakery](https://github.com/UltraCakeBakery).
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/transformer-compile-class
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/transformer-compile-class
-  ```
-  ```bash [npm]
-  npm install -D @unocss/transformer-compile-class
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/transformer-compile-class
+```
+
+```bash [yarn]
+yarn add -D @unocss/transformer-compile-class
+```
+
+```bash [npm]
+npm install -D @unocss/transformer-compile-class
+```
+
 :::
 
 ```ts [uno.config.ts]
@@ -37,30 +41,31 @@ export default defineConfig({
 ```
 
 ::: tip
-这个预设包含在 `unocss` 包中，你也可以从包里导入它：
+This preset is included in the `unocss` package, you can also import it from there:
 
 ```ts
 import { transformerCompileClass } from 'unocss'
 ```
+
 :::
 
-## 用法
+## Usage
 
-在类字符串的开头添加 `:uno:` 来标记它们进行编译。
+Add `:uno:` at the beginning of the class strings to mark them for compilation.
 
-例如：
+For example:
 
 ```html
 <div class=":uno: text-center sm:text-left">
-  <div class=":uno: text-sm font-bold hover:text-red"/>
+  <div class=":uno: text-sm font-bold hover:text-red" />
 </div>
 ```
 
-将被编译为：
+Will be compiled to:
 
 ```html
 <div class="uno-qlmcrp">
-  <div class="uno-0qw2gr"/>
+  <div class="uno-0qw2gr" />
 </div>
 ```
 
@@ -84,17 +89,17 @@ import { transformerCompileClass } from 'unocss'
 }
 ```
 
-## 选项
+## Options
 
-您可以使用选项配置编译类的触发字符串和前缀。有关详细信息，请参阅[类型定义](https://github.com/unocss/unocss/blob/main/packages/transformer-compile-class/src/index.ts#L4)。
+You can config the trigger string and prefix for compile class with the options. Refer to [the types](https://github.com/unocss/unocss/blob/main/packages-presets/transformer-compile-class/src/index.ts#L4) for details.
 
-## 工具
+## Tooling
 
 ### ESLint
 
-有一个 eslint 规则，用于在整个项目中强制执行类编译转换器：[@unocss/enforce-class-compile](https://unocss.dev/integrations/eslint#unocss-enforce-class-compile)
+There is an eslint rule for enforcing the class compile transformer across the whole project: [@unocss/enforce-class-compile](https://unocss.dev/integrations/eslint#unocss-enforce-class-compile)
 
-**用法：**
+**Usage:**
 
 ```json
 {
@@ -105,6 +110,6 @@ import { transformerCompileClass } from 'unocss'
 }
 ```
 
-## 许可证
+## License
 
-- MIT 许可证 &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)
+- MIT License &copy; 2021-PRESENT [Anthony Fu](https://github.com/antfu)

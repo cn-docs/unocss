@@ -1,36 +1,38 @@
-# 自动补全
+# Autocomplete
 
-可以在<a href="/play" target="_blank" rel="noreferrer">娱乐场</a>和[VS Code 扩展](/integrations/vscode)中为UnoCSS的智能建议自定义自动补全功能。
+Autocomplete can be customized for UnoCSS's intelligent suggestions in <a href="/play" target="_blank" rel="noreferrer">playground</a> and the [VS Code extension](/integrations/vscode).
+
 <!--eslint-skip-->
+
 ```ts
 autocomplete: {
   templates: [
-    // 主题推断
+    // theme inferring
     'bg-$color/<opacity>',
-    // 简写
+    // short hands
     'text-<font-size>',
-    // 逻辑或组
+    // logic OR groups
     '(b|border)-(solid|dashed|dotted|double|hidden|none)',
-    // 常量
+    // constants
     'w-half',
   ],
   shorthands: {
-    // 等同于 `opacity: "(0|10|20|30|40|50|60|70|90|100)"`
+    // equal to `opacity: "(0|10|20|30|40|50|60|70|90|100)"`
     'opacity': Array.from({ length: 11 }, (_, i) => i * 10),
     'font-size': '(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl|6xl|7xl|8xl|9xl)',
-    // 覆盖内置简写
+    // override built-in short hands
     'num': '(0|1|2|3|4|5|6|7|8|9)',
   },
   extractors: [
-      // ...提取器
+      // ...extractors
   ],
 }
 ```
 
-- `templates` 使用简单的DSL来指定自动补全建议。
+- `templates` uses a simple DSL to specify the autocomplete suggestions.
 
-- `shorthands` 是一个简写名称到其模板的映射。如果是`Array`，它将是一个逻辑或组。
+- `shorthands` is a map of shorthand names to their templates. If it's a `Array`, it will be a logic OR group.
 
-- `extractors` 用于提取可能的类并将类名样式建议转换为正确的格式。例如，你可以查看我们如何实现[属性化自动补全提取器](https://github.com/unocss/unocss/blob/main/packages/preset-attributify/src/autocomplete.ts)。
+- `extractors` to pickup possible classes and transform class-name style suggestions to the correct format. For example, you could check how we implement the [attributify autocomplete extractor](https://github.com/unocss/unocss/blob/main/packages-presets/preset-attributify/src/autocomplete.ts)
 
-- 有关更多帮助，请参考[这里](/tools/autocomplete)。
+- For additional help, please refer to [here](/tools/autocomplete).

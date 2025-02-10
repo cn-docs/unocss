@@ -1,31 +1,35 @@
 ---
-title: Wind 预设
-description: UnoCSS 的 Tailwind CSS / Windi CSS 紧凑预设 (@unocss/preset-wind)。
+title: Wind preset
+description: The Tailwind CSS / Windi CSS compact preset for UnoCSS (@unocss/preset-wind).
 outline: deep
 ---
 
-# Wind 预设
+# Wind preset
 
-UnoCSS 的 Tailwind CSS / Windi CSS 紧凑预设。
+The Tailwind CSS / Windi CSS compact preset for UnoCSS.
 
-[源代码](https://github.com/unocss/unocss/tree/main/packages/preset-wind)
+[Source Code](https://github.com/unocss/unocss/tree/main/packages-presets/preset-wind)
 
 ::: info
-该预设继承自 [`@unocss/preset-mini`](/presets/mini)。
+This preset inherits [`@unocss/preset-mini`](/presets/mini).
 :::
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/preset-wind
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/preset-wind
-  ```
-  ```bash [npm]
-  npm install -D @unocss/preset-wind
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/preset-wind
+```
+
+```bash [yarn]
+yarn add -D @unocss/preset-wind
+```
+
+```bash [npm]
+npm install -D @unocss/preset-wind
+```
+
 :::
 
 ```ts [uno.config.ts]
@@ -40,71 +44,141 @@ export default defineConfig({
 ```
 
 ::: tip
-该预设已包含在 `unocss` 包中，您也可以从那里导入：
+This preset is included in the `unocss` package, you can also import it from there:
 
 ```ts
 import { presetWind } from 'unocss'
 ```
+
 :::
 
-## 规则
-该预设的主要目标是与 [Tailwind CSS](https://tailwindcss.com/) 和 [Windi CSS](https://windicss.org/) 兼容。请注意，无法保证完全兼容性。有关详细用法，请参阅它们的 [文档](https://tailwindcss.com/docs)。
+## Rules
 
-有关此预设中包含的所有规则和预设，请参阅我们的 <a href="/interactive/" target="_blank">交互式文档</a> 或直接转到 [源代码](https://github.com/unocss/unocss/tree/main/packages/preset-wind)。
+The primary goal of this preset is to provide compatibility with [Tailwind CSS](https://tailwindcss.com/) and [Windi CSS](https://windicss.org/). It should be noted that complete compatibility may not be guaranteed. Please refer to their [documentation](https://tailwindcss.com/docs) for detailed usage.
 
-## 与 Tailwind CSS 的差异
+For all rules and presets included in this preset, please refer to our <a href="/interactive/" target="_blank">interactive docs</a> or directly go to the [source code](https://github.com/unocss/unocss/tree/main/packages-presets/preset-wind).
 
-### 引号
+## Differences from Tailwind CSS
 
-在模板（用于处理的文件）中使用引号是不被支持的，因为这会影响提取器的工作。例如，你不能写 `before:content-['']`。对于这些情况，你可能更倾向于引入一个新的工具类类，比如 `class="before:content-empty"`，以便明确设置。
+### Quotes
 
-### 使用任意值设置背景位置
+Using quotes in the template (the files intended to be processed) is not supported due to how the extractor works. E.g. you won't be able to write `before:content-['']`. For these cases, you may prefer to introduce a new utility that you can explicitly set such as `class="before:content-empty"`.
 
-Tailwind [允许](https://tailwindcss.com/docs/background-position#using-custom-values)使用自定义值来设置 `background-position`，使用裸语法：
+### background-position with arbitrary values
 
-```html
-<div class="bg-[center_top_1rem]">
-```
-
-但是，Wind 预设会将 `center_top_1rem` 解释为一种颜色。要实现相同的效果，请使用 `position:` 前缀：
+Tailwind [allows](https://tailwindcss.com/docs/background-position#using-custom-values) one to use custom values for `background-position` using the bare syntax:
 
 ```html
-<div class="bg-[position:center_top_1rem]">
+<div class="bg-[center_top_1rem]"></div>
 ```
 
-## 与 Windi CSS 的差异
+The Wind preset will instead interpret `center_top_1rem` as a color. Use a `position:` prefix to accomplish the same thing:
 
-### 断点
+```html
+<div class="bg-[position:center_top_1rem]"></div>
+```
 
-| Windi CSS | UnoCSS |
-|:--|:--|
+### Animates
+
+Tailwind CSS has fewer built-in animations, we fully support its animation rules, and internally integrate [Animate.css](https://github.com/animate-css/animate.css) to provide more animation effects.
+
+You can use the `animate-` prefix to guide IntelliSense to find the animation you need quickly.
+
+:::tip
+We don't merge conflicting animation names from Tailwind and Animate.css. If you need to use the animation name from Animate.css, please use `animate-<name>-alt`.
+:::
+
+For example
+
+|                                                                                                                                         Tailwind CSS                                                                                                                                          |                                                                                                                                            Animate.css                                                                                                                                            |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                                                                       `animate-bounce`                                                                                                                                        |                                                                                                                                       `animate-bounce-alt`                                                                                                                                        |
+| <div w-full flex="~ items-center justify-center"><div class="animate-bounce bg-white dark:bg-slate-800 p-2 w-10 h-10 ring-1 ring-purple-900/5 dark:ring-purple-200/20 shadow-lg rounded-full flex items-center justify-center"><div text-purple size-5 i-carbon-arrow-down></div></div></div> | <div w-full flex="~ items-center justify-center"><div class="animate-bounce-alt bg-white dark:bg-slate-800 p-2 w-10 h-10 ring-1 ring-purple-900/5 dark:ring-purple-200/20 shadow-lg rounded-full flex items-center justify-center"><div text-purple size-5 i-carbon-arrow-down></div></div></div> |
+
+If you want to customize or modify the animation effect, we provide highly customizable configuration items. You can modify the duration, delay, speed curve, etc. of the animation through the configuration item.
+
+```ts [uno.config.ts]
+export default defineConfig({
+  theme: {
+    animation: {
+      keyframes: {
+        custom: '{0%, 100% { transform: scale(0.5); } 50% { transform: scale(1); }}',
+      },
+      durations: {
+        custom: '1s',
+      },
+      timingFns: {
+        custom: 'cubic-bezier(0.4,0,.6,1)',
+      },
+      properties: {
+        custom: { 'transform-origin': 'center' },
+      },
+      counts: {
+        custom: 'infinite',
+      },
+    }
+  }
+})
+```
+
+Preview the custom animation:
+
+<div class="animate-custom bg-white dark:bg-slate-800 p-2 w-fit ring-1 ring-purple-900/5 dark:ring-purple-200/20 shadow-lg rounded-md flex items-center justify-center">animate-custom</div>
+
+:::tip
+You can also add `category` to group animations for better management. This will make it easier for downstream tools to consume animation effects.
+
+```ts [uno.config.ts] {9}
+export default defineConfig({
+  theme: {
+    animation: {
+      keyframes: {
+        custom: '{0%, 100% { transform: scale(0.5); } 50% { transform: scale(1); }}',
+      },
+      // ...
+      category: {
+        custom: 'Zooming',
+      },
+    }
+  }
+})
+```
+
+:::
+
+## Differences from Windi CSS
+
+### Breakpoints
+
+| Windi CSS | UnoCSS      |
+| :-------- | :---------- |
 | `<sm:p-1` | `lt-sm:p-1` |
 | `@lg:p-1` | `at-lg:p-1` |
 | `>xl:p-1` | `xl:p-1`    |
 
-### 方括号语法中的空格
+### Bracket syntax spaces
 
-该预设使用 `_` 替换 `,` 以保留方括号语法中的空格。
+This preset uses `_` instead of `,` to respect space in bracket syntax.
 
-| Windi CSS | UnoCSS |
-|:--|:--|
+| Windi CSS                          | UnoCSS                             |
+| :--------------------------------- | :--------------------------------- |
 | `grid-cols-[1fr,10px,max-content]` | `grid-cols-[1fr_10px_max-content]` |
 
-由于某些 CSS 规则需要 `,` 作为值的一部分，例如 `grid-cols-[repeat(3,auto)]`
+Since some CSS rules require `,` as parts of the value, e.g. `grid-cols-[repeat(3,auto)]`
 
-## 实验性功能
+## Experimental Features
 
 ::: warning
-该预设包含实验性功能，可能随时以破坏性方式更改。
+This preset includes experimental features that may be changed in breaking ways at any time.
 :::
 
-### 媒体悬停
+### Media Hover
 
-媒体悬停解决了[粘滞悬停](https://css-tricks.com/solving-sticky-hover-states-with-media-hover-hover/)问题，即在移动设备上点击包含悬停样式的目标后，该悬停样式会持续存在，直到点击其他地方。
+Media hover addresses the [sticky hover](https://css-tricks.com/solving-sticky-hover-states-with-media-hover-hover/) problem where tapping target that includes hover style on mobile will persist that hover style until tapping elsewhere.
 
-由于常规的 `:hover` 样式可能被广泛使用，此变体使用 `@hover` 语法来区分它与常规的 `hover` 伪类。
+Since the regular `:hover` style most probably used so widely, the variant uses `@hover` syntax to distinguish it from the regular `hover` pseudo.
 
-变体 `@hover-text-red` 将输出：
+The variant `@hover-text-red` will output:
 
 ```css
 @media (hover: hover) and (pointer: fine) {
@@ -115,25 +189,26 @@ Tailwind [允许](https://tailwindcss.com/docs/background-position#using-custom-
 }
 ```
 
-## 选项
+## Options
 
 ::: info
-该预设选项继承自 [`@unocss/preset-mini`](/presets/mini#选项)。
+This preset options are inherited from [`@unocss/preset-mini`](/presets/mini#options).
 :::
 
 ### important
-- **类型：** `boolean | string`
-- **默认值：** `false`
 
-`important` 选项允许您控制是否应该将 UnoCSS 生成的工具标记为 `!important`。当与具有高特异性选择器的现有 CSS 一起使用 UnoCSS 时，这可能非常有用。
+- **Type:** `boolean | string`
+- **Default:** `false`
+
+The `important` option lets you control whether UnoCSS's utilities should be marked with `!important`. This can be really useful when using UnoCSS with existing CSS that has high specificity selectors.
 
 ::: warning
-使用此选项将使 UnoCSS 生成的所有工具都标记为 `!important`。如果您只想将其应用于特定的工具，请改用 `important:` 变体。
+Using this option will apply important to all utilities generated by UnoCSS. You can use `important:` variant instead if you mean to apply it to specific utilities only.
 :::
 
-但是，将 `important` 设置为 `true` 可能会在将第三方 JS 库合并到您的元素中时引入一些问题，这些库会向元素添加内联样式。在这些情况下，UnoCSS 的 `!important` 工具会覆盖内联样式，这可能会破坏您的预期设计。
+However, setting `important` to `true` can introduce some issues when incorporating third-party JS libraries that add inline styles to your elements. In those cases, UnoCSS's `!important` utilities defeat the inline styles, which can break your intended design.
 
-为了解决这个问题，您可以将 important 设置为 ID 选择器，例如 `#app`：
+To get around this, you can set important to an ID selector like `#app` instead:
 
 ```ts [uno.config.ts]
 import presetWind from '@unocss/preset-wind'
@@ -148,13 +223,13 @@ export default defineConfig({
 })
 ```
 
-此配置将为所有工具添加给定选择器的前缀，从而有效地增加其特异性，而不会实际使它们变为 `!important`。
+This configuration will prefix all of your utilities with the given selector, effectively increasing their specificity without actually making them `!important`.
 
-`dark:bg-blue` 工具将生成以下 CSS：
+The utility `dark:bg-blue` will output:
 
 ```css
 #app :is(.dark .dark\:bg-blue) {
-    --un-bg-opacity: 1;
-    background-color: rgb(96 165 250 / var(--un-bg-opacity));
+  --un-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--un-bg-opacity));
 }
 ```

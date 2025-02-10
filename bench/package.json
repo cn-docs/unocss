@@ -1,5 +1,5 @@
 {
-  "version": "0.63.4",
+  "version": "65.4.3",
   "scripts": {
     "bench": "node run.mjs"
   },
@@ -10,7 +10,7 @@
     "fs-extra": "catalog:",
     "local-pkg": "catalog:",
     "postcss": "catalog:",
-    "tailwindcss": "catalog:",
+    "tailwindcss4": "npm:tailwindcss@4.0.0-beta.1",
     "unocss": "workspace:*",
     "vite": "catalog:",
     "vite-plugin-windicss": "catalog:",

@@ -6,7 +6,7 @@ title: Svelte 提取器
 
 支持从 `class:` 指令中提取类。
 
-```html
+```svelte
 <div class:text-orange-400={foo} />
 ```
 
@@ -21,15 +21,19 @@ title: Svelte 提取器
 ## 安装
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/extractor-svelte
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/extractor-svelte
-  ```
-  ```bash [npm]
-  npm install -D @unocss/extractor-svelte
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/extractor-svelte
+```
+
+```bash [yarn]
+yarn add -D @unocss/extractor-svelte
+```
+
+```bash [npm]
+npm install -D @unocss/extractor-svelte
+```
+
 :::
 
 ```ts [uno.config.ts]

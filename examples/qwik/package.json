@@ -16,10 +16,10 @@
     "@builder.io/qwik": "1.2.13",
     "@builder.io/qwik-city": "1.2.13",
     "@types/node": "latest",
-    "@unocss/reset": "link:../../packages/reset",
-    "typescript": "^5.6.2",
-    "unocss": "link:../../packages/unocss",
-    "vite": "^5.4.8"
+    "@unocss/reset": "link:../../packages-presets/reset",
+    "typescript": "^5.7.3",
+    "unocss": "link:../../packages-presets/unocss",
+    "vite": "^6.0.11"
   },
   "stackblitz": {
     "installDependencies": false,

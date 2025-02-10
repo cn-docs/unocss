@@ -1,25 +1,29 @@
 ---
-title: 指令转换器
-description: UnoCSS 的指令转换器，用于 @apply、@screen 和 theme() 指令 (@unocss/transformer-directives)。
+title: Directives transformer
+description: UnoCSS transformer for @apply, @screen and theme() directives (@unocss/transformer-directives)
 outline: deep
 ---
 
-# 指令转换器
+# Directives transformer
 
-UnoCSS 的指令转换器，用于 `@apply`、`@screen` 和 `theme()` 指令：`@unocss/transformer-directives`。
+UnoCSS transformer for `@apply`, `@screen` and `theme()` directives: `@unocss/transformer-directives`.
 
-## 安装
+## Installation
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/transformer-directives
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/transformer-directives
-  ```
-  ```bash [npm]
-  npm install -D @unocss/transformer-directives
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/transformer-directives
+```
+
+```bash [yarn]
+yarn add -D @unocss/transformer-directives
+```
+
+```bash [npm]
+npm install -D @unocss/transformer-directives
+```
+
 :::
 
 ```ts [uno.config.ts]
@@ -35,14 +39,15 @@ export default defineConfig({
 ```
 
 ::: tip
-这个预设包含在 `unocss` 包中，你也可以从包里导入它：
+This preset is included in the `unocss` package, you can also import it from there:
 
 ```ts
 import { transformerDirectives } from 'unocss'
 ```
+
 :::
 
-## 用法
+## Usage
 
 ### `@apply`
 
@@ -52,7 +57,7 @@ import { transformerDirectives } from 'unocss'
 }
 ```
 
-将被转换为：
+Will be transformed to:
 
 ```css
 .custom-div {
@@ -65,7 +70,7 @@ import { transformerDirectives } from 'unocss'
 
 #### `--at-apply`
 
-为了与纯 CSS 兼容，您可以使用 CSS 自定义属性来替换 `@apply` 指令：
+To be compatible with vanilla CSS, you can use CSS custom properties to replace the `@apply` directive:
 
 ```css
 .custom-div {
@@ -73,34 +78,34 @@ import { transformerDirectives } from 'unocss'
 }
 ```
 
-此功能默认启用，并带有一些别名，您可以通过以下方式配置或禁用：
+This feature is enabled by default with a few aliases, that you can configure or disable via:
 
 ```js
 transformerDirectives({
-  // 默认值
+  // the defaults
   applyVariable: ['--at-apply', '--uno-apply', '--uno'],
-  // 或者禁用：
+  // or disable with:
   // applyVariable: false
 })
 ```
 
-#### 添加引号
+#### Adding quotes
 
-要使用带有 `:` 的规则，您将需要引用整个值：
+To use rules with `:`, you will have to quote the whole value:
 
 ```css
 .custom-div {
-  --at-apply: "hover:text-red hover:font-bold";
-  /* 或 */
+  --at-apply: 'hover:text-red hover:font-bold';
+  /* or */
   @apply 'hover:text-red hover:font-bold';
 }
 ```
 
-在 `@apply` 后使用引号是可选的，以满足某些格式化程序的行为。
+Using quotes after `@apply` is optional, to meet the behavior of some formatters.
 
 ### `@screen`
 
-`@screen` 指令允许您创建媒体查询，其中引用您的断点名称来自 [`theme.breakpoints`](/config/theme)。
+The `@screen` directive that allows you to create media queries that reference your breakpoints by name comes from [`theme.breakpoints`](/config/theme).
 
 ```css
 .grid {
@@ -117,9 +122,10 @@ transformerDirectives({
   }
 }
 /* ... */
+...;
 ```
 
-将被转换为：
+Will be transformed to:
 
 ```css
 .grid {
@@ -139,9 +145,9 @@ transformerDirectives({
 /* ... */
 ```
 
-#### 断点变体支持
+#### Breakpoint variant support
 
-`@screen` 还支持 `lt`、`at` 变体：
+`@screen` also supports `lt`、`at` variants:
 
 #### `@screen lt-`
 
@@ -162,7 +168,7 @@ transformerDirectives({
 /* ... */
 ```
 
-将被转换为：
+Will be transformed to:
 
 ```css
 .grid {
@@ -206,7 +212,7 @@ transformerDirectives({
 /* ... */
 ```
 
-将被转换为：
+Will be transformed to:
 
 ```css
 .grid {
@@ -233,7 +239,7 @@ transformerDirectives({
 
 ### `theme()`
 
-使用 `theme()` 函数通过点表示法访问您的主题配置值。
+Use the `theme()` function to access your theme config values using dot notation.
 
 ```css
 .btn-blue {
@@ -241,7 +247,7 @@ transformerDirectives({
 }
 ```
 
-将被编译为：
+Will be compiled to:
 
 ```css
 .btn-blue {
@@ -251,10 +257,10 @@ transformerDirectives({
 
 ### `icon()`
 
-使用 `icon()` 函数将图标工具转换为特定的 SVG 图标。
+Use the `icon()` function to convert the icon utility to a specific svg icon.
 
 ::: warning
-`icon()` 依赖于 `@unocss/preset-icons`，并将使用其配置，请确保已添加此预设。
+`icon()` depends on `@unocss/preset-icons` and will use the configuration, make sure you have added this preset.
 :::
 
 ```css
@@ -263,7 +269,7 @@ transformerDirectives({
 }
 ```
 
-将被编译为：
+Will be compiled to:
 
 ```css
 .icon {
@@ -271,16 +277,16 @@ transformerDirectives({
 }
 ```
 
-由于图标默认使用 `currentColor` 作为填充颜色，如果你想自定义图标的颜色，可以使用 `icon('icon name', 'custom color')`。
+Cause the icon uses `currentColor` as the fill color by default, if you want to customize the color of the icon, you can use `icon('icon name', 'custom color')`.
 
 ```css
 .icon {
   background-image: icon('i-carbon-moon', '#fff');
-  background-image: icon('i-carbon-moon', 'theme("colors.red.500")'); /* 使用主题颜色 */
+  background-image: icon('i-carbon-moon', 'theme("colors.red.500")'); /* use theme color */
 }
 ```
 
-将被编译为：
+Will be compiled to:
 
 ```css
 .icon {
@@ -291,4 +297,4 @@ transformerDirectives({
 
 ## License
 
-- MIT 许可证 &copy; 2022-PRESENT [hannoeru](https://github.com/hannoeru)
+- MIT License &copy; 2022-PRESENT [hannoeru](https://github.com/hannoeru)

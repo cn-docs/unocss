@@ -27,6 +27,8 @@ export default defineConfig({
 
 `m-1` 将被检测到，并生成以下 CSS：
 
+<!-- eslint-skip -->
+
 ```css
 .m-1 { margin: 1px; }
 ```
@@ -48,6 +50,8 @@ export default defineConfig({
 <div class="m-1">Hello</div>
 <div class="m-7.5">World</div>
 ```
+
+<!-- eslint-skip -->
 
 ```css
 .m-1 { margin: 1px; }

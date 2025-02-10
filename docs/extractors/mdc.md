@@ -10,15 +10,19 @@ description: UnoCSS 的 MDC 提取器 (@unocss/extractor-mdc)
 ## 安装
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D @unocss/extractor-mdc
-  ```
-  ```bash [yarn]
-  yarn add -D @unocss/extractor-mdc
-  ```
-  ```bash [npm]
-  npm install -D @unocss/extractor-mdc
-  ```
+
+```bash [pnpm]
+pnpm add -D @unocss/extractor-mdc
+```
+
+```bash [yarn]
+yarn add -D @unocss/extractor-mdc
+```
+
+```bash [npm]
+npm install -D @unocss/extractor-mdc
+```
+
 :::
 
 ```ts [uno.config.ts]

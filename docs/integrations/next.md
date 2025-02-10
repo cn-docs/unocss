@@ -14,15 +14,19 @@ description: 如何开始使用 UnoCSS 和 Next.js。
 ### 安装
 
 ::: code-group
-  ```bash [pnpm]
-  pnpm add -D unocss @unocss/webpack
-  ```
-  ```bash [yarn]
-  yarn add -D unocss @unocss/webpack
-  ```
-  ```bash [npm]
-  npm install -D unocss @unocss/webpack
-  ```
+
+```bash [pnpm]
+pnpm add -D unocss @unocss/webpack
+```
+
+```bash [yarn]
+yarn add -D unocss @unocss/webpack
+```
+
+```bash [npm]
+npm install -D unocss @unocss/webpack
+```
+
 :::
 
 ### 配置
@@ -44,7 +48,7 @@ export default defineConfig({
     // ...
   ],
 })
- ```
+```
 
 ### 添加插件
 

@@ -1,15 +1,15 @@
 ---
-title: 规则
-description: 为 UnoCSS 编写自定义规则非常简单。
+title: Rules
+description: Writing custom rules for UnoCSS is super easy.
 ---
 
-# 规则
+# Rules
 
-规则定义了实用类和生成的 CSS。UnoCSS 有许多内置规则，但也允许轻松添加自定义规则。
+Rules define utility classes and the resulting CSS. UnoCSS has many built-in rules but also allows for easily adding custom rules.
 
-## 静态规则
+## Static rules
 
-使用这个例子：
+With this example:
 
 ```ts
 rules: [
@@ -17,13 +17,15 @@ rules: [
 ]
 ```
 
-每当在用户代码中检测到 `m-1` 时，将生成以下 CSS：
+The following CSS will be generated whenever `m-1` is detected in users' codebase:
+
+<!-- eslint-skip -->
 
 ```css
 .m-1 { margin: 0.25rem; }
 ```
 
-> **注意**：属性语法遵循 CSS 属性语法，例如 `font-weight` 而不是 `fontWeight`。如果属性名中有连字符 `-`，应该用引号括起来。
+> **Note**: The body syntax follows CSS property syntax, eg. `font-weight` instead of `fontWeight`. If there is a hyphen `-` in the property name it should be quoted.
 >
 > ```ts
 > rules: [
@@ -31,9 +33,9 @@ rules: [
 > ]
 > ```
 
-## 动态规则
+## Dynamic rules
 
-为了使其更智能，将匹配器更改为 `RegExp`，将主体更改为函数：
+To make it smarter, change the matcher to a `RegExp` and the body to a function:
 
 ```ts
 rules: [
@@ -42,9 +44,9 @@ rules: [
 ]
 ```
 
-主体函数的第一个参数是 `RegExp` 匹配结果，可以解构以获取匹配的组。
+The first argument of the body function is the `RegExp` match result that can be destructured to get the matched groups.
 
-例如，使用以下用法：
+For example, with the following usage:
 
 ```html
 <div class="m-100">
@@ -55,7 +57,9 @@ rules: [
 </div>
 ```
 
-将生成相应的 CSS：
+the corresponding CSS will be generated:
+
+<!-- eslint-skip -->
 
 ```css
 .m-100 { margin: 25rem; }
@@ -63,36 +67,66 @@ rules: [
 .p-5 { padding: 1.25rem; }
 ```
 
-恭喜！现在你拥有了自己强大的原子 CSS 实用程序。享受吧！
+Congratulations! Now you've got your own powerful atomic CSS utilities. Enjoy!
 
-## 排序
+## CSS Rules Fallback
 
-UnoCSS 遵循你在生成的 CSS 中定义的规则顺序。后定义的规则具有更高的优先级。
+In cases you might want to leverage CSS rules fallback to use new CSS features while also able to fallback to support old browsers, you can optionally return a 2D-array as the CSS representation for rules with the same keys. For example:
 
-在使用动态规则时，它可能会匹配多个标记。默认情况下，在单个动态规则下匹配的输出将在组内按字母顺序排序。
-
-## 规则合并
-
-默认情况下，UnoCSS 会合并具有相同内容的 CSS 规则以最小化 CSS 大小。
-
-例如，`<div class="m-2 hover:m2">` 会生成：
-
-```css
-.hover\:m2:hover, .m-2 { margin: 0.5rem; }
+```ts
+rules: [
+  [/^h-(\d+)dvh$/, ([_, d]) => {
+    return [
+      ['height', `${d}vh`],
+      ['height', `${d}dvh`],
+    ]
+  }],
+]
 ```
 
-而不是两个独立的规则：
+Which will make `h-100dvh` generates:
+
+<!-- eslint-skip -->
 
 ```css
-.hover\:m2:hover { margin: 0.5rem; }
-.m-2 { margin: 0.5rem; }
+.h-100dvh { height: 100vh; height: 100dvh; }
 ```
 
-## 特殊符号
+## Ordering
 
-从 v0.61 版本开始，UnoCSS 支持使用特殊符号为生成的 CSS 定义额外的元信息。你可以从动态规则匹配函数的第二个参数访问符号。
+UnoCSS respects the order of the rules you defined in the generated CSS. Latter ones come with higher priority.
 
-例如：
+When using dynamic rules, it may match multiple tokens. By default, the output of those matched under a single dynamic rule will be sorted alphabetically within the group.
+
+## Rules merging
+
+By default, UnoCSS will merge CSS rules with the same body to minimize the CSS size.
+
+For example, `<div class="m-2 hover:m2">` will generate:
+
+```css
+.hover\:m2:hover,
+.m-2 {
+  margin: 0.5rem;
+}
+```
+
+Instead of two separate rules:
+
+```css
+.hover\:m2:hover {
+  margin: 0.5rem;
+}
+.m-2 {
+  margin: 0.5rem;
+}
+```
+
+## Special symbols
+
+Since v0.61, UnoCSS supports special symbols to define additional meta information for your generated CSS. You can access symbols from the second argument of the dynamic rule matcher function.
+
+For example:
 
 ```ts
 rules: [
@@ -105,7 +139,7 @@ rules: [
 ]
 ```
 
-会生成：
+Will generate:
 
 ```css
 @supports (display: grid) {
@@ -115,18 +149,20 @@ rules: [
 }
 ```
 
-### 可用符号
+### Available symbols
 
-- `symbols.parent`：生成的 CSS 规则的父级包装器（例如 `@supports`、`@media` 等）。
-- `symbols.selector`：用于修改生成的 CSS 规则选择器的函数（参见下面的示例）。
-- `symbols.layer`：一个字符串/函数/正则表达式匹配项，用于设置生成的 CSS 规则的 UnoCSS 层。
-- `symbols.variants`：应用于当前 CSS 对象的变体处理器数组。
-- `symbols.shortcutsNoMerge`：一个布尔值，用于禁用当前规则在快捷方式中的合并。
-## 多选择器规则
+- `symbols.parent`: The parent wrapper of the generated CSS rule (eg. `@supports`, `@media`, etc.)
+- `symbols.selector`: A function to modify the selector of the generated CSS rule (see the example below)
+- `symbols.layer`: A string/function/regex match that sets the UnoCSS layer of the generated CSS rule
+- `symbols.variants`: An array of variant handler that are applied to the current CSS object
+- `symbols.shortcutsNoMerge`: A boolean to disable the merging of the current rule in shortcuts
+- `symbols.sort`: A number to overwrite sorting order of the current CSS object
 
-从 v0.61 版本开始，UnoCSS 支持通过 [JavaScript 生成器函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator) 实现多选择器。
+## Multi-selector rules
 
-例如：
+Since v0.61, UnoCSS supports multi-selector via [JavaScript Generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator).
+
+For example:
 
 ```ts
 rules: [
@@ -143,7 +179,7 @@ rules: [
 ]
 ```
 
-会生成多个 CSS 规则：
+Will generate multiple CSS rules:
 
 ```css
 .button-red {
@@ -154,15 +190,15 @@ rules: [
 }
 ```
 
-## 完全控制的规则
+## Fully controlled rules
 
 ::: tip
-这是一个高级特性，在大多数情况下不会需要。
+This is an advanced feature, in most situtations it won't be needed.
 :::
 
-当您确实需要一些高级规则，这些规则不被 [动态规则](#dynamic-rules) 和 [变体](/config/variants) 的组合所覆盖时，UnoCSS 还提供了一种完全控制生成 CSS 的方法。
+When you really need some advanced rules that aren't covered by the combination of [Dynamic Rules](#dynamic-rules) and [Variants](/config/variants), UnoCSS also provides a way to give you full control to generate the CSS.
 
-它允许您从动态规则的主体函数中返回一个字符串，该字符串将 **直接** 传递给生成的 CSS（这也意味着您需要处理诸如 CSS 转义、变体应用、CSS 构建等问题）。
+It allows you to return a string from the dynamic rule's body function which will be **directly** passed to the generated CSS (this also means you need to take care of things like CSS escaping, variant applying, CSS constructing, and so on).
 
 ```ts [uno.config.ts]
 import { defineConfig, toEscapedSelector as e } from 'unocss'
@@ -170,27 +206,27 @@ import { defineConfig, toEscapedSelector as e } from 'unocss'
 export default defineConfig({
   rules: [
     [/^custom-(.+)$/, ([, name], { rawSelector, currentSelector, variantHandlers, theme }) => {
-      // 丢弃不匹配的规则
+      // discard mismatched rules
       if (name.includes('something'))
         return
 
-      // 如果您愿意，您可以禁用此规则的变体
+      // if you want, you can disable the variants for this rule
       if (variantHandlers.length)
         return
       const selector = e(rawSelector)
-      // 返回字符串而不是对象
+      // return a string instead of an object
       return `
 ${selector} {
   font-size: ${theme.fontSize.sm};
 }
-/* 您可以有多个规则 */
+/* you can have multiple rules */
 ${selector}::after {
   content: 'after';
 }
 .foo > ${selector} {
   color: red;
 }
-/* 或者媒体查询 */
+/* or media queries */
 @media (min-width: ${theme.breakpoints.sm}) {
   ${selector} {
     font-size: ${theme.fontSize.sm};
@@ -200,27 +236,4 @@ ${selector}::after {
     }],
   ],
 })
-```
-
-## 排序
-
-UnoCSS 尊重您在生成的 CSS 中定义的规则的顺序。后面的规则优先级更高。
-
-使用动态规则时，可能会匹配多个令牌。默认情况下，在单个动态规则下匹配的输出将在组内按字母顺序排序。
-
-## 规则合并
-
-默认情况下，UnoCSS 将具有相同主体的 CSS 规则合并以最小化 CSS 大小。
-
-例如，`<div class="m-2 hover:m2">` 将生成：
-
-```css
-.hover\:m2:hover, .m-2 { margin: 0.5rem; }
-```
-
-而不是两条单独的规则：
-
-```css
-.hover\:m2:hover { margin: 0.5rem; }
-.m-2 { margin: 0.5rem; }
 ```
