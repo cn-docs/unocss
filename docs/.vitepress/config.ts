@@ -81,7 +81,7 @@ const Tools: DefaultTheme.NavItemWithLink[] = [
 
 const Resources: DefaultTheme.NavItemWithLink[] = [
   { text: '交互文档', link: '/interactive/', target: '_blank' },
-  { text: '试玩平台', link: '/play/', target: '_blank' },
+  { text: '演练场', link: '/play/', target: '_blank' },
   { text: '教程', link: 'https://tutorial.unocss.dev/', target: '_blank' },
 ]
 
@@ -97,8 +97,16 @@ const Nav: DefaultTheme.NavItem[] = [
         text: '指南',
         items: Guides,
       },
+      {
+        text: '关于本站',
+        link: '/guide/about',
+      },
     ],
     activeMatch: '^/guide/',
+  },
+  {
+    text: 'vue源码讲解',
+    link: '/vueer',
   },
   {
     text: '集成',

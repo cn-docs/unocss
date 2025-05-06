@@ -25,6 +25,9 @@ hero:
       text: Tutorial
       link: https://tutorial.unocss.dev/
       target: _blank
+    - theme: alt
+      text: 关于本站
+      link: /guide/about
 
 features:
   - icon: <span class="i-carbon:ibm-toolchain"></span>
